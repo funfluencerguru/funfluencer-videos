@@ -53,7 +53,11 @@ def html(i,t):
     slug,bub,prop,shape,head,cta,sfx=t
     mouth=["M238 292 Q262 280 288 292","M240 290 Q262 305 286 290","M242 292 L284 292"][i%3]
     shp=('<circle cx="760" cy="600" r="90"></circle>' if shape=="circle" else '<path d="M670 520 L850 520 L850 680 L670 680 Z"></path>')
-    flip=i%2==1
+    if SLEEPY:
+        EYES='<path d="M224 246 Q238 258 252 246 M274 244 Q288 256 302 244" stroke-width="4"></path><text x="330" y="215" font-size="44" fill="#1c2aa8">z</text><text x="360" y="185" font-size="36" fill="#1c2aa8">z</text>'
+        mouth="M242 296 Q262 302 284 296"
+    else:
+        EYES='<circle cx="238" cy="245" r="6" fill="#1c2aa8"></circle><circle cx="288" cy="243" r="6" fill="#1c2aa8"></circle><path d="M214 224 L252 230 M274 228 L312 222" stroke-width="4"></path>'
     return f'''<!doctype html><html><head><meta charset="utf-8"><style>body{{margin:0}}</style></head><body>
 <div style="position:relative;width:1080px;height:1920px;overflow:hidden;background-color:#f5f2e9;background-image:repeating-linear-gradient(to bottom,rgba(0,0,0,0) 0px,rgba(0,0,0,0) 63px,#b9c8e6 63px,#b9c8e6 65px);font-family:Carlito,'DejaVu Sans',sans-serif;color:#1c2aa8">
 <div style="position:absolute;left:118px;top:0;width:3px;height:1920px;background:#e4806f"></div>
@@ -62,8 +66,7 @@ def html(i,t):
 <g fill="none" stroke="#1c2aa8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
 <path d="M40 730 L960 734"></path>
 <circle cx="260" cy="250" r="75"></circle>
-<circle cx="238" cy="245" r="6" fill="#1c2aa8"></circle><circle cx="288" cy="243" r="6" fill="#1c2aa8"></circle>
-<path d="M214 224 L252 230 M274 228 L312 222" stroke-width="4"></path><path d="{mouth}" stroke-width="4"></path>
+{EYES}<path d="{mouth}" stroke-width="4"></path>
 <path d="M260 325 L260 520 M260 520 L200 720 M260 520 L330 720"></path>
 <path d="M260 370 L350 440 L520 560 M260 370 L180 450 L150 380"></path>
 {shp}
@@ -80,6 +83,7 @@ def html(i,t):
 </div></body></html>'''
 
 LOGO=""
+SLEEPY=False
 if __name__=="__main__":
     import argparse
     from playwright.sync_api import sync_playwright
@@ -89,8 +93,8 @@ if __name__=="__main__":
     a.add_argument("--headline",required=True,help="use <br> for line breaks")
     a.add_argument("--cta",required=True);a.add_argument("--sfx",choices=["beeps","growl","boing"],default="boing")
     a.add_argument("--variant",type=int,default=0,help="any int; changes tune/face")
-    a.add_argument("--outdir",default="videos");a.add_argument("--date",required=True)
-    g=a.parse_args()
+    a.add_argument("--sleepy",action="store_true",help="closed eyes + zzz");a.add_argument("--outdir",default="videos");a.add_argument("--date",required=True)
+    g=a.parse_args();SLEEPY=g.sleepy
     here=os.path.dirname(os.path.abspath(__file__));logo=os.path.join(here,"..","assets","logo.png")
     LOGO="file://"+os.path.abspath(logo)
     os.makedirs(g.outdir,exist_ok=True);tmp="/tmp/reel_"+g.slug;os.makedirs(tmp,exist_ok=True)
