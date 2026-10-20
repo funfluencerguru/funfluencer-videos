@@ -9,3 +9,9 @@ python3 tools/make_reel.py --slug chai-vs-coffee --bubble "chai ya coffee?" --pr
 Output: videos/<date>-<slug>.mp4 -> public URL
 https://raw.githubusercontent.com/funfluencerguru/funfluencer-videos/main/videos/<date>-<slug>.mp4
 --sfx: beeps | growl | boing. --variant: any int (changes tune and face).
+
+Picture must match the script: every day pass `--prop-svg <file>` with a small hand-drawn SVG of the
+prop in the script (e.g. broom, chai cup, cricket bat, phone, diya). Canvas is 1000x800, right side
+(x 560-960, y 380-730), plain strokes only (stroke style is inherited). Use `--prop` as its label and
+`--sleepy` if it suits the joke. Behind a version mismatch set CHROMIUM_PATH=/opt/pw-browsers/chromium.
+The label is drawn at (760,610): keep the drawing clear of it (draw the prop around/under it).

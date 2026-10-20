@@ -52,7 +52,7 @@ def audio(i,sfx,path):
 def html(i,t):
     slug,bub,prop,shape,head,cta,sfx=t
     mouth=["M238 292 Q262 280 288 292","M240 290 Q262 305 286 290","M242 292 L284 292"][i%3]
-    shp=('<circle cx="760" cy="600" r="90"></circle>' if shape=="circle" else '<path d="M670 520 L850 520 L850 680 L670 680 Z"></path>')
+    shp=PROP_SVG or ('<circle cx="760" cy="600" r="90"></circle>' if shape=="circle" else '<path d="M670 520 L850 520 L850 680 L670 680 Z"></path>')
     if SLEEPY:
         EYES='<path d="M224 246 Q238 258 252 246 M274 244 Q288 256 302 244" stroke-width="4"></path><text x="330" y="215" font-size="44" fill="#1c2aa8">z</text><text x="360" y="185" font-size="36" fill="#1c2aa8">z</text>'
         mouth="M242 296 Q262 302 284 296"
@@ -84,6 +84,7 @@ def html(i,t):
 
 LOGO=""
 SLEEPY=False
+PROP_SVG=""
 if __name__=="__main__":
     import argparse
     from playwright.sync_api import sync_playwright
@@ -93,15 +94,16 @@ if __name__=="__main__":
     a.add_argument("--headline",required=True,help="use <br> for line breaks")
     a.add_argument("--cta",required=True);a.add_argument("--sfx",choices=["beeps","growl","boing"],default="boing")
     a.add_argument("--variant",type=int,default=0,help="any int; changes tune/face")
-    a.add_argument("--sleepy",action="store_true",help="closed eyes + zzz");a.add_argument("--outdir",default="videos");a.add_argument("--date",required=True)
+    a.add_argument("--prop-svg",help="file with SVG shapes (1000x800 canvas, drawn in the same doodle stroke, right side x 560-960, y 380-730) that replaces the box/circle, so the picture matches the script");a.add_argument("--sleepy",action="store_true",help="closed eyes + zzz");a.add_argument("--outdir",default="videos");a.add_argument("--date",required=True)
     g=a.parse_args();SLEEPY=g.sleepy
+    if g.prop_svg: PROP_SVG=open(g.prop_svg).read()
     here=os.path.dirname(os.path.abspath(__file__));logo=os.path.join(here,"..","assets","logo.png")
     LOGO="file://"+os.path.abspath(logo)
     os.makedirs(g.outdir,exist_ok=True);tmp="/tmp/reel_"+g.slug;os.makedirs(tmp,exist_ok=True)
     t=(g.slug,g.bubble,g.prop,g.shape,g.headline,g.cta,g.sfx)
     open(tmp+"/p.html","w").write(html(g.variant,t))
     with sync_playwright() as p:
-        b=p.chromium.launch();pg=b.new_page(viewport={"width":1080,"height":1920})
+        b=p.chromium.launch(executable_path=os.environ.get("CHROMIUM_PATH") or None);pg=b.new_page(viewport={"width":1080,"height":1920})
         pg.goto("file://"+tmp+"/p.html");pg.screenshot(path=tmp+"/p.png");b.close()
     audio(g.variant,g.sfx,tmp+"/p.wav")
     out=f"{g.outdir}/{g.date}-{g.slug}.mp4"
