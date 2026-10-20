@@ -1,3 +1,10 @@
+# DAILY RULE (from 2026-10-21 onwards, set by the owner)
+Every day = a NEW script AND a NEW picture. Never reuse a plain box/circle prop.
+1. Pick a fresh topic/joke that is not in the last posts.
+2. Draw an SVG of the main prop from that script and pass it with --prop-svg (details below).
+3. Optionally change the stick figure's mood (--sleepy) and --sfx/--variant to suit the joke.
+4. Check one frame: drawing must be recognisable, not overlap text or the label, nothing cut off.
+
 # make_reel.py
 Builds an 18s vertical doodle reel (1080x1920, logo bottom-right, funny synth sound).
 Needs: python3, numpy, playwright (chromium), ffmpeg.
