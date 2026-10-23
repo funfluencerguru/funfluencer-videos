@@ -1,4 +1,6 @@
 import sys, numpy as np, wave, subprocess, os
+sys.path.insert(0,os.path.dirname(os.path.abspath(__file__)))
+from layouts import THEMES, scene
 sr=44100;TT=18.0
 def audio(i,sfx,path):
     n=int(sr*TT);out=np.zeros(n);rng=np.random.default_rng(100+i)
@@ -50,6 +52,15 @@ def audio(i,sfx,path):
     with wave.open(path,"wb") as w:
         w.setnchannels(1);w.setsampwidth(2);w.setframerate(sr);w.writeframes((out*32767).astype(np.int16).tobytes())
 def html(i,t):
+    h=_html(i,t)
+    th=THEMES[THEME];ink=th[1]
+    if LAYOUT!='single':
+        h=_frame(t,th,scene(LAYOUT,DATA,THEME,CHAR1,CHAR2,MOOD1,MOOD2))
+    elif THEME!='notebook':
+        h=_frame(t,th,None,h)
+    return h
+
+def _html(i,t):
     slug,bub,prop,shape,head,cta,sfx=t
     mouth=["M238 292 Q262 280 288 292","M240 290 Q262 305 286 290","M242 292 L284 292"][i%3]
     shp=PROP_SVG or ('<circle cx="760" cy="600" r="90"></circle>' if shape=="circle" else '<path d="M670 520 L850 520 L850 680 L670 680 Z"></path>')
@@ -82,20 +93,44 @@ def html(i,t):
 <img src="{LOGO}" style="position:absolute;left:760px;top:1400px;width:210px;height:210px">
 </div></body></html>'''
 
+def _frame(t,th,svg,single=None):
+    slug,bub,prop,shape,head,cta,sfx=t
+    bg,ink,deco,panel=th
+    if single:
+        # re-theme the classic single layout
+        import re
+        h=single.replace('#1c2aa8',ink)
+        h=re.sub(r'background-color:#f5f2e9;background-image:repeating-linear-gradient\([^;]*?\);',bg+';',h,count=1)
+        h=re.sub(r'<div style="position:absolute;left:1[12]8px;top:0;width:3px[^>]*></div>','',h)
+        return h
+    return f'''<!doctype html><html><head><meta charset="utf-8"><style>body{{margin:0}}</style></head><body>
+<div style="position:relative;width:1080px;height:1920px;overflow:hidden;{bg};font-family:Carlito,'DejaVu Sans',sans-serif;color:{ink}">{deco}
+<svg style="position:absolute;left:40px;top:200px" viewBox="0 0 1000 800" width="1000" height="800">{svg}</svg>
+<div style="position:absolute;left:170px;top:1055px;width:780px;font-size:62px;font-weight:700;line-height:1.12">{head}</div>
+<div style="position:absolute;left:170px;top:1470px;width:520px;font-size:42px;line-height:1.2">{cta}</div>
+<img src="{LOGO}" style="position:absolute;left:760px;top:1400px;width:210px;height:210px">
+</div></body></html>'''
+
 LOGO=""
+LAYOUT="single";THEME="notebook";DATA={};CHAR1="boy";CHAR2="uncle";MOOD1="happy";MOOD2="shock"
 SLEEPY=False
 PROP_SVG=""
 if __name__=="__main__":
     import argparse
     from playwright.sync_api import sync_playwright
     a=argparse.ArgumentParser(description="Make an 18s funfluencer doodle reel")
-    a.add_argument("--slug",required=True);a.add_argument("--bubble",required=True)
-    a.add_argument("--prop",required=True);a.add_argument("--shape",choices=["box","circle"],default="box")
+    a.add_argument("--slug",required=True);a.add_argument("--bubble",default="")
+    a.add_argument("--prop",default="");a.add_argument("--shape",choices=["box","circle"],default="box")
     a.add_argument("--headline",required=True,help="use <br> for line breaks")
     a.add_argument("--cta",required=True);a.add_argument("--sfx",choices=["beeps","growl","boing"],default="boing")
     a.add_argument("--variant",type=int,default=0,help="any int; changes tune/face")
-    a.add_argument("--prop-svg",help="file with SVG shapes (1000x800 canvas, drawn in the same doodle stroke, right side x 560-960, y 380-730) that replaces the box/circle, so the picture matches the script");a.add_argument("--sleepy",action="store_true",help="closed eyes + zzz");a.add_argument("--outdir",default="videos");a.add_argument("--date",required=True)
+    a.add_argument("--prop-svg",help="file with SVG shapes (1000x800 canvas, drawn in the same doodle stroke, right side x 560-960, y 380-730) that replaces the box/circle, so the picture matches the script");a.add_argument("--sleepy",action="store_true",help="closed eyes + zzz");a.add_argument("--layout",choices=["single","duo","versus","chat","list","vote"],default="single",help="picture layout (see README)")
+    a.add_argument("--bg",choices=["notebook","blackboard","sticky","graph"],default="notebook")
+    a.add_argument("--char1",choices=["boy","girl","uncle","aunty","kid"],default="boy");a.add_argument("--char2",choices=["boy","girl","uncle","aunty","kid"],default="uncle")
+    a.add_argument("--mood1",choices=["happy","angry","sleepy","shock"],default="happy");a.add_argument("--mood2",choices=["happy","angry","sleepy","shock"],default="shock")
+    a.add_argument("--data",default="{}",help="JSON with the layout's text, see README");a.add_argument("--outdir",default="videos");a.add_argument("--date",required=True)
     g=a.parse_args();SLEEPY=g.sleepy
+    import json;LAYOUT=g.layout;THEME=g.bg;DATA=json.loads(g.data);CHAR1,CHAR2,MOOD1,MOOD2=g.char1,g.char2,g.mood1,g.mood2
     if g.prop_svg: PROP_SVG=open(g.prop_svg).read()
     here=os.path.dirname(os.path.abspath(__file__));logo=os.path.join(here,"..","assets","logo.png")
     LOGO="file://"+os.path.abspath(logo)
