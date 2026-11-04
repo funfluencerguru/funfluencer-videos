@@ -11,6 +11,7 @@ spec.json:
   "cta": "Save karo & us dost ko bhejo 💌",          # keep under about 32 characters
   "mood": "uplifting",          # uplifting | emotional | warm | energetic | calm (sets sky colour + music)
   "doodle": "sprout",           # sprout | heart | sun | star | hands | none
+  "bg_image": "path/to/background.png",  # optional painted 9:16 background (new one every reel); omit = doodle village
   "out": "videos/2026-11-07-slogan-dheere-chalo.mp4",
   "seed": 7                     # optional, varies the melody
 }
@@ -138,7 +139,17 @@ def esc(s):
 def html(spec):
     sky_top, sky_bot, tagbg, marker, ink = MOODS.get(spec["mood"], MOODS["uplifting"])
     logo = base64.b64encode(open(os.path.join(ROOT, "assets/logo.png"), "rb").read()).decode()
-    scene = base64.b64encode(village_svg(sky_top, sky_bot).encode()).decode()
+    bg = spec.get("bg_image")
+    if bg:   # painted background (new AI-made image every reel), slow Ken Burns push-in
+        bgp = bg if os.path.isabs(bg) else os.path.join(ROOT, bg)
+        mime = "image/png" if bgp.lower().endswith(".png") else "image/jpeg"
+        scene_html = f'<img id="bgimg" src="data:{mime};base64,{base64.b64encode(open(bgp, "rb").read()).decode()}">'
+        scene = ""
+    else:    # fallback: hand-drawn doodle village
+        scene_html = ""
+        scene = base64.b64encode(village_svg(sky_top, sky_bot).encode()).decode()
+    tint_op = ".10" if bg else ".22"
+    card_min = "0px" if bg else "700px"
     n = len(spec["lines"])
     size = 92 if n <= 3 else 80
     lines = []
@@ -154,14 +165,15 @@ def html(spec):
     return f"""<html><head><style>
 *{{margin:0;padding:0;box-sizing:border-box}}
 body{{width:{W}px;height:{H}px;overflow:hidden;font-family:Poppins,'Noto Color Emoji',sans-serif;background:#f5e6c8}}
-#scene{{position:absolute;inset:0}}
-#tint{{position:absolute;inset:0;background:#f3d29b;mix-blend-mode:multiply;opacity:.22}}
+#scene{{position:absolute;inset:0;overflow:hidden}}
+#bgimg{{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 70%}}
+#tint{{position:absolute;inset:0;background:#f3d29b;mix-blend-mode:multiply;opacity:{tint_op}}}
 #vig{{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(0,0,0,0) 55%,rgba(70,40,10,.45) 100%)}}
 #grain{{position:absolute;inset:0;opacity:.13;mix-blend-mode:multiply}}
 .tag{{position:absolute;top:220px;left:0;right:0;text-align:center}}
 .tag span{{display:inline-block;background:{tagbg};border:6px solid #111;box-shadow:12px 12px 0 #111;
  padding:16px 44px;border-radius:18px;font-size:62px;font-weight:700;color:#111;transform:rotate(-2deg)}}
-.card{{position:absolute;left:140px;right:100px;top:500px;min-height:700px;background:rgba(255,250,236,.96);border:8px solid #111;
+.card{{position:absolute;left:140px;right:100px;top:480px;min-height:{card_min};background:rgba(255,250,236,.96);border:8px solid #111;
  border-radius:44px;box-shadow:18px 18px 0 #111;padding:56px 46px 46px;display:flex;flex-direction:column;
  justify-content:center;align-items:center;text-align:center}}
 .ln{{font-size:{size}px;font-weight:700;line-height:1.18;color:#1c2aa8;margin:6px 0;white-space:nowrap}}
@@ -172,7 +184,7 @@ body{{width:{W}px;height:{H}px;overflow:hidden;font-family:Poppins,'Noto Color E
  background:#fff;border:5px solid #111;border-radius:999px;padding:20px 30px;box-shadow:8px 8px 0 #111}}
 #logo{{position:absolute;right:30px;bottom:25px;width:190px;height:190px}}
 </style></head><body>
-<div id="scene"></div><div id="tint"></div><div id="vig"></div>
+<div id="scene">{scene_html}</div><div id="tint"></div><div id="vig"></div>
 <svg id="grain" width="{W}" height="{H}"><filter id="n"><feTurbulence id="turb" type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="1"/>
  <feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
 <div class="tag" data-in="0.3"><span>{esc(spec['tag'])}</span></div>
@@ -181,7 +193,7 @@ body{{width:{W}px;height:{H}px;overflow:hidden;font-family:Poppins,'Noto Color E
 <div class="cta" data-in="{cta_in:.2f}" data-pop="1">{esc(spec['cta'])}</div>
 <img id="logo" src="data:image/png;base64,{logo}">
 <script>
-document.getElementById('scene').innerHTML=atob('{scene}');
+if('{scene}') document.getElementById('scene').innerHTML=atob('{scene}');
 const els=[...document.querySelectorAll('[data-in]')];
 function fit(){{
   const card=document.querySelector('.card'), lns=[...document.querySelectorAll('.ln')];
@@ -189,7 +201,10 @@ function fit(){{
   for(let c=44;c>=30;c-=1){{cta.style.fontSize=c+'px'; if(cta.scrollWidth<=cta.clientWidth) break;}}
   for(let s={size};s>=48;s-=2){{
     lns.forEach(l=>l.style.fontSize=s+'px');
-    if(lns.every(l=>l.scrollWidth<=inner) && card.offsetHeight<=720) return s;
+    if(lns.every(l=>l.scrollWidth<=inner) && card.offsetHeight<=740){{
+      if(document.getElementById('bgimg')) cta.style.top=(480+card.offsetHeight+48)+'px';
+      return s;
+    }}
   }}
   return 48;
 }}
@@ -203,6 +218,8 @@ function render(t){{
     if(e.dataset.pop){{const s=p<1?0.6+0.5*p-0.1*Math.sin(p*Math.PI):1;e.style.transform=`scale(${{s}})`}}
     else e.style.transform=`translateY(${{(1-p)*50}}px)`;
   }}
+  if($('bgimg')){{ $('bgimg').style.transform=`scale(${{1.0+t*0.006}}) translateX(${{Math.sin(t*0.3)*4}}px)`; }}
+  else {{
   $('c1').setAttribute('transform',`translate(${{40+t*9}},40) scale(1.2)`);
   $('c2').setAttribute('transform',`translate(${{620+t*6}},380) scale(0.9)`);
   $('c3').setAttribute('transform',`translate(${{-60+t*7}},410) scale(0.8)`);
@@ -210,6 +227,7 @@ function render(t){{
   $('kite').setAttribute('transform',`translate(${{110+Math.sin(t*1.1)*10}},${{170+Math.sin(t*1.7)*8}}) rotate(${{Math.sin(t*1.4)*9}})`);
   $('rays').setAttribute('transform',`rotate(${{t*8}})`);
   $('tail').setAttribute('transform',`rotate(${{Math.sin(t*3)*10}} 356 1740)`);
+  }}
   $('turb').setAttribute('seed',String(Math.floor(t*12)%7+1));
 }}
 render(0);
