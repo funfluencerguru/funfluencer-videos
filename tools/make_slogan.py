@@ -185,7 +185,8 @@ document.getElementById('scene').innerHTML=atob('{scene}');
 const els=[...document.querySelectorAll('[data-in]')];
 function fit(){{
   const card=document.querySelector('.card'), lns=[...document.querySelectorAll('.ln')];
-  const inner=card.clientWidth-92;
+  const inner=card.clientWidth-92, cta=document.querySelector('.cta');
+  for(let c=44;c>=30;c-=1){{cta.style.fontSize=c+'px'; if(cta.scrollWidth<=cta.clientWidth) break;}}
   for(let s={size};s>=48;s-=2){{
     lns.forEach(l=>l.style.fontSize=s+'px');
     if(lns.every(l=>l.scrollWidth<=inner) && card.offsetHeight<=720) return s;
