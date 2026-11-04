@@ -12,6 +12,7 @@ spec.json:
   "mood": "uplifting",          # uplifting | emotional | warm | energetic | calm (sets sky colour + music)
   "doodle": "sprout",           # sprout | heart | sun | star | hands | none
   "bg_image": "path/to/background.png",  # optional painted 9:16 background (new one every reel); omit = doodle village
+  "text_in_image": true,        # optional: the message is already painted into bg_image -> no tag/card, only CTA + logo
   "out": "videos/2026-11-07-slogan-dheere-chalo.mp4",
   "seed": 7                     # optional, varies the melody
 }
@@ -149,6 +150,7 @@ def html(spec):
         scene_html = ""
         scene = base64.b64encode(village_svg(sky_top, sky_bot).encode()).decode()
     tint_op = ".10" if bg else ".22"
+    zoom = "0.0035" if spec.get("text_in_image") else "0.006"
     card_min = "0px" if bg else "700px"
     n = len(spec["lines"])
     size = 92 if n <= 3 else 80
@@ -161,6 +163,17 @@ def html(spec):
               f'stroke="#111" stroke-width="7" stroke-linejoin="round" stroke-linecap="round" fill="none">{DOODLES[d]}</svg>'
               if d in DOODLES else "")
     cta_in = max(1.6 + n*0.9 + 1.2, 6.5)
+    tii = bool(spec.get("text_in_image")) and bool(bg)   # message already painted into the picture
+    if tii:
+        overlay = ""
+        cta_in = 9.0
+        tint_op = ".06"
+    else:
+        overlay = (f'<div class="tag" data-in="0.3"><span>{esc(spec.get("tag", ""))}</span></div>'
+                   f'<div class="card" data-in="0.9">{"".join(lines)}{doodle}</div>'
+                   f'<div class="quote" data-in="0.9">&ldquo;</div>')
+    cta_html = (f'<div class="cta{" small" if tii else ""}" data-in="{cta_in:.2f}" data-pop="1">{esc(spec["cta"])}</div>'
+                if spec.get("cta") else "")
     # village scene is inlined so its parts (clouds, birds, kite, sun rays, tail) can move each frame
     return f"""<html><head><style>
 *{{margin:0;padding:0;box-sizing:border-box}}
@@ -182,21 +195,22 @@ body{{width:{W}px;height:{H}px;overflow:hidden;font-family:Poppins,'Noto Color E
 .quote{{position:absolute;left:170px;top:450px;font-size:230px;font-weight:700;color:{ink};line-height:1;font-family:Poppins}}
 .cta{{position:absolute;left:120px;right:180px;top:1268px;text-align:center;font-size:44px;white-space:nowrap;font-weight:700;color:#111;
  background:#fff;border:5px solid #111;border-radius:999px;padding:20px 30px;box-shadow:8px 8px 0 #111}}
+.cta.small{{top:1585px;left:60px;right:250px;font-size:38px;padding:16px 24px;background:rgba(255,255,255,.94)}}
 #logo{{position:absolute;right:30px;bottom:25px;width:190px;height:190px}}
 </style></head><body>
 <div id="scene">{scene_html}</div><div id="tint"></div><div id="vig"></div>
 <svg id="grain" width="{W}" height="{H}"><filter id="n"><feTurbulence id="turb" type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="1"/>
  <feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(#n)"/></svg>
-<div class="tag" data-in="0.3"><span>{esc(spec['tag'])}</span></div>
-<div class="card" data-in="0.9">{''.join(lines)}{doodle}</div>
-<div class="quote" data-in="0.9">&ldquo;</div>
-<div class="cta" data-in="{cta_in:.2f}" data-pop="1">{esc(spec['cta'])}</div>
+{overlay}
+{cta_html}
 <img id="logo" src="data:image/png;base64,{logo}">
 <script>
 if('{scene}') document.getElementById('scene').innerHTML=atob('{scene}');
 const els=[...document.querySelectorAll('[data-in]')];
 function fit(){{
   const card=document.querySelector('.card'), lns=[...document.querySelectorAll('.ln')];
+  const cta0=document.querySelector('.cta');
+  if(!card){{ if(cta0) for(let c=38;c>=26;c-=1){{cta0.style.fontSize=c+'px'; if(cta0.scrollWidth<=cta0.clientWidth) break;}} return 0; }}
   const inner=card.clientWidth-92, cta=document.querySelector('.cta');
   for(let c=44;c>=30;c-=1){{cta.style.fontSize=c+'px'; if(cta.scrollWidth<=cta.clientWidth) break;}}
   for(let s={size};s>=48;s-=2){{
@@ -218,7 +232,7 @@ function render(t){{
     if(e.dataset.pop){{const s=p<1?0.6+0.5*p-0.1*Math.sin(p*Math.PI):1;e.style.transform=`scale(${{s}})`}}
     else e.style.transform=`translateY(${{(1-p)*50}}px)`;
   }}
-  if($('bgimg')){{ $('bgimg').style.transform=`scale(${{1.0+t*0.006}}) translateX(${{Math.sin(t*0.3)*4}}px)`; }}
+  if($('bgimg')){{ $('bgimg').style.transform=`scale(${{1.0+t*{zoom}}})`; }}
   else {{
   $('c1').setAttribute('transform',`translate(${{40+t*9}},40) scale(1.2)`);
   $('c2').setAttribute('transform',`translate(${{620+t*6}},380) scale(0.9)`);
