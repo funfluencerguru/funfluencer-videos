@@ -1,0 +1,7 @@
+{"sub":"Diwali ka hisaab lagao, dosto!",
+ "rows":["{d} + {d} + {d} = 15","{d} + {l} + {l} = 17","{l} − {p} = 2"],
+ "last":"{p} + {d} × {l} = ?",
+ "icons":{
+ "d":"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 8 C62 24 66 34 50 44 C34 34 38 24 50 8Z' fill='#ffb300' stroke='#111' stroke-width='5' stroke-linejoin='round'/><path d='M8 52 H92 C90 78 72 90 50 90 C28 90 10 78 8 52Z' fill='#d9622b' stroke='#111' stroke-width='6' stroke-linejoin='round'/><line x1='50' y1='44' x2='50' y2='52' stroke='#111' stroke-width='5'/></svg>",
+ "l":"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='52' r='38' fill='#ff9d1c' stroke='#111' stroke-width='6'/><g fill='#8a4b08'><circle cx='36' cy='40' r='4'/><circle cx='58' cy='34' r='4'/><circle cx='66' cy='56' r='4'/><circle cx='44' cy='64' r='4'/><circle cx='30' cy='58' r='3'/><circle cx='56' cy='76' r='3'/></g></svg>",
+ "p":"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><line x1='50' y1='94' x2='50' y2='42' stroke='#111' stroke-width='7' stroke-linecap='round'/><g stroke='#ffb300' stroke-width='6' stroke-linecap='round'><line x1='50' y1='38' x2='50' y2='8'/><line x1='50' y1='38' x2='24' y2='18'/><line x1='50' y1='38' x2='76' y2='18'/><line x1='50' y1='38' x2='14' y2='38'/><line x1='50' y1='38' x2='86' y2='38'/></g><circle cx='50' cy='38' r='6' fill='#e5322d' stroke='#111' stroke-width='3'/></svg>"}}
