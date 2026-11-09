@@ -3,6 +3,12 @@
 Each sheet is one image made in another AI image tool. It holds a grid of photo tiles. Claude cuts the sheet into the round pillar badges with `CIRCLE=1 python3 tools/cut_icon_sheet.py <sheet> 4 3 <names>` and saves them in assets/icons, so the daily runs can use them as `img:NAME` with no manual step.
 If a sheet is missing, the run falls back to the drawn icons or flags.
 
+## Status
+- S1 india-landmarks: DONE 2026-11-09 -> assets/icons/ph_<state>.png (18 badges).
+- S2-S16: waiting. The first batch came as combined images (all sheets in one picture), where each photo is only about 80 px, too small and blurry for a badge. Each sheet must be its OWN full-size image.
+- Named landmarks must really look like that landmark (S4 statues, S6 rivers, S9 buildings, S11 cities, S13 mountains, S14 trains, S15 airports, S16 bridges). In the first batch the mountains, trains, bridges and skylines all came out as look-alike generic pictures; a badge labelled "K2" must show K2. If a tool can't get them right, skip that sheet and the reel keeps drawn icons.
+- Cut a sheet with: `[TOP=name,...] python3 tools/cut_photo_sheet.py <sheet> ph_name1,ph_name2,...` (TOP keeps the top of tall subjects such as statues inside the circle).
+
 ## How to use
 1. Copy the COMMON PROMPT, then paste the tile list of ONE sheet under it.
 2. Generate the image. Check that the tiles are in the right order and that there is no text or logos.
