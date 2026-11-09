@@ -4,6 +4,7 @@
   "out": "videos/2026-11-09-price-1990-vs-2026.mp4",
   "cover_out": "images/2026-11-09-price-1990-vs-2026-cover.jpg",
   "workdir": "/tmp/statsreel",
+  "theme": "money",
   "music": "retro_bollywood",
   "bg": {"left_word": "1990", "right_word": "2026", "left_color": [128, 78, 36], "right_color": [26, 84, 104], "motif": "₹", "seed": 5},
   "intro": ["1990  vs  2026", "KITNA MEHENGA HUA?", "Pillar height = how many times costlier"],

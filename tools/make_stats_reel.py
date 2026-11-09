@@ -99,20 +99,77 @@ def camera(t):
     return cx, zx, zy, base, 0, 0, k, 0.0
 
 # ---------- assets ----------
+# Theme presets: background + default music per topic category. Spec "theme" picks one; "bg"/"music" in the spec override.
+THEMES = {
+    "money":    {"bg": {"style": "drawn", "scene": "money", "motif": "₹", "left_color": [128, 78, 36], "right_color": [26, 84, 104]}, "music": "retro_bollywood"},
+    "cricket":  {"bg": {"style": "photo", "file": "cricket_stadium.png"}, "music": "stadium_anthem"},
+    "sports":   {"bg": {"style": "photo", "file": "cricket_stadium.png"}, "music": "stadium_anthem_alt"},
+    "bollywood":{"bg": {"style": "photo", "file": "cinema_stage.png"}, "music": "retro_bollywood"},
+    "tech":     {"bg": {"style": "drawn", "scene": "tech", "motif": "●", "left_color": [20, 30, 70], "right_color": [70, 20, 90]}, "music": "future_bass"},
+    "space":    {"bg": {"style": "drawn", "scene": "space", "motif": "✦", "left_color": [8, 12, 40], "right_color": [40, 10, 60]}, "music": "future_bass"},
+    "city":     {"bg": {"style": "drawn", "scene": "city", "motif": "●", "left_color": [30, 20, 70], "right_color": [120, 50, 70]}, "music": "future_bass"},
+    "geo":      {"bg": {"style": "drawn", "scene": "geo", "motif": "▲", "left_color": [30, 90, 110], "right_color": [140, 100, 40]}, "music": "retro_bollywood"},
+    "world":    {"bg": {"style": "drawn", "scene": "world", "motif": "●", "left_color": [14, 50, 90], "right_color": [20, 90, 80]}, "music": "stadium_anthem_alt"},
+    "food":     {"bg": {"style": "drawn", "scene": "money", "motif": "●", "left_color": [140, 70, 20], "right_color": [150, 40, 40]}, "music": "retro_bollywood"},
+}
+TH = THEMES.get(SPEC.get("theme", "money"), THEMES["money"])
+BGSPEC = dict(TH["bg"]); BGSPEC.update(SPEC.get("bg", {}))
+MUSIC_NAME = SPEC.get("music") or TH["music"]
+
+def scene_art(d, scene, BW, BH, rr):
+    """Topic scenery drawn on the RGBA overlay (low alpha, sits behind everything)."""
+    if scene == "tech":  # circuit grid
+        for x in range(0, BW, 120): d.line([(x, 0), (x, BH)], fill=(120, 200, 255, 48), width=2)
+        for y in range(0, BH, 120): d.line([(0, y), (BW, y)], fill=(120, 200, 255, 48), width=2)
+        for _ in range(70):
+            x, y = rr.randrange(0, BW, 120), rr.randrange(0, BH, 120); L_ = rr.choice([240, 360, 480])
+            d.line([(x, y), (x + L_, y), (x + L_, y + 120)], fill=(120, 230, 255, 154), width=5); d.ellipse([x + L_ - 10, y + 110, x + L_ + 10, y + 130], fill=(120, 230, 255, 230))
+    elif scene == "space":
+        for _ in range(900):
+            x, y, r = rr.uniform(0, BW), rr.uniform(0, BH), rr.choice([1, 1, 2, 3]); d.ellipse([x - r, y - r, x + r, y + r], fill=(255, 255, 255, rr.randint(120, 255)))
+        for (x, y, r, c) in ((520, 1500, 260, (230, 140, 80)), (3150, 1350, 190, (120, 170, 255)), (1900, 260, 90, (240, 220, 200))):
+            d.ellipse([x - r, y - r, x + r, y + r], fill=c + (90,)); d.ellipse([x - r * 1.6, y - r * 0.25, x + r * 1.6, y + r * 0.25], outline=c + (70,), width=8)
+    elif scene == "city":
+        x = 0
+        while x < BW:
+            w_ = rr.randint(120, 260); h_ = rr.randint(500, 1300); top = 2000 - h_
+            d.rectangle([x, top, x + w_, 2300], fill=(10, 8, 30, 230))
+            for yy in range(top + 30, 1980, 60):
+                for xx in range(x + 20, x + w_ - 30, 50):
+                    if rr.random() < 0.45: d.rectangle([xx, yy, xx + 22, yy + 30], fill=(255, 220, 140, 198))
+            x += w_ + rr.randint(10, 40)
+    elif scene == "geo":
+        pts = [(0, 1500)] + [(x, 1500 - rr.randint(200, 700) * (0.5 + 0.5 * math.sin(x / 400))) for x in range(0, BW + 300, 300)] + [(BW, 2300), (0, 2300)]
+        d.polygon(pts, fill=(20, 40, 50, 230))
+        for (x, y) in pts[1:-2]:
+            if y < 1050: d.polygon([(x - 90, y + 130), (x, y), (x + 90, y + 130)], fill=(240, 245, 255, 230))
+        d.line([(x, 1700 + 120 * math.sin(x / 300)) for x in range(0, BW, 40)], fill=(120, 200, 255, 230), width=40)
+        d.ellipse([2700, 250, 3050, 600], fill=(255, 210, 120, 176))
+    elif scene == "world":
+        cx, cy, R = BW / 2, 1250, 900
+        d.ellipse([cx - R, cy - R, cx + R, cy + R], outline=(150, 230, 255, 154), width=8)
+        for k in range(1, 6): rx = R * k / 6; d.ellipse([cx - rx, cy - R, cx + rx, cy + R], outline=(150, 230, 255, 88), width=4)
+        for k in range(-4, 5): y = cy + R * k / 5; w_ = R * math.sqrt(max(0, 1 - (k / 5) ** 2)); d.line([(cx - w_, y), (cx + w_, y)], fill=(150, 230, 255, 88), width=4)
+
 def make_bg(path):
     """Drawn backdrop (0 credits): two-colour gradient, sunburst, two big faded words, scattered motifs."""
     import numpy as np
-    b = SPEC.get("bg", {})
+    b = BGSPEC
     BW, BH = 3600, 2300; rr = random.Random(b.get("seed", 5))
+    if b.get("style") == "photo":
+        ph = Image.open(os.path.join(REPO, "assets/backgrounds", b["file"])).convert("RGB")
+        ph = ph.resize((int(ph.width * BH / ph.height), BH), Image.LANCZOS).filter(ImageFilter.GaussianBlur(b.get("blur", 3)))
+        Image.blend(ph, Image.new("RGB", ph.size), b.get("darken", 0.30)).save(path); return
     cl, cr = b.get("left_color", [128, 78, 36]), b.get("right_color", [26, 84, 104])
     xs = np.linspace(0, 1, BW)[None, :, None]; ys = np.linspace(0, 1, BH)[:, None, None]
     a = (np.array(cl) * (1 - xs) + np.array(cr) * xs) * (1.05 - 0.45 * ys)
     im = Image.fromarray(np.clip(a, 0, 255).astype("uint8")).convert("RGBA")
     ov = Image.new("RGBA", im.size, (0, 0, 0, 0)); d = ImageDraw.Draw(ov)
     cx, cy = BW / 2, BH * 0.42
-    for k in range(48):
+    for k in (range(48) if b.get("scene", "money") == "money" else []):
         a0 = k * 2 * math.pi / 48; a1 = a0 + math.pi / 48
         d.polygon([(cx, cy), (cx + 4000 * math.cos(a0), cy + 4000 * math.sin(a0)), (cx + 4000 * math.cos(a1), cy + 4000 * math.sin(a1))], fill=(255, 230, 180, 22))
+    if b.get("scene", "money") != "money": scene_art(d, b["scene"], BW, BH, rr)
     lw, rw = b.get("left_word", ""), b.get("right_word", "")
     for word, x, col in ((lw, 620, (255, 210, 140, 70)), (rw, BW - 620, (140, 230, 255, 70))):
         if word:
@@ -120,7 +177,7 @@ def make_bg(path):
             while fs > 120 and font("ExtraBold", fs).getlength(word) > 1150: fs -= 20
             d.text((x, 560), word, font=font("ExtraBold", fs), fill=col, anchor="mm")
     motif = b.get("motif", "₹")
-    for _ in range(90):
+    for _ in range(90 if b.get("scene", "money") in ("money",) else 30):
         x, y = rr.uniform(0, BW), rr.uniform(900, BH); k = x / BW
         col = tuple(int(c) for c in (255 * (1 - k) + 150 * k, 214 * (1 - k) + 230 * k, 140 * (1 - k) + 255 * k))
         sz = rr.uniform(40, 120); al = rr.randint(35, 80)
@@ -128,7 +185,8 @@ def make_bg(path):
             d.text((x, y), motif, font=font("ExtraBold", int(sz * 1.2)), fill=col + (al,), anchor="mm")
         else:
             d.ellipse([x - sz / 2, y - sz / 2, x + sz / 2, y + sz / 2], outline=col + (al + 10,), width=6)
-    for y in (1150, 1550, 1950): d.rectangle([0, y, BW, y + 22], fill=(255, 220, 160, 26))
+    if b.get("scene", "money") == "money":
+        for y in (1150, 1550, 1950): d.rectangle([0, y, BW, y + 22], fill=(255, 220, 160, 26))
     im.alpha_composite(ov); im = im.convert("RGB").filter(ImageFilter.GaussianBlur(5))
     Image.blend(im, Image.new("RGB", im.size), 0.12).save(path)
 WORK = SPEC.get("workdir", "/tmp/statsreel"); os.makedirs(WORK, exist_ok=True)
@@ -506,14 +564,15 @@ def frame(t):
     return out
 
 # ---------------- audio (numpy, 0 credits: reuses owned music in assets/music) ----------------
-MUSIC = {"retro_bollywood": ("retro_bollywood.wav", 28.7), "future_bass": ("future_bass.wav", 30.8)}
+MUSIC = {"retro_bollywood": ("retro_bollywood.wav", 28.7), "future_bass": ("future_bass.wav", 30.8),
+         "stadium_anthem": ("stadium_anthem.wav", 27.3), "stadium_anthem_alt": ("stadium_anthem_alt.wav", 27.3)}
 def make_audio(path):
     import numpy as np
     from scipy.io import wavfile
     from scipy.signal import butter, sosfilt
     SR = 44100; NS = int(SR * TOTAL); rng = np.random.default_rng(7)
     def load(f): sr, x = wavfile.read(os.path.join(REPO, "assets/music", f)); return x.astype(np.float64) / 32768
-    mf, hit = MUSIC[SPEC.get("music", "retro_bollywood")]
+    mf, hit = MUSIC[MUSIC_NAME]
     m = load(mf); off = max(0, int((hit - TOTAL) * SR)); m = m[off:][:NS]
     out = np.zeros((NS, 2)); out[:len(m)] += m * 0.88
     def add(x, t, g):

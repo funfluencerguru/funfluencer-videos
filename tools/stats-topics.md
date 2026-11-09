@@ -6,6 +6,7 @@ How a daily run uses this file:
 - Never use the same category two days in a row (check the last line of the log). If needed, skip to the next topic with a different category.
 - Use icons only: no photos or faces, no logos. Names of public figures or film titles in text are fine.
 - Every number must come from sources found that day. If good data can't be found, skip to the next topic.
+- THEME: set the spec `theme` from the category: cricket -> cricket; sports -> sports; bollywood-box-office -> bollywood; money-then-vs-now, money-india, money-world -> money; youtube-internet -> tech; science-fun, world-records -> space (or geo for nature/mountains/rivers); india-states, india-geo -> geo; india-cities -> city; world-vs-india -> world. The theme brings the matching background and music.
 - When the list runs out, add 30 new topics in the same style (same categories, new ideas) and commit the file.
 
 | # | slug | category | topic (low to high, 6-10 items) | music |

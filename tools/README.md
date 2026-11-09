@@ -53,8 +53,13 @@ Worked example: `tools/stats-specs/2026-11-09-price-1990-vs-2026.json` (copy it 
 
 Spec fields
 - `out`, `cover_out`: `videos/<date>-stats-<slug>.mp4`, `images/<date>-stats-<slug>-cover.jpg`; `workdir`: temp folder (e.g. /tmp/statsreel).
-- `music`: `retro_bollywood` (nostalgia, Bollywood, India, cricket) or `future_bass` (tech, money, YouTube, modern).
-- `bg`: `left_word`, `right_word` (big faded words, ≤6 chars look best), `left_color`/`right_color` [r,g,b] (mid-dark, 20–140), `motif` (one character: ₹ ★ ● ▲ ✦), `seed`.
+- `theme` (ALWAYS set it to match the topic): picks a topic background + matching music automatically:
+  `cricket` (floodlit stadium photo + stadium anthem), `sports` (stadium photo + anthem alt take), `bollywood` (cinema stage photo + 90s Bollywood track),
+  `money` (retro ₹ price wall + Bollywood track), `tech` (neon circuit board + future bass), `space` (starfield + planets + future bass),
+  `city` (night skyline + future bass), `geo` (mountains + river + Bollywood track), `world` (globe grid + anthem alt), `food` (warm wall + Bollywood track).
+- `music` (optional override): `retro_bollywood`, `future_bass`, `stadium_anthem`, `stadium_anthem_alt`.
+- `bg` (optional override of the theme): `left_word`, `right_word` (big faded words on drawn themes, e.g. "1990"/"2026"; leave "" if not useful).
+  Also `left_color`/`right_color` [r,g,b] (mid-dark, 20–140), `motif` (one character: ₹ ★ ● ▲ ✦), `seed`.
 - `intro` [big line ≤14 chars, second line ≤20 chars, small explainer]; `header` (pill shown during the first half, ≤30 chars);
   `outro` [title, subtitle]; `question` (comment bait); `twist` [bold insight ≤38 chars, small line ≤55 chars]; `sources` (one short line).
 - `value_caption` (small text under each value, e.g. "TIMES COSTLIER", "CRORE PEOPLE", "RUNS"), `count_fmt` (Python format for the counting-up number, e.g. "{:,.0f}", "×{:.1f}", "₹{:,.0f} Cr"),
