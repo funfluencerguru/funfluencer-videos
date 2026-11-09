@@ -5,7 +5,8 @@ If a sheet is missing, the run falls back to the drawn icons or flags.
 
 ## Status
 - S1 india-landmarks: DONE 2026-11-09 -> assets/icons/ph_<state>.png (18 badges).
-- S2-S16: waiting. The first batch came as combined images (all sheets in one picture), where each photo is only about 80 px, too small and blurry for a badge. Each sheet must be its OWN full-size image.
+- S2 gold: DONE 2026-11-09 -> ph_gold_* (10 badges). Tiles 1 and 4 dropped: tile 1 showed the national emblem and the year as text, tile 4 came out as a cookie instead of a gold biscuit.
+- S3-S16: waiting. The first batch came as combined images (all sheets in one picture), where each photo is only about 80 px, too small and blurry for a badge. Each sheet must be its OWN full-size image.
 - Named landmarks must really look like that landmark (S4 statues, S6 rivers, S9 buildings, S11 cities, S13 mountains, S14 trains, S15 airports, S16 bridges). In the first batch the mountains, trains, bridges and skylines all came out as look-alike generic pictures; a badge labelled "K2" must show K2. If a tool can't get them right, skip that sheet and the reel keeps drawn icons.
 - Cut a sheet with: `[TOP=name,...] python3 tools/cut_photo_sheet.py <sheet> ph_name1,ph_name2,...` (TOP keeps the top of tall subjects such as statues inside the circle).
 
