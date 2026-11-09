@@ -296,10 +296,98 @@ def icon(kind, S=120):
 PILLAR_ICON = SPEC.get("pillar_icon", "coin")  # coin | star | none
 ICONS = [icon(PILLAR_ICON) for p in P]
 
+def _star(d, cx, cy, r, col):
+    pts = [(cx + (r if k % 2 == 0 else r * 0.42) * math.cos(-math.pi / 2 + k * math.pi / 5), cy + (r if k % 2 == 0 else r * 0.42) * math.sin(-math.pi / 2 + k * math.pi / 5)) for k in range(10)]
+    d.polygon(pts, fill=col)
+
+def draw_flag(im, code, Z):
+    """Simple drawn national flags, shown as a waving-free rectangle in the badge. Codes: ISO-3 / cricket short names."""
+    fw, fh = int(Z * 0.86), int(Z * 0.58); f = Image.new("RGB", (fw, fh), (255, 255, 255)); d = ImageDraw.Draw(f)
+    def H(cols):
+        for k, c in enumerate(cols): d.rectangle([0, fh * k / len(cols), fw, fh * (k + 1) / len(cols)], fill=c)
+    def V(cols):
+        for k, c in enumerate(cols): d.rectangle([fw * k / len(cols), 0, fw * (k + 1) / len(cols), fh], fill=c)
+    R, Wt, G, B, Y, K = (220, 40, 50), (255, 255, 255), (0, 130, 70), (20, 50, 140), (250, 200, 30), (20, 20, 20)
+    c = code
+    if c in ("IND", "INDIA"):
+        H([(255, 153, 51), Wt, (19, 136, 8)]); r = fh / 7; d.ellipse([fw / 2 - r, fh / 2 - r, fw / 2 + r, fh / 2 + r], outline=(0, 0, 128), width=max(2, int(r / 4)))
+        for k in range(12): a_ = k * math.pi / 6; d.line([(fw / 2, fh / 2), (fw / 2 + r * math.cos(a_), fh / 2 + r * math.sin(a_))], fill=(0, 0, 128), width=1)
+    elif c in ("AUS", "NZ", "NZL"):
+        f.paste((0, 36, 125), [0, 0, fw, fh]); d.rectangle([0, 0, fw / 2, fh / 2], fill=(0, 36, 125))
+        d.line([(0, 0), (fw / 2, fh / 2)], fill=Wt, width=int(fh / 12)); d.line([(fw / 2, 0), (0, fh / 2)], fill=Wt, width=int(fh / 12))
+        d.rectangle([fw / 4 - fh / 24, 0, fw / 4 + fh / 24, fh / 2], fill=R); d.rectangle([0, fh / 4 - fh / 24, fw / 2, fh / 4 + fh / 24], fill=R)
+        col = Wt if c == "AUS" else R
+        for (x, y) in ((0.75, 0.25), (0.68, 0.55), (0.85, 0.45), (0.75, 0.8)): _star(d, fw * x, fh * y, fh / 12, col)
+        if c == "AUS": _star(d, fw * 0.25, fh * 0.75, fh / 9, Wt)
+    elif c in ("ENG",):
+        d.rectangle([fw / 2 - fh / 10, 0, fw / 2 + fh / 10, fh], fill=R); d.rectangle([0, fh / 2 - fh / 10, fw, fh / 2 + fh / 10], fill=R)
+    elif c in ("UK", "GBR"):
+        f.paste((1, 33, 105), [0, 0, fw, fh])
+        for (p1, p2) in (((0, 0), (fw, fh)), ((fw, 0), (0, fh))): d.line([p1, p2], fill=Wt, width=int(fh / 6)); d.line([p1, p2], fill=R, width=int(fh / 16))
+        d.rectangle([fw / 2 - fh / 6, 0, fw / 2 + fh / 6, fh], fill=Wt); d.rectangle([0, fh / 2 - fh / 6, fw, fh / 2 + fh / 6], fill=Wt)
+        d.rectangle([fw / 2 - fh / 10, 0, fw / 2 + fh / 10, fh], fill=R); d.rectangle([0, fh / 2 - fh / 10, fw, fh / 2 + fh / 10], fill=R)
+    elif c in ("PAK",):
+        f.paste((1, 65, 28), [0, 0, fw, fh]); d.rectangle([0, 0, fw / 4, fh], fill=Wt)
+        cx, cy, r = fw * 0.62, fh / 2, fh * 0.3; d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=Wt); d.ellipse([cx - r * 0.75, cy - r * 1.05, cx + r * 1.1, cy + r * 0.7], fill=(1, 65, 28))
+        _star(d, cx + r * 0.55, cy - r * 0.35, r * 0.28, Wt)
+    elif c in ("SA", "RSA", "ZAF"):
+        H([R, Wt, B]); d.polygon([(0, 0), (fw * 0.45, fh / 2), (0, fh)], fill=G)
+        d.polygon([(0, fh * 0.12), (fw * 0.33, fh / 2), (0, fh * 0.88)], fill=Y); d.polygon([(0, fh * 0.22), (fw * 0.27, fh / 2), (0, fh * 0.78)], fill=K)
+        d.rectangle([fw * 0.42, fh * 0.4, fw, fh * 0.6], fill=G)
+    elif c in ("SL", "SRI", "LKA"):
+        f.paste(Y, [0, 0, fw, fh]); d.rectangle([fw * 0.05, fh * 0.08, fw * 0.12, fh * 0.92], fill=(0, 114, 74)); d.rectangle([fw * 0.13, fh * 0.08, fw * 0.2, fh * 0.92], fill=(255, 130, 0))
+        d.rectangle([fw * 0.24, fh * 0.08, fw * 0.95, fh * 0.92], fill=(141, 21, 58)); d.ellipse([fw * 0.48, fh * 0.3, fw * 0.72, fh * 0.7], fill=Y)
+    elif c in ("WI",):
+        f.paste((120, 20, 40), [0, 0, fw, fh]); d.ellipse([fw * 0.35, fh * 0.15, fw * 0.65, fh * 0.85], fill=Y)
+    elif c in ("BAN", "BGD"):
+        f.paste((0, 106, 78), [0, 0, fw, fh]); r = fh * 0.3; d.ellipse([fw * 0.45 - r, fh / 2 - r, fw * 0.45 + r, fh / 2 + r], fill=(244, 42, 65))
+    elif c in ("AFG",): V([K, (190, 0, 0), (0, 122, 54)])
+    elif c in ("ZIM", "ZWE"): H([G, Y, R, K, R, Y, G])
+    elif c in ("IRE", "IRL"): V([(22, 155, 98), Wt, (255, 136, 62)])
+    elif c in ("NED", "NLD"): H([(174, 28, 40), Wt, (33, 70, 139)])
+    elif c in ("USA",):
+        for k in range(13): d.rectangle([0, fh * k / 13, fw, fh * (k + 1) / 13], fill=R if k % 2 == 0 else Wt)
+        d.rectangle([0, 0, fw * 0.4, fh * 7 / 13], fill=(60, 59, 110))
+        for yy in range(5):
+            for xx in range(6): d.ellipse([fw * 0.03 + xx * fw * 0.062, fh * 0.05 + yy * fh * 0.1, fw * 0.03 + xx * fw * 0.062 + 4, fh * 0.05 + yy * fh * 0.1 + 4], fill=Wt)
+    elif c in ("CHN",):
+        f.paste((222, 41, 16), [0, 0, fw, fh]); _star(d, fw * 0.17, fh * 0.3, fh * 0.15, (255, 222, 0))
+        for (x, y) in ((0.32, 0.12), (0.38, 0.25), (0.38, 0.42), (0.32, 0.55)): _star(d, fw * x, fh * y, fh * 0.05, (255, 222, 0))
+    elif c in ("JPN",):
+        r = fh * 0.3; d.ellipse([fw / 2 - r, fh / 2 - r, fw / 2 + r, fh / 2 + r], fill=(188, 0, 45))
+    elif c in ("GER", "DEU"): H([K, (221, 0, 0), (255, 206, 0)])
+    elif c in ("FRA",): V([(0, 85, 164), Wt, (239, 65, 53)])
+    elif c in ("ITA",): V([(0, 146, 70), Wt, (206, 43, 55)])
+    elif c in ("RUS",): H([Wt, (0, 57, 166), (213, 43, 30)])
+    elif c in ("IDN", "INA"): H([(206, 17, 38), Wt])
+    elif c in ("BRA",):
+        f.paste((0, 156, 59), [0, 0, fw, fh]); d.polygon([(fw * 0.08, fh / 2), (fw / 2, fh * 0.08), (fw * 0.92, fh / 2), (fw / 2, fh * 0.92)], fill=(255, 223, 0))
+        r = fh * 0.24; d.ellipse([fw / 2 - r, fh / 2 - r, fw / 2 + r, fh / 2 + r], fill=(0, 39, 118))
+    elif c in ("CAN",):
+        V([(216, 6, 33), Wt, Wt, (216, 6, 33)]); _star(d, fw / 2, fh / 2, fh * 0.28, (216, 6, 33))
+    elif c in ("KOR",):
+        r = fh * 0.22; d.pieslice([fw / 2 - r, fh / 2 - r, fw / 2 + r, fh / 2 + r], 180, 360, fill=(205, 46, 58)); d.pieslice([fw / 2 - r, fh / 2 - r, fw / 2 + r, fh / 2 + r], 0, 180, fill=(0, 71, 160))
+    elif c in ("UAE", "ARE"):
+        H([(0, 115, 47), Wt, K]); d.rectangle([0, 0, fw / 4, fh], fill=(255, 0, 0))
+    elif c in ("SAU", "KSA"):
+        f.paste((0, 108, 53), [0, 0, fw, fh]); d.line([(fw * 0.25, fh * 0.65), (fw * 0.75, fh * 0.65)], fill=Wt, width=max(2, int(fh / 20)))
+    elif c in ("NEP", "NPL"):
+        f.paste(Wt, [0, 0, fw, fh]); d.polygon([(fw * 0.25, 0), (fw * 0.7, fh * 0.45), (fw * 0.4, fh * 0.45), (fw * 0.75, fh), (fw * 0.25, fh)], fill=(220, 20, 60), outline=(0, 56, 147))
+    elif c in ("KEN",): H([K, R, G])
+    elif c in ("MEX",): V([(0, 104, 71), Wt, (206, 17, 38)])
+    elif c in ("ESP",): H([(170, 21, 27), (241, 191, 0), (241, 191, 0), (170, 21, 27)])
+    else:
+        f.paste((70, 80, 100), [0, 0, fw, fh]); d.text((fw / 2, fh / 2), c[:3], font=font("ExtraBold", int(fh * 0.45)), fill=Wt, anchor="mm")
+    m = Image.new("L", (fw, fh), 0); ImageDraw.Draw(m).rounded_rectangle([0, 0, fw - 1, fh - 1], int(fh * 0.12), fill=255)
+    im.paste(f, ((Z - fw) // 2, (Z - fh) // 2), m)
+    ImageDraw.Draw(im).rounded_rectangle([(Z - fw) // 2, (Z - fh) // 2, (Z + fw) // 2 - 1, (Z + fh) // 2 - 1], int(fh * 0.12), outline=(60, 40, 20), width=max(2, Z // 80))
+
 def item_art(slug, Z):
     """Drawn icon library. 'glyph:TEXT' draws short text (e.g. glyph:4G, glyph:₹). Add new icons here as new elif branches."""
     im = Image.new("RGBA", (Z, Z), (0, 0, 0, 0)); d = ImageDraw.Draw(im); u = Z / 100
     def B(*p): return [v * u for v in p]
+    if slug.startswith("flag:"):
+        draw_flag(im, slug[5:].upper(), Z); return im
     if slug.startswith("glyph:"):
         g = slug[6:]; fs = int(46 * u)
         while fs > 10 and font("ExtraBold", fs).getlength(g) > 70 * u: fs -= 2
