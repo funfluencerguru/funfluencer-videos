@@ -13,7 +13,7 @@ Use from Python:
 Or from the shell, for any finished 1080x1920 reel:
     python3 tools/brand.py add-cta in.mp4 out.mp4 [--y 1320] [--dur 4] [--start 12.5]
     python3 tools/brand.py preview /tmp/cta.png          # just the tag, to look at
-Pick --y so the tag (110 px tall) covers nothing important in the last seconds and stays
+Pick --y (and --width/--x if needed) so the tag (110 px tall) covers nothing important in the last seconds and stays
 between y 300 and the top of the logo. Needs Pillow + ffmpeg.
 """
 import os, subprocess, sys, tempfile
@@ -62,7 +62,7 @@ def cta_image(width=1000):
     im = Image.new("RGBA", (w, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
     d.rounded_rectangle([4, 4, w - 4, h - 4], h // 2, fill=(18, 14, 30, 235), outline=(255, 214, 80, 255), width=5 * S)
     chips = [("like", "LIKE", (255, 72, 96)), ("share", "SHARE", (60, 210, 140)), ("bell", "FOLLOW / SUBSCRIBE", (255, 206, 60))]
-    fs = 38 * S; f = _font(fs); ic = 44 * S; gap_i = 12 * S
+    k = min(1.0, width / 1000); fs = int(38 * S * k); f = _font(fs); ic = int(44 * S * k); gap_i = int(12 * S * k)
     widths = [ic + gap_i + d.textlength(t, font=f) for _, t, _ in chips]
     gap = (w - 60 * S - sum(widths)) / (len(chips) - 1)
     x = 30 * S
@@ -78,14 +78,15 @@ def _duration(path):
                                           "-of", "csv=p=0", path]).decode().strip())
 
 
-def add_cta(src, dst, y=1320, dur=4.0, start=None):
+def add_cta(src, dst, y=1320, dur=4.0, start=None, width=1000, x=None):
     """Burn the reminder tag into a finished 1080x1920 reel (re-encodes video, copies audio).
-    The tag slides up + fades in at `start` (default: `dur` seconds before the end) and stays to the end."""
+    The tag slides up + fades in at `start` (default: `dur` seconds before the end) and stays to the end.
+    `width` (default 1000) and `x` (default: centred) let it dodge tall content."""
     total = _duration(src)
     st = max(0.0, total - dur) if start is None else start
     tmp = tempfile.mkdtemp(); png = os.path.join(tmp, "cta.png")
-    img = cta_image(); img.save(png)
-    x = (W - img.width) // 2
+    img = cta_image(width); img.save(png)
+    x = (W - img.width) // 2 if x is None else x
     fc = (f"[1:v]format=rgba,fade=t=in:st={st:.2f}:d=0.35:alpha=1[c];"
           f"[0:v][c]overlay=x={x}:y='{y}+max(0,{st + 0.35:.2f}-t)*160':shortest=1:eof_action=pass,format=yuv420p[v]")
     same = os.path.abspath(src) == os.path.abspath(dst)
@@ -104,9 +105,10 @@ if __name__ == "__main__":
     sp = a.add_subparsers(dest="cmd", required=True)
     c = sp.add_parser("add-cta"); c.add_argument("src"); c.add_argument("dst")
     c.add_argument("--y", type=int, default=1320); c.add_argument("--dur", type=float, default=4.0); c.add_argument("--start", type=float)
+    c.add_argument("--width", type=int, default=1000); c.add_argument("--x", type=int)
     p = sp.add_parser("preview"); p.add_argument("out")
     g = a.parse_args()
     if g.cmd == "add-cta":
-        print(add_cta(g.src, g.dst, g.y, g.dur, g.start))
+        print(add_cta(g.src, g.dst, g.y, g.dur, g.start, g.width, g.x))
     else:
         cta_image().save(g.out); print(g.out)

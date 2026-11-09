@@ -844,7 +844,7 @@ if __name__ == "__main__":
     make_audio(wav)
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", silent, "-i", wav, "-map", "0:v", "-map", "1:a", "-c:v", "copy",
         "-af", "volume=-1.5dB", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", out], check=True)
-    add_cta(out, out, y=SPEC.get("cta_y", 520))  # Like / Share / Follow reminder over the final overview
+    add_cta(out, out, y=SPEC.get("cta_y", 520), width=SPEC.get("cta_width", 860), x=SPEC.get("cta_x", 36))  # Like/Share/Follow reminder, left of the #1 pillar
     make_cover(cover)
     for tt in (round(t_land(N // 2) + 0.4, 1), round(TOTAL - 1.0, 1)):
         frame(tt).save(os.path.join(WORK, f"check_{tt}.png"))

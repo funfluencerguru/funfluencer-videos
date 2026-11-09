@@ -4,7 +4,7 @@
    (stats 115 px, puzzle/slogan/spot-the-difference 209 px, doodle 231 px).
 2. "LIKE · SHARE · FOLLOW / SUBSCRIBE" reminder tag pops in for the last 4 s of every reel.
    make_reel.py, make_stats_reel.py, make_puzzle.py and make_slogan.py do both automatically
-   (optional spec key `cta_y` moves the tag). For any other reel run, after the final MP4 is made:
+   (optional spec keys `cta_y`, and for stats `cta_width`/`cta_x`, move the tag; stats default is 860 px wide at x 36, y 520, left of the #1 pillar). For any other reel run, after the final MP4 is made:
        python3 tools/brand.py add-cta videos/<file>.mp4 videos/<file>.mp4 --y <top px>
    Pick --y (tag is 110 px tall, 1000 px wide, centred) so it covers nothing important in the last seconds and
    stays above the logo. Check a frame from the last second before posting.
