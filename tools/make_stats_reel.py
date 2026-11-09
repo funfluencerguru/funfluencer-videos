@@ -30,25 +30,27 @@ COUNT_FMT = SPEC.get("count_fmt", "{:,.0f}")
 N = len(P)
 MAT = [["bronze", "silver", "gold"][min(2, i * 3 // max(1, N - 1))] for i in range(N - 1)] + ["diamond"]
 MCOL = {  # dark, base, highlight, text-on-metal, glow
-    "bronze": ((92, 48, 18), (184, 112, 52), (255, 206, 150), (40, 18, 4), (230, 140, 70)),
-    "silver": ((96, 102, 114), (186, 190, 200), (255, 255, 255), (26, 30, 40), (210, 220, 240)),
-    "gold": ((128, 86, 8), (226, 176, 40), (255, 243, 170), (52, 32, 0), (255, 205, 70)),
-    "diamond": ((120, 170, 210), (196, 232, 255), (255, 255, 255), (12, 34, 66), (170, 230, 255)),
+    "bronze": ((226, 186, 150), (248, 222, 196), (255, 244, 232), (40, 18, 4), (230, 140, 70)),
+    "silver": ((216, 222, 232), (242, 245, 250), (255, 255, 255), (26, 30, 40), (210, 220, 240)),
+    "gold": ((240, 214, 140), (253, 240, 190), (255, 252, 232), (52, 32, 0), (255, 205, 70)),
+    "diamond": ((210, 236, 252), (236, 249, 255), (255, 255, 255), (12, 34, 66), (170, 230, 255)),
 }
 
-PITCH, PWW, HMAX, PED = 330, 240, 680, 260
-FLOOR = 120
+PITCH, PWW, HMAX, PED = 330, 240, 1100, 260   # tall scale so differences read clearly
+FLOOR = 60
 VMAX = max(p[3] for p in P)
 def hof(v): return FLOOR + (HMAX - FLOOR) * v / VMAX
 def wx(i): return i * PITCH
-T_INTRO, STEP, PAN, RISE0, GROW, EXTRA, ZOOM, HOLD = 2.6, 2.0, 0.6, 0.4, 1.0, 1.0, 2.2, 3.6
+T_INTRO, STEP, PAN, RISE0, GROW, EXTRA, ZOOM, HOLD = 2.6, 2.3, 0.55, 0.45, 1.0, 0.8, 2.4, 3.4
 T_STEPS_END = T_INTRO + N * STEP + EXTRA
 T_ZOOM_END = T_STEPS_END + ZOOM
 TOTAL = T_ZOOM_END + HOLD
 def t_start(i): return T_INTRO + i * STEP
 def t_land(i): return t_start(i) + RISE0 + GROW
 SPAN = wx(N - 1) + PWW
-ZX_O, ZY_O, BASE_O = 1000 / SPAN, 0.60, 1500
+LAB = 400            # world space reserved for labels above a pillar (value + badge + names)
+ZX_O = 1000 / SPAN
+ZY_O = min(0.62, 1000 / (PED + HMAX + 170)); BASE_O = 1480
 
 def ease(t): t = max(0.0, min(1.0, t)); return 1 - (1 - t) ** 3
 def ease_io(t): t = max(0.0, min(1.0, t)); return t * t * (3 - 2 * t)
@@ -58,41 +60,104 @@ def back(t):
     return 1 + (c + 1) * (t - 1) ** 3 + c * (t - 1) ** 2
 def lerp(a, b, k): return a + (b - a) * k
 
-def target(i):
-    cx = wx(i) + PWW / 2 - 0.13 * W
-    base = min(1700.0, max(1300.0, 640 + PED + hof(P[i][3])))
-    return (cx, 1.0, base)
+# ---- drone camera: shots are (cx, z, base); z = zoom, base = screen y of the ground line ----
+def shot_close(i):          # low and close at the foot of the pillar, a little to its right (approach from the left)
+    return (wx(i) + PWW * 0.5 + 40, 1.24, 1580.0)
+def shot_crane(i, g):       # follows the growing top upward
+    top = PED + hof(P[i][3]) * g
+    return (wx(i) + PWW * 0.5 + 20, lerp(1.24, 1.06, g), max(1580.0, 640 + (top + LAB * 0.55) * 1.06 * 0.92))
+def shot_wide(i):           # pull back and up: this pillar and the previous one fully in frame
+    j = max(0, i - 1)
+    cx = (wx(j) + wx(i) + PWW) / 2 + (40 if i == 0 else 0)
+    hh = PED + hof(P[i][3]) + LAB
+    z = min(0.95, 1080 / hh, W * 0.80 / (wx(i) + PWW - wx(j) + 60))
+    return (cx, z, min(1620.0, 470 + hh * z))
+def blend(a, b, k):
+    return (lerp(a[0], b[0], k), math.exp(lerp(math.log(a[1]), math.log(b[1]), k)), lerp(a[2], b[2], k))
+
+CAM_MODE = SPEC.get("camera", "orbit")   # DEFAULT orbit (owner-approved 9 Nov 2026). Others: drone | track | lowangle | flyover
+VIEW = {"dx": 0.16, "dy": -0.10, "key": 0.0}   # 3D depth direction (x pillar width) + keystone (+ low angle, - looking down)
+MODE_Z = {"track": 0.80, "lowangle": 0.95, "orbit": 1.05, "flyover": 0.72}
+def cam_modes(t):
+    z0 = MODE_Z[CAM_MODE]
+    if t < T_INTRO:
+        k = ease_io5((t - 0.6) / (T_INTRO - 0.6)); cx = lerp(-900, PWW / 2 + 60, k)
+        return cx, z0, z0, lerp(2300, 1560, k), 0, 0, 0.0, 1 - k
+    i = min(N - 1, int((t - T_INTRO) // STEP)); lt = t - t_start(i)
+    g = ease((lt - RISE0) / GROW) if lt > RISE0 else 0.0
+    hcur = PED + hof(P[i][3]) * g; hprev = PED + hof(P[i - 1][3]) if i > 0 else 0
+    tall = max(hcur, hprev) + LAB
+    z = z0 * (1 + 0.015 * math.sin(t * 1.1))
+    if CAM_MODE == "orbit":
+        TR = SPEC.get("transition", "glide")             # DEFAULT glide (owner-approved). Others: whip | lift : how the camera travels between pillars
+        PT = {"glide": 0.85, "whip": 0.30, "lift": 0.85}[TR]
+        kr = min(1.0, lt / PT)
+        k = ease_io5(kr) if TR != "whip" else (1 - (1 - kr) ** 4)
+        prevc = wx(i - 1) + PWW / 2 if i > 0 else PWW / 2
+        th = lerp(0.9, -0.9, ease_io(lt / STEP))
+        th_prev = -0.9
+        thc = lerp(th_prev, th, ease_io(kr)) if i > 0 else th
+        VIEW["dx"], VIEW["dy"] = 0.30 * math.sin(thc), -0.10
+        cx = lerp(prevc + 120 * 0.78, wx(i) + PWW / 2 - 120 * math.sin(th), k) if i > 0 else wx(i) + PWW / 2 - 120 * math.sin(th)
+        z = z0 * (1 + 0.06 * math.cos(thc))
+        base = max(1560.0, 500 + tall * z * 0.9)
+        VIEW["blur"] = 0.0
+        if i > 0 and kr < 1:
+            if TR == "lift":   # rise up and look down a little, fly across, drop in
+                up = math.sin(math.pi * kr)
+                z *= 1 - 0.28 * up; base += 260 * up; VIEW["dy"] = -0.10 - 0.25 * up
+            elif TR == "whip":  # fast pan with motion blur
+                VIEW["blur"] = 90 * math.sin(math.pi * kr) ** 2
+    else:
+        cx = PWW / 2 + (t - T_INTRO - STEP * 0.35) / STEP * PITCH + (60 if CAM_MODE == "track" else 0)
+        base = max(1500.0 if CAM_MODE != "lowangle" else 1760.0, 480 + tall * z)
+        if CAM_MODE == "lowangle": VIEW["dx"], VIEW["dy"], VIEW["key"] = 0.16, -0.02, 0.20
+        elif CAM_MODE == "flyover": VIEW["dx"], VIEW["dy"], VIEW["key"] = 0.08, -0.42, -0.17; base = max(1450.0, 600 + tall * z)
+        else: VIEW["dx"], VIEW["dy"] = 0.16, -0.10
+    sh = t - t_land(i); dx = dy = 0
+    if 0 < sh < 0.35:
+        a = 12 * math.exp(-sh * 11); dx, dy = a * math.sin(sh * 90), a * math.cos(sh * 70)
+    return cx, z, z, base, dx, dy, 0.0, 0.0
 
 def camera(t):
-    if t < T_INTRO:
+    if CAM_MODE != "drone" and t < T_STEPS_END: return cam_modes(t)
+    if t < T_INTRO:   # drone flies in from far left and low
         k = ease_io5((t - 0.6) / (T_INTRO - 0.6))
-        b = target(0)
-        cx = lerp(-700, b[0] - 140, k)
-        z = lerp(1.15, 1.0, k)
-        return cx, z, z, lerp(2300, b[2], k), 0, 0, 0.0, 1 - k
+        c0 = shot_close(0); cx = lerp(-900, c0[0], k)
+        z = lerp(1.05, c0[1], k)
+        return cx, z, z, lerp(2300, c0[2], k), 0, 0, 0.0, 1 - k
     if t < T_STEPS_END:
         i = min(N - 1, int((t - T_INTRO) // STEP))
         lt = t - t_start(i)
-        prev = target(i - 1) if i > 0 else (target(0)[0] - 140, 1.0, target(0)[2])
-        cur = target(i)
-        k = ease_io5(lt / PAN)
-        cx = lerp(prev[0], cur[0], k) + 26 * max(0, lt - PAN)
-        base = lerp(prev[2], cur[2], k)
-        dip = 0.05 * math.sin(math.pi * min(1, lt / PAN)) if i > 0 else 0
-        z = 1.0 - dip + 0.012 * math.sin(t * 1.3)
+        prev = shot_wide(i - 1) if i > 0 else shot_close(0)
+        if lt < PAN:                                   # swoop from the previous wide shot down to the next pillar
+            k = ease_io5(lt / PAN); c = blend(prev, shot_close(i), k)
+            arc = 0.10 * math.sin(math.pi * k) if i > 0 else 0   # drone lifts slightly mid-swoop
+            cx, z, base = c[0], c[1] * (1 - arc), c[2] + 120 * math.sin(math.pi * k) * (i > 0)
+        elif lt < RISE0 + GROW:                         # crane up with the pillar
+            g = ease((lt - RISE0) / GROW) if lt > RISE0 else 0.0
+            c = blend(shot_close(i), shot_crane(i, g), ease_io(min(1, (lt - PAN) / (RISE0 + GROW - PAN))))
+            cx, z, base = c
+        else:                                           # pull back and up to compare with the previous pillar
+            k = ease_io5((lt - RISE0 - GROW) / (STEP - RISE0 - GROW))
+            c = blend(shot_crane(i, 1.0), shot_wide(i), k); cx, z, base = c
+        z *= 1 + 0.01 * math.sin(t * 1.3)
         sh = t - t_land(i); dx = dy = 0
         if 0 < sh < 0.35:
             a = (12 if i < N - 2 else 20) * math.exp(-sh * 11)
             dx, dy = a * math.sin(sh * 90), a * math.cos(sh * 70)
         return cx, z, z, base, dx, dy, 0.0, 0.0
-    last = target(N - 1)
+    if CAM_MODE != "drone":   # start the final pull-out exactly where the step camera ended
+        c_ = cam_modes(T_STEPS_END - 1e-3); last = (c_[0], c_[1], c_[3]); dx_end = VIEW["dx"]
+    else:
+        last = shot_wide(N - 1); dx_end = VIEW["dx"]
     lt = t - T_STEPS_END
-    cx_last = last[0] + 26 * (STEP + EXTRA - PAN)
     k = ease_io5(lt / ZOOM)
-    cx = lerp(cx_last, SPAN / 2, k)
-    zx = math.exp(lerp(0.0, math.log(ZX_O), k))
-    zy = lerp(1.0, ZY_O, k)
-    base = lerp(last[2], BASE_O, k)
+    VIEW["dx"], VIEW["dy"], VIEW["blur"] = lerp(dx_end, 0.16, k), -0.10, 0.0
+    cx = lerp(last[0], SPAN / 2, k)
+    zx = math.exp(lerp(math.log(last[1]), math.log(ZX_O), k))
+    zy = math.exp(lerp(math.log(last[1]), math.log(ZY_O), k))
+    base = lerp(last[2], BASE_O, k) - 160 * math.sin(math.pi * k)   # rises up while pulling out
     if t > T_ZOOM_END:
         h = (t - T_ZOOM_END) / HOLD
         zx *= 1 + 0.015 * h; zy *= 1 + 0.015 * h
@@ -491,7 +556,7 @@ def vlabel(text, col, size=28):
     im = Image.new("RGBA", (tw, size + 14), (0, 0, 0, 0))
     ImageDraw.Draw(im).text((tw / 2, (size + 14) / 2), text, font=f, fill=col, anchor="mm")
     return im.rotate(90, expand=True)
-VNAMES = [vlabel(p[7], (255, 220, 140, 255)) for i, p in enumerate(P)]
+VNAMES = [vlabel(p[7], (110, 58, 12, 255)) for i, p in enumerate(P)]
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from brand import logo_box, add_cta
 LOGO_X, LOGO_Y, LOGO_S = logo_box(104, 36)  # owner rule 2026-11-09: 10% bigger, lifted from the bottom
@@ -506,6 +571,22 @@ def fit(s_, size, maxw, w="ExtraBold"):
 def wa(c, a): return tuple(c[:3]) + (int(max(0, min(255, a))),)
 def text(d, xy, s, f, fill, a=255, stroke=3, sc=(8, 4, 0)):
     d.text(xy, s, font=f, fill=wa(fill, a), anchor="mm", stroke_width=stroke, stroke_fill=wa(sc, a * 0.85))
+
+PED_FRONT_TOP, PED_FRONT_BOT = (255, 253, 248), (238, 230, 214)   # light ivory pedestal
+PED_TEXT = [(120, 62, 14), (0, 98, 140), (176, 110, 0)]           # 1st line, 2nd line, note
+def tint(c, f): return tuple(int(max(0, min(255, v * f))) for v in c)
+def box3d(im, d, x0, x1, ytop, ybot, front, side_col, top_col, dep):
+    """Front face image + right side face + top face, giving a 3D block. dep = (dx, dy) depth vector (dy negative = up)."""
+    dx, dy = dep
+    if side_col and abs(dx) > 0.5:
+        n = 12; xe = x1 if dx > 0 else x0
+        for k in range(n):  # side face with vertical gradient
+            y0_ = ytop + (ybot - ytop) * k / n; y1_ = ytop + (ybot - ytop) * (k + 1) / n
+            c = tint(side_col, 1.0 - 0.18 * k / n)
+            d.polygon([(xe, y0_), (xe + dx, y0_ + dy), (xe + dx, y1_ + dy + 1), (xe, y1_ + 1)], fill=c + (255,))
+    if front is not None: im.paste(front, (int(x0), int(ytop)))
+    if top_col:
+        d.polygon([(x0, ytop), (x0 + dx, ytop + dy), (x1 + dx, ytop + dy), (x1, ytop)], fill=top_col + (255,))
 
 def frame(t):
     cx, zx, zy, base, sdx, sdy, ok, intro = camera(t)
@@ -543,14 +624,15 @@ def frame(t):
         # carved pedestal (same for everyone) carrying rank + brands
         pt = sy(PED * pg); pedh = gy - pt
         if pedh > 2:
-            ped = Image.new("RGB", (max(2, int(pw)), max(2, int(pedh))), (46, 22, 10)); pdd = ImageDraw.Draw(ped)
+            ped = Image.new("RGB", (max(2, int(pw)), max(2, int(pedh))), PED_FRONT_TOP); pdd = ImageDraw.Draw(ped)
             for yy in range(ped.height):
-                k = yy / max(1, ped.height); pdd.line([(0, yy), (ped.width, yy)], fill=(int(70 - 30 * k), int(34 - 16 * k), int(14 - 6 * k)))
-            pdd.rectangle([0, 0, ped.width, max(2, int(5 * zy))], fill=(232, 180, 70))
-            pdd.rectangle([int(8 * zx), int(12 * zy), ped.width - int(8 * zx), ped.height - int(10 * zy)], outline=(190, 140, 50), width=max(1, int(2 * zx)))
-            im.paste(ped, (int(x0), int(pt)))
+                k = yy / max(1, ped.height); pdd.line([(0, yy), (ped.width, yy)], fill=tuple(int(PED_FRONT_TOP[j] + (PED_FRONT_BOT[j] - PED_FRONT_TOP[j]) * k) for j in range(3)))
+            pdd.rectangle([0, 0, ped.width, max(2, int(6 * zy))], fill=(214, 160, 60))
+            pdd.rectangle([int(8 * zx), int(14 * zy), ped.width - int(8 * zx), ped.height - int(10 * zy)], outline=(200, 160, 90), width=max(1, int(2 * zx)))
+            dep = (pw * VIEW['dx'], pw * VIEW['dy'])
+            box3d(im, ImageDraw.Draw(im, "RGBA"), x0, x1, pt, gy, ped, (200, 186, 160), (240, 210, 140), dep)
             rs = max(20, int(44 * zx))
-            text(d, (xc, pt + rs * 0.95), f"#{N - i}", font("ExtraBold", rs), (255, 214, 100), 255 * pg, 0)
+            text(d, (xc, pt + rs * 0.95), f"#{N - i}", font("ExtraBold", rs), (150, 84, 10), 255 * pg, 0)
             if names_a > 0.01 and zx > 0.6 and pedh - rs * 1.9 - 16 * zy > 30:
                 ba = 255 * names_a * ease((t - t_start(i) - 0.3) / 0.5)
                 n_ = len(brands); avail = pedh - rs * 1.9 - 16 * zy
@@ -558,7 +640,7 @@ def frame(t):
                 for bi, bname in enumerate(brands):
                     fs = int(min((30 if bi < 2 else 22) * zx, lh * 0.66))
                     while fs > 12 and font("ExtraBold", fs).getlength(bname) > pw - 26 * zx: fs -= 1
-                    text(d, (xc, yb + lh / 2), bname, font("ExtraBold", fs), [(255, 214, 150), (150, 230, 255), (255, 214, 100)][bi], ba, 0)
+                    text(d, (xc, yb + lh / 2), bname, font("ExtraBold", fs), PED_TEXT[bi], ba, 0)
                     yb += lh
             if vnames_a > 0.01:
                 vn = VNAMES[i]
@@ -579,10 +661,8 @@ def frame(t):
             inset = pw * 0.06
             mx0, mx1 = x0 + inset, x1 - inset; mw = mx1 - mx0
             tex = TEX[mat].resize((max(2, int(mw)), max(2, int(ph))), Image.BILINEAR)
-            m = Image.new("L", tex.size, 0)
-            ImageDraw.Draw(m).rounded_rectangle([0, 0, tex.width - 1, tex.height + 30], int(min(18 * zx, tex.width / 3)) + 4, fill=255)
-            im.paste(tex, (int(mx0), int(top)), m)
-            d.line([(mx0 + 2, top + 3), (mx1 - 2, top + 3)], fill=wa(hi, 220), width=max(1, int(3 * zx)))
+            box3d(im, ImageDraw.Draw(im, "RGBA"), mx0, mx1, top, mgy, tex, tint(dk, 0.88), tint(hi, 1.0), (mw * VIEW['dx'] * 1.06, mw * VIEW['dy'] * 1.1))
+            d.line([(mx0, top), (mx1, top)], fill=wa((255, 255, 255), 200), width=max(1, int(2 * zx)))
             isz0 = max(40, 108 * zx); isz = int(min(isz0, mw - 8, ph - 12))
             if isz > 24 and PILLAR_ICON != "none":
                 over.alpha_composite(ICONS[i].resize((isz, isz), Image.BILINEAR), (int(xc - isz / 2), int(top + min(14 * max(zx, .42), (ph - isz) / 2))))
@@ -591,13 +671,14 @@ def frame(t):
         # value + photo + names above the pillar
         lab = zx > 0.6
         nsz = max(26, int(64 * zx))
-        y = top - nsz * (1.05 if lab else 0.75)
+        liftv = mw * min(0.0, VIEW["dy"]) * 1.1 if ph > 2 else 0.0
+        y = top + liftv - nsz * (1.05 if lab else 0.75)
         val = worth * g
         vs = vlab if (g > 0.995 and vlab) else COUNT_FMT.format(val)
         va = 255 * ease(g / 0.15)
         if va > 1: text(d, (xc, y), vs, font("ExtraBold", nsz), (255, 255, 255), va, 4 if lab else 3)
         if lab:
-            text(d, (xc, top - 22), SPEC.get("value_caption", ""), font("Bold", 20), (255, 215, 120), 230 * names_a * ease(g / 0.15), 2)
+            text(d, (xc, top + liftv - 22), SPEC.get("value_caption", ""), font("Bold", 20), (255, 215, 120), 230 * names_a * ease(g / 0.15), 2)
         y -= nsz * 0.7
         b = back((t - t_start(i) - 0.15) / 0.6)
         pk = (t - t_land(i)) / 0.45
@@ -641,7 +722,7 @@ def frame(t):
     if ha > 0.01:
         d.rounded_rectangle([W / 2 - 300, 212, W / 2 + 300, 288], 38, fill=(20, 10, 2, int(205 * ha)), outline=(255, 205, 70, int(220 * ha)), width=2)
         text(d, (W / 2, 250), SPEC["header"], fit(SPEC["header"], 34, 560), (255, 255, 255), 255 * ha, 0)
-    oa = ease_io((t - T_STEPS_END - 0.9) / 0.9)
+    oa = ease_io((t - T_STEPS_END - 1.4) / 0.8)
     if oa > 0.01:
         text(d, (W / 2, 290), SPEC["outro"][0], fit(SPEC["outro"][0], 84, 1000), (255, 255, 255), 255 * oa, 4)
         text(d, (W / 2, 368), SPEC["outro"][1], fit(SPEC["outro"][1], 42, 1000), (255, 214, 100), 255 * oa, 3)
@@ -654,6 +735,18 @@ def frame(t):
             text(d, (W / 2, 1626), SPEC["sources"], fit(SPEC["sources"], 19, 1000, "Medium"), (180, 168, 150), 255 * ca, 0)
 
     im = im.convert("RGBA"); im.alpha_composite(over)
+    bl = int(VIEW.get("blur", 0.0))
+    if bl > 3:   # horizontal motion blur for whip pans
+        import numpy as _np
+        arr = _np.asarray(im.convert("RGB"), dtype=_np.float32); acc = _np.zeros_like(arr); n_ = 8
+        for k_ in range(n_):
+            sft = int(bl * (k_ / (n_ - 1) - 0.5)); acc += _np.roll(arr, sft, axis=1)
+        im = Image.fromarray((acc / n_).astype("uint8")).convert("RGBA")
+    kk = VIEW.get("key", 0.0) * (1 - ok) if CAM_MODE in ("lowangle", "flyover") else 0.0
+    if abs(kk) > 0.002:   # perspective tilt: + low angle (ground near, bigger), - looking down (tops near)
+        if kk > 0: quad = (0, 0, kk * W, H, (1 - kk) * W, H, W, 0)
+        else: quad = (-kk * W, 0, 0, H, W, H, (1 + kk) * W, 0)
+        im = im.transform((W, H), Image.QUAD, quad, Image.BILINEAR)
     im.alpha_composite(LOGO, (LOGO_X, LOGO_Y))
     out = im.convert("RGB")
     fade = min(1, t / 0.35, (TOTAL - t) / 0.5)

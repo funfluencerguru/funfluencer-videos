@@ -59,7 +59,15 @@ Cinematic 9:16 "pillar race" stats reel: 6–10 items, lowest → highest, camer
     python3 tools/make_stats_reel.py spec.json                      # video + cover (+ check frames in workdir)
     python3 tools/make_stats_reel.py spec.json --preview 6.4 20     # PNG frames only (fast)
 
-Needs python3, numpy, scipy, Pillow, ffmpeg. Renders in ~1–1.5 min. Length = 2.6 + 2×items + 6.8 s (8 items = 25.4 s).
+Needs python3, numpy, scipy, Pillow, ffmpeg. Renders in ~1.5–2 min. Length = 2.6 + 2.3×items + 6.6 s (8 items = 27.6 s, 6 items = 23 s).
+Approved look (owner, 9 Nov 2026) is the DEFAULT, do not change it unless asked:
+- Camera: ORBIT while each pillar grows (camera arcs round the pillar, its 3D side swings right to left) + SMOOTH GLIDE between pillars
+  (continuous dolly, one long take), small shake on landing, then a glide-out to the full overview sized to fit the screen, then the twist card.
+- Pillars: solid 3D blocks (lit top face + shaded side), LIGHTEST pastel metals (peach bronze -> near-white silver -> cream gold -> icy diamond).
+- Pedestals: near-white ivory 3D blocks with gold trim; rank and text in dark colours (dark gold rank, brown line 1, deep blue line 2, amber note).
+- Height scale: tall (floor 60, max 1100 world units) so differences between pillars are clearly visible.
+- Optional spec keys (only if asked): "camera": drone | track | lowangle | flyover, "transition": whip | lift.
+Preview times: tallest pillar landed = 2.6 + 2.3×(items−1) + 1.75; overview = total − 2.
 Worked example: `tools/stats-specs/2026-11-09-price-1990-vs-2026.json` (copy it and change the text/items).
 
 Spec fields
