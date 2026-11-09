@@ -1,0 +1,29 @@
+{
+  "slug": "odi-most-centuries",
+  "date": "2026-11-10",
+  "out": "videos/2026-11-10-stats-odi-most-centuries.mp4",
+  "cover_out": "images/2026-11-10-stats-odi-most-centuries-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "cricket",
+  "intro": ["ODI KE KING", "SABSE ZYADA 100s?", "Most ODI centuries ever · men's cricket"],
+  "header": "MOST ODI CENTURIES · ALL-TIME",
+  "outro": ["ODI HUNDRED KINGS", "Most centuries of all time"],
+  "question": "Kya Kohli 60 tak pahunchega?",
+  "twist": ["THE TWIST:  Top 3 sab INDIAN!", "Kohli 55 + Sachin 49 + Rohit 35 = 139 tons"],
+  "sources": "Sources: Outlook India · Gulf News · cricketide.com · latest as of 10 Nov 2026",
+  "value_caption": "ODI CENTURIES",
+  "count_fmt": "{:,.0f}",
+  "pillar_icon": "star",
+  "cover": {"title": ["ODI KE KING", "MOST 100s EVER", "9 legends · ranked"], "hero": 8, "pill": "KOHLI 55 TONS!", "question": "Guess No. 1?"},
+  "items": [
+    {"small": "West Indies", "big": "CHRIS GAYLE", "sub": "UNIVERSE BOSS", "value": 25, "value_text": "25", "icon": "flag:WI", "lines": ["301 MATCHES", "10,480 RUNS", "RETIRED"], "vname": "GAYLE"},
+    {"small": "Sri Lanka", "big": "SANGAKKARA", "sub": "KEEPER-BATTER", "value": 25, "value_text": "25", "icon": "flag:SL", "lines": ["404 MATCHES", "14,234 RUNS", "RETIRED"], "vname": "SANGA"},
+    {"small": "South Africa", "big": "DE VILLIERS", "sub": "MR 360", "value": 25, "value_text": "25", "icon": "flag:SA", "lines": ["228 MATCHES", "9,577 RUNS", "RETIRED"], "vname": "ABD"},
+    {"small": "South Africa", "big": "HASHIM AMLA", "sub": "CLASSY OPENER", "value": 27, "value_text": "27", "icon": "flag:SA", "lines": ["181 MATCHES", "8,113 RUNS", "RETIRED"], "vname": "AMLA"},
+    {"small": "Sri Lanka", "big": "JAYASURIYA", "sub": "POWERPLAY KING", "value": 28, "value_text": "28", "icon": "flag:SL", "lines": ["445 MATCHES", "13,430 RUNS", "RETIRED"], "vname": "SANATH"},
+    {"small": "Australia", "big": "PONTING", "sub": "3x WC WINNER", "value": 30, "value_text": "30", "icon": "flag:AUS", "lines": ["375 MATCHES", "13,704 RUNS", "RETIRED"], "vname": "PONTING"},
+    {"small": "India", "big": "ROHIT SHARMA", "sub": "HITMAN", "value": 35, "value_text": "35", "icon": "flag:IND", "lines": ["12,000+ RUNS", "3 DOUBLE 100s", "STILL PLAYING"], "vname": "ROHIT"},
+    {"small": "India", "big": "SACHIN", "sub": "MASTER BLASTER", "value": 49, "value_text": "49", "icon": "flag:IND", "lines": ["463 MATCHES", "18,426 RUNS", "RETIRED"], "vname": "SACHIN"},
+    {"small": "India", "big": "VIRAT KOHLI", "sub": "KING KOHLI", "value": 55, "value_text": "55", "icon": "flag:IND", "lines": ["15,000+ RUNS", "NO. 1 EVER", "STILL PLAYING"], "vname": "KOHLI"}
+  ]
+}
