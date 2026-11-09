@@ -53,10 +53,10 @@ box-shadow:16px 16px 0 #111;padding:36px 30px}}
 .ic{{width:92px;height:92px}}.op{{margin:0 4px}}
 .cd{{position:absolute;top:1230px;left:50%;margin-left:-130px;width:260px;height:260px;border-radius:50%;background:#fff;border:20px solid #e5322d;
 box-shadow:8px 8px 0 #111;display:flex;align-items:center;justify-content:center;font-size:130px;font-weight:900;color:#111}}
-.cta{{position:absolute;top:1545px;left:0;right:0;text-align:center;font-size:62px;font-weight:900;color:#111}}
+.cta{{position:absolute;top:1545px;left:0;right:230px;text-align:center;font-size:54px;white-space:nowrap;font-weight:900;color:#111}}
 .cta span{{background:#fff;border:6px solid #111;border-radius:60px;padding:8px 36px;box-shadow:7px 7px 0 #111}}
 .ai{{position:absolute;left:120px;bottom:40px;font-size:30px;font-weight:700;color:#777}}
-.logo{{position:absolute;right:30px;bottom:25px;width:190px;height:190px}}
+.logo{{position:absolute;right:30px;bottom:130px;width:209px;height:209px}}
 </style></head><body><div class="margin"></div>
 <div class="head"><span>Solve karo! \U0001F9E0</span></div>
 <div class="sub">{spec['sub']}</div>
@@ -102,6 +102,9 @@ def main(spec_path, out):
     subprocess.check_call(['ffmpeg', '-y', '-loglevel', 'error', '-framerate', '1', '-i', f'{tmp}/f%02d.png',
                            '-i', f'{tmp}/a.wav', '-vf', 'fps=30,format=yuv420p', '-c:v', 'libx264',
                            '-preset', 'veryfast', '-c:a', 'aac', '-b:a', '128k', '-shortest', '-movflags', '+faststart', out])
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from brand import add_cta
+    add_cta(out, out, y=spec.get('cta_y', 1080))  # Like / Share / Follow reminder, last 4 s
     print('frames in', tmp)
 
 

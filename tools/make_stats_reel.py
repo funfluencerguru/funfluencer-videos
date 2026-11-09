@@ -492,7 +492,10 @@ def vlabel(text, col, size=28):
     ImageDraw.Draw(im).text((tw / 2, (size + 14) / 2), text, font=f, fill=col, anchor="mm")
     return im.rotate(90, expand=True)
 VNAMES = [vlabel(p[7], (255, 220, 140, 255)) for i, p in enumerate(P)]
-LOGO = Image.open(os.path.join(REPO, "assets/logo.png")).convert("RGBA").resize((104, 104), Image.LANCZOS)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from brand import logo_box, add_cta
+LOGO_X, LOGO_Y, LOGO_S = logo_box(104, 36)  # owner rule 2026-11-09: 10% bigger, lifted from the bottom
+LOGO = Image.open(os.path.join(REPO, "assets/logo.png")).convert("RGBA").resize((LOGO_S, LOGO_S), Image.LANCZOS)
 rnd = random.Random(11)
 PARTS = [(rnd.random(), rnd.random(), rnd.uniform(2, 6), rnd.uniform(0.3, 1.0), rnd.uniform(0, 6.28)) for _ in range(80)]
 
@@ -651,7 +654,7 @@ def frame(t):
             text(d, (W / 2, 1626), SPEC["sources"], fit(SPEC["sources"], 19, 1000, "Medium"), (180, 168, 150), 255 * ca, 0)
 
     im = im.convert("RGBA"); im.alpha_composite(over)
-    im.alpha_composite(LOGO, (W - 104 - 36, 1795))
+    im.alpha_composite(LOGO, (LOGO_X, LOGO_Y))
     out = im.convert("RGB")
     fade = min(1, t / 0.35, (TOTAL - t) / 0.5)
     if fade < 1: out = Image.blend(Image.new("RGB", (W, H)), out, max(0, fade))
@@ -729,7 +732,7 @@ def make_cover(path):
     for k in range(N):
         x = int(W / 2 - (N * s_ + (N - 1) * 12) / 2 + k * (s_ + 12)); bb = BADGES[k].resize((s_, s_), Image.LANCZOS); im.paste(bb, (x, 1245), bb)
     q = c.get("question", "Guess No. 1?"); T((430, 1450), q, fit(q, 70, 560), "white")
-    logo = Image.open(os.path.join(REPO, "assets/logo.png")).convert("RGBA").resize((130, 130), Image.LANCZOS); im.paste(logo, (760, 1385), logo)
+    logo = Image.open(os.path.join(REPO, "assets/logo.png")).convert("RGBA").resize((143, 143), Image.LANCZOS); im.paste(logo, (754, 1379), logo)
     im.save(path, quality=92)
 
 if __name__ == "__main__":
@@ -748,6 +751,7 @@ if __name__ == "__main__":
     make_audio(wav)
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", silent, "-i", wav, "-map", "0:v", "-map", "1:a", "-c:v", "copy",
         "-af", "volume=-1.5dB", "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", out], check=True)
+    add_cta(out, out, y=SPEC.get("cta_y", 520))  # Like / Share / Follow reminder over the final overview
     make_cover(cover)
     for tt in (round(t_land(N // 2) + 0.4, 1), round(TOTAL - 1.0, 1)):
         frame(tt).save(os.path.join(WORK, f"check_{tt}.png"))

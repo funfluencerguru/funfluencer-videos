@@ -195,8 +195,8 @@ body{{width:{W}px;height:{H}px;overflow:hidden;font-family:Poppins,'Noto Color E
 .quote{{position:absolute;left:170px;top:450px;font-size:230px;font-weight:700;color:{ink};line-height:1;font-family:Poppins}}
 .cta{{position:absolute;left:120px;right:180px;top:1268px;text-align:center;font-size:44px;white-space:nowrap;font-weight:700;color:#111;
  background:#fff;border:5px solid #111;border-radius:999px;padding:20px 30px;box-shadow:8px 8px 0 #111}}
-.cta.small{{top:1585px;left:60px;right:250px;font-size:38px;padding:16px 24px;background:rgba(255,255,255,.94)}}
-#logo{{position:absolute;right:30px;bottom:25px;width:190px;height:190px}}
+.cta.small{{top:1585px;left:60px;right:270px;font-size:38px;padding:16px 24px;background:rgba(255,255,255,.94)}}
+#logo{{position:absolute;right:30px;bottom:130px;width:209px;height:209px}}
 </style></head><body>
 <div id="scene">{scene_html}</div><div id="tint"></div><div id="vig"></div>
 <svg id="grain" width="{W}" height="{H}"><filter id="n"><feTurbulence id="turb" type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="1"/>
@@ -428,6 +428,9 @@ def main():
                     "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p",
                     "-af", "loudnorm=I=-16:TP=-1.5:LRA=11", "-c:a", "aac", "-b:a", "160k", "-ar", "44100", "-ac", "2",
                     "-shortest", "-movflags", "+faststart", out], check=True)
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from brand import add_cta
+    add_cta(out, out, y=spec.get("cta_y", 1420))  # Like / Share / Follow reminder, last 4 s
     shutil.copy(f"{tmp}/a.wav", out.replace(".mp4", ".wav"))
     shutil.rmtree(tmp)
     print(out)

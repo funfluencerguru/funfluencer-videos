@@ -1,3 +1,14 @@
+# BRAND FINISH — every reel (owner rule, 2026-11-09)
+1. Logo `assets/logo.png` bottom-right, 10% bigger than before and lifted off the very bottom: its bottom edge sits
+   130 px above the bottom of the 1080x1920 frame. Use `logo_box(old_size, right_margin)` from `tools/brand.py`
+   (stats 115 px, puzzle/slogan/spot-the-difference 209 px, doodle 231 px).
+2. "LIKE · SHARE · FOLLOW / SUBSCRIBE" reminder tag pops in for the last 4 s of every reel.
+   make_reel.py, make_stats_reel.py, make_puzzle.py and make_slogan.py do both automatically
+   (optional spec key `cta_y` moves the tag). For any other reel run, after the final MP4 is made:
+       python3 tools/brand.py add-cta videos/<file>.mp4 videos/<file>.mp4 --y <top px>
+   Pick --y (tag is 110 px tall, 1000 px wide, centred) so it covers nothing important in the last seconds and
+   stays above the logo. Check a frame from the last second before posting.
+
 # VARIETY RULE (owner request, 2026-10-24 onwards)
 Do not use the same look two days in a row. Every day pick a layout + background + character set that does NOT
 appear in the last 5 lines of tools/style-log.csv, then append one line to that file (date,layout,bg,chars,topic) and commit it with the video.

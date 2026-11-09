@@ -90,7 +90,7 @@ def _html(i,t):
 </g></svg>
 <div style="position:absolute;left:170px;top:1055px;width:780px;font-size:62px;font-weight:700;line-height:1.12">{head}</div>
 <div style="position:absolute;left:170px;top:1470px;width:520px;font-size:42px;line-height:1.2">{cta}</div>
-<img src="{LOGO}" style="position:absolute;left:760px;top:1400px;width:210px;height:210px">
+<img src="{LOGO}" style="position:absolute;left:{LX}px;top:{LY}px;width:{LS}px;height:{LS}px">
 </div></body></html>'''
 
 def _frame(t,th,svg,single=None):
@@ -108,10 +108,13 @@ def _frame(t,th,svg,single=None):
 <svg style="position:absolute;left:40px;top:200px" viewBox="0 0 1000 800" width="1000" height="800">{svg}</svg>
 <div style="position:absolute;left:170px;top:1055px;width:780px;font-size:62px;font-weight:700;line-height:1.12">{head}</div>
 <div style="position:absolute;left:170px;top:1470px;width:520px;font-size:42px;line-height:1.2">{cta}</div>
-<img src="{LOGO}" style="position:absolute;left:760px;top:1400px;width:210px;height:210px">
+<img src="{LOGO}" style="position:absolute;left:{LX}px;top:{LY}px;width:{LS}px;height:{LS}px">
 </div></body></html>'''
 
 LOGO=""
+import sys as _s, os as _o; _s.path.insert(0,_o.path.dirname(_o.path.abspath(__file__)))
+from brand import logo_box, add_cta
+LX,LY,LS=logo_box(210,40)  # owner rule 2026-11-09: 10% bigger, lifted from the bottom
 LAYOUT="single";THEME="notebook";DATA={};CHAR1="boy";CHAR2="uncle";MOOD1="happy";MOOD2="shock"
 SLEEPY=False
 PROP_SVG=""
@@ -143,4 +146,5 @@ if __name__=="__main__":
     audio(g.variant,g.sfx,tmp+"/p.wav")
     out=f"{g.outdir}/{g.date}-{g.slug}.mp4"
     subprocess.run(["ffmpeg","-y","-loglevel","error","-loop","1","-framerate","30","-t","18","-i",tmp+"/p.png","-i",tmp+"/p.wav","-vf","format=yuv420p","-c:v","libx264","-tune","stillimage","-crf","20","-r","30","-c:a","aac","-b:a","128k","-shortest","-movflags","+faststart",out],check=True)
+    add_cta(out,out,y=1320)  # Like / Share / Follow reminder, last 4 s
     print(out)
