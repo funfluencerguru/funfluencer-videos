@@ -51,7 +51,21 @@ prop in the script (e.g. broom, chai cup, cricket bat, phone, diya). Canvas is 1
 `--sleepy` if it suits the joke. Behind a version mismatch set CHROMIUM_PATH=/opt/pw-browsers/chromium.
 The label is drawn at (760,610): keep the drawing clear of it (draw the prop around/under it).
 
-## Stats pillar reel (daily, `tools/make_stats_reel.py`)
+## Stats pillar reel, 3D (DEFAULT for daily reels, `tools/make_stats_reel3d.py`)
+Same spec as below. Approved 9 Nov 2026. Do NOT set camera/transition/layout in the spec (layout defaults to "line").
+
+    python3 tools/make_stats_reel3d.py spec.json                    # video + cover
+    python3 tools/make_stats_reel3d.py spec.json --preview 9.6 24   # PNG frames only (WORK/frame3d_<t>.png)
+
+Look: true-perspective 3D, front-left telephoto camera gliding along a straight row of pillars at pillar-top height,
+then pulling out to an angled overview. Each pillar grows; when the NEXT one starts growing it turns to face the viewer
+and stays turned (last one turns at the pull-out). Lightest pastel metal pillars with coin icon; very dark chocolate
+pedestals with bright ivory / ice-blue / gold text; round badge + value + name above each pillar with an animated
+glowing gold ring and a small shiny dot; theme background (no grid floor); twist card, Like/Share/Follow tag, logo, theme music.
+Timing: TOTAL = 2.2 + 2.2*N + 6.2 s (8 items = 26 s). Pillar i lands at about 2.2 + 2.2*i + 1.2 s.
+Optional: cta_y (520), cta_width (1000), cta_x (centred).
+
+## Stats pillar reel, 2D (previous look, `tools/make_stats_reel.py`)
 Cinematic 9:16 "pillar race" stats reel: 6–10 items, lowest → highest, camera pans pillar by pillar
 (bronze → silver → gold → diamond), lands with a "ka-ching", ends on an overview of all pillars + twist card.
 0 ElevenLabs credits: background and icons are drawn in code, music is our own (assets/music).
