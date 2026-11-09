@@ -50,7 +50,7 @@ def t_land(i): return t_start(i) + RISE0 + GROW
 SPAN = wx(N - 1) + PWW
 LAB = 400            # world space reserved for labels above a pillar (value + badge + names)
 ZX_O = 1000 / SPAN
-ZY_O = min(0.62, 1000 / (PED + HMAX + 170)); BASE_O = 1480
+ZY_O = min(0.62, 760 / (PED + HMAX + 170)); BASE_O = 1480   # leaves room for the Like/Share/Follow tag at y 520-630
 
 def ease(t): t = max(0.0, min(1.0, t)); return 1 - (1 - t) ** 3
 def ease_io(t): t = max(0.0, min(1.0, t)); return t * t * (3 - 2 * t)
