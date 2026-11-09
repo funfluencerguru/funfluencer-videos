@@ -39,3 +39,32 @@ prop in the script (e.g. broom, chai cup, cricket bat, phone, diya). Canvas is 1
 (x 560-960, y 380-730), plain strokes only (stroke style is inherited). Use `--prop` as its label and
 `--sleepy` if it suits the joke. Behind a version mismatch set CHROMIUM_PATH=/opt/pw-browsers/chromium.
 The label is drawn at (760,610): keep the drawing clear of it (draw the prop around/under it).
+
+## Stats pillar reel (daily, `tools/make_stats_reel.py`)
+Cinematic 9:16 "pillar race" stats reel: 6–10 items, lowest → highest, camera pans pillar by pillar
+(bronze → silver → gold → diamond), lands with a "ka-ching", ends on an overview of all pillars + twist card.
+0 ElevenLabs credits: background and icons are drawn in code, music is our own (assets/music).
+
+    python3 tools/make_stats_reel.py spec.json                      # video + cover (+ check frames in workdir)
+    python3 tools/make_stats_reel.py spec.json --preview 6.4 20     # PNG frames only (fast)
+
+Needs python3, numpy, scipy, Pillow, ffmpeg. Renders in ~1–1.5 min. Length = 2.6 + 2×items + 6.8 s (8 items = 25.4 s).
+Worked example: `tools/stats-specs/2026-11-09-price-1990-vs-2026.json` (copy it and change the text/items).
+
+Spec fields
+- `out`, `cover_out`: `videos/<date>-stats-<slug>.mp4`, `images/<date>-stats-<slug>-cover.jpg`; `workdir`: temp folder (e.g. /tmp/statsreel).
+- `music`: `retro_bollywood` (nostalgia, Bollywood, India, cricket) or `future_bass` (tech, money, YouTube, modern).
+- `bg`: `left_word`, `right_word` (big faded words, ≤6 chars look best), `left_color`/`right_color` [r,g,b] (mid-dark, 20–140), `motif` (one character: ₹ ★ ● ▲ ✦), `seed`.
+- `intro` [big line ≤14 chars, second line ≤20 chars, small explainer]; `header` (pill shown during the first half, ≤30 chars);
+  `outro` [title, subtitle]; `question` (comment bait); `twist` [bold insight ≤38 chars, small line ≤55 chars]; `sources` (one short line).
+- `value_caption` (small text under each value, e.g. "TIMES COSTLIER", "CRORE PEOPLE", "RUNS"), `count_fmt` (Python format for the counting-up number, e.g. "{:,.0f}", "×{:.1f}", "₹{:,.0f} Cr"),
+  `pillar_icon`: coin (money topics) | star | none.
+- `cover`: `title` [3 lines], `hero` (item index for the big badge, 0-based), `pill` (hook ≤22 chars), `question` (≤14 chars).
+- `items` (ordered LOW → HIGH, 6–10): `small` (top line), `big` (≤12 chars), `sub` (≤18 chars), `value` (number used for pillar height),
+  `value_text` (final label, ≤7 chars), `icon`, `lines` [3 pedestal lines ≤15 chars], `vname` (vertical name in overview, ≤9 chars).
+- Icons (drawn, no logos): car, post, dollar, petrol, income, silver, gold, sensex, flag, bat, trophy, phone, people, building, train, plane,
+  film, food, house, bolt, or `glyph:TXT` (1–3 characters/short text, e.g. glyph:UP, glyph:4G, glyph:₹). Add new icons in `item_art()` and commit.
+- Pillar height is linear from a floor, so tiny values stay visible; very skewed data (top item >30× the lowest) still works but say so in the intro line.
+
+Rules: no photos or faces of real people, no company logos/brand artwork (names in text are fine for factual stats).
+Every number must come from a source found that day; label estimates "(est.)"; write the source line. Log each reel in `tools/stats-log.csv`.

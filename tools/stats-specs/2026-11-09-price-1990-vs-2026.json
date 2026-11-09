@@ -1,0 +1,28 @@
+{
+  "slug": "price-1990-vs-2026",
+  "date": "2026-11-09",
+  "out": "videos/2026-11-09-price-1990-vs-2026.mp4",
+  "cover_out": "images/2026-11-09-price-1990-vs-2026-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "music": "retro_bollywood",
+  "bg": {"left_word": "1990", "right_word": "2026", "left_color": [128, 78, 36], "right_color": [26, 84, 104], "motif": "₹", "seed": 5},
+  "intro": ["1990  vs  2026", "KITNA MEHENGA HUA?", "Pillar height = how many times costlier"],
+  "header": "1990 → 2026 · KITNA MEHENGA?",
+  "outro": ["1990 → 2026", "How many times costlier?"],
+  "question": "Which price shocked you most?",
+  "twist": ["THE TWIST:  Income ×34  ·  Gold ×48", "Car & postcard barely moved · Sensex beat them all"],
+  "sources": "Sources: IOCL Delhi petrol · RBI/FRED · MoSPI · bullion rates · BSE · 2026 = latest available",
+  "value_caption": "TIMES COSTLIER",
+  "count_fmt": "×{:.1f}",
+  "cover": {"title": ["1990 vs 2026", "KITNA MEHENGA?", "8 prices · then vs now"], "hero": 3, "pill": "PETROL ₹4 → ₹102!", "question": "Guess No. 1?"},
+  "items": [
+    {"small": "Cheapest", "big": "MARUTI CAR", "sub": "800 → ALTO K10", "value": 3.1, "value_text": "×3.1", "icon": "car", "lines": ["1990  ₹1.27 L", "2026  ₹3.99 L", "EX-SHOWROOM"], "vname": "CAR"},
+    {"small": "Inland", "big": "POSTCARD", "sub": "INDIA POST", "value": 3.3, "value_text": "×3.3", "icon": "post", "lines": ["1990  15 paise", "2026  50 paise", "STILL CHEAP!"], "vname": "POSTCARD"},
+    {"small": "One", "big": "US DOLLAR", "sub": "IN RUPEES", "value": 5.4, "value_text": "×5.4", "icon": "dollar", "lines": ["1990  ₹17.5", "2026  ₹94.3", "RUPEE FELL"], "vname": "DOLLAR"},
+    {"small": "Petrol", "big": "1 LITRE", "sub": "DELHI PRICE", "value": 24, "value_text": "×24", "icon": "petrol", "lines": ["1990  ₹4.20", "2026  ₹102", "PER LITRE"], "vname": "PETROL"},
+    {"small": "Average", "big": "INCOME", "sub": "PER INDIAN / YEAR", "value": 34, "value_text": "×34", "icon": "income", "lines": ["1990  ₹6,126", "2026  ₹2.08 L", "PER CAPITA"], "vname": "INCOME"},
+    {"small": "Silver", "big": "1 KG", "sub": "CHANDI", "value": 41, "value_text": "×41", "icon": "silver", "lines": ["1990  ₹6,463", "2026  ₹2.66 L", "PER KG"], "vname": "SILVER"},
+    {"small": "Gold", "big": "10 GRAM", "sub": "SONA 24K", "value": 48, "value_text": "×48", "icon": "gold", "lines": ["1990  ₹3,200", "2026  ₹1.53 L", "PER 10 G"], "vname": "GOLD"},
+    {"small": "Stock market", "big": "SENSEX", "sub": "BSE INDEX", "value": 77, "value_text": "×77", "icon": "sensex", "lines": ["1990  1,001", "2026  ~77,000", "POINTS"], "vname": "SENSEX"}
+  ]
+}
