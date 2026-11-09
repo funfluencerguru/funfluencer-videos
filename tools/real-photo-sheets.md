@@ -1,6 +1,6 @@
 # Real-photo sheets for stats reels
 
-Each sheet is one image made in another AI image tool. It holds a grid of photo tiles. Claude cuts the sheet into the round pillar badges with `CIRCLE=1 python3 tools/cut_icon_sheet.py <sheet> 4 3 <names>` and saves them in assets/icons, so the daily runs can use them as `img:NAME` with no manual step.
+Each sheet is one image made in another AI image tool. It holds a grid of photo tiles. Claude cuts the sheet into the round pillar badges with `tools/cut_photo_sheet.py` and saves them in assets/icons, so the daily runs can use them as `img:NAME` with no manual step.
 If a sheet is missing, the run falls back to the drawn icons or flags.
 
 ## Status
