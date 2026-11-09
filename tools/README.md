@@ -68,8 +68,17 @@ Spec fields
 - `items` (ordered LOW → HIGH, 6–10): `small` (top line), `big` (≤12 chars), `sub` (≤18 chars), `value` (number used for pillar height),
   `value_text` (final label, ≤7 chars), `icon`, `lines` [3 pedestal lines ≤15 chars], `vname` (vertical name in overview, ≤9 chars).
 - Icons (drawn, no logos): car, post, dollar, petrol, income, silver, gold, sensex, flag, bat, trophy, phone, people, building, train, plane,
-  film, food, house, bolt, `flag:CODE` (drawn national flags: IND AUS ENG PAK SA NZ SL WI BAN AFG ZIM IRE NED USA UK CHN JPN GER FRA ITA RUS IDN BRA CAN KOR UAE SAU NEP KEN MEX ESP; unknown codes show the code on a grey flag; use for cricket players/teams and world/country topics), or `glyph:TXT` (1–3 characters/short text, e.g. glyph:UP, glyph:4G, glyph:₹). Add new icons in `item_art()` and commit.
+  film, food, house, bolt, `flag:CODE` (drawn national flags: IND AUS ENG PAK SA NZ SL WI BAN AFG ZIM IRE NED USA UK CHN JPN GER FRA ITA RUS IDN BRA CAN KOR UAE SAU NEP KEN MEX ESP; unknown codes show the code on a grey flag; use for cricket players/teams and world/country topics), `img:NAME` (illustrated India icon pack, best looking: see list below), or `glyph:TXT` (1–3 characters/short text, e.g. glyph:UP, glyph:4G, glyph:₹). Add new icons in `item_art()` and commit.
 - Pillar height is linear from a floor, so tiny values stay visible; very skewed data (top item >30× the lowest) still works but say so in the intro line.
 
 Rules: no photos or faces of real people, no company logos/brand artwork (names in text are fine for factual stats).
 Every number must come from a source found that day; label estimates "(est.)"; write the source line. Log each reel in `tools/stats-log.csv`.
+
+### India icon pack (`img:NAME`, assets/icons, preview: assets/icons/_catalog.jpg)
+Prefer these for India topics; they are illustrated and look premium in the circle.
+- Places / states / cities: assam-tea-garden, bengaluru-tech-tower, chennai-lighthouse, darjeeling-toy-train, delhi-india-gate, goa-beach, himalaya-peaks, hyderabad-charminar, jaipur-hawa-mahal, kashmir-shikara, kerala-houseboat, kolkata-howrah-bridge, meghalaya-root-bridge, mumbai-gateway, mysore-palace, punjab-wheat-field, rajasthan-desert, tiger-forest
+  (state hints: Maharashtra=mumbai-gateway, Delhi=delhi-india-gate, Telangana=hyderabad-charminar, Rajasthan=jaipur-hawa-mahal or rajasthan-desert, West Bengal=kolkata-howrah-bridge, Karnataka=mysore-palace or bengaluru-tech-tower, Kerala=kerala-houseboat, Assam=assam-tea-garden, Goa=goa-beach, J&K=kashmir-shikara, Punjab/Haryana=punjab-wheat-field, Tamil Nadu=chennai-lighthouse, Himachal/Uttarakhand=himalaya-peaks, Madhya Pradesh=tiger-forest, Meghalaya/North-East=meghalaya-root-bridge, Sikkim/Darjeeling=darjeeling-toy-train. States with no icon: use glyph:XX.)
+- Jobs: doctor, engineer, teacher, software, pilot, chartered-accountant, cricket-kit, chef, lawyer, youtuber-camera, delivery-scooter, farmer
+- Food: biryani, chai, samosa, dosa, pani-puri, jalebi
+- Money / daily life: upi-phone, gold-jewellery, lpg-cylinder, rupee-notes, piggy-bank, bank-card, house-key, auto-rickshaw, scooter, metro-train, flight-ticket, cinema-ticket, vegetables, milk, school-bag, tv, ac, electricity
+To add more: generate a 6x3 icon sheet (same prompt style, see tools/cut_icon_sheet.py) and cut it with tools/cut_icon_sheet.py (CIRCLE=1 for scene tiles).

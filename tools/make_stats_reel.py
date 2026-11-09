@@ -386,6 +386,12 @@ def item_art(slug, Z):
     """Drawn icon library. 'glyph:TEXT' draws short text (e.g. glyph:4G, glyph:₹). Add new icons here as new elif branches."""
     im = Image.new("RGBA", (Z, Z), (0, 0, 0, 0)); d = ImageDraw.Draw(im); u = Z / 100
     def B(*p): return [v * u for v in p]
+    if slug.startswith("img:"):  # illustrated icon from assets/icons/<name>.png (India icon pack)
+        ip = os.path.join(REPO, "assets/icons", slug[4:] + ".png")
+        if os.path.exists(ip):
+            ic = Image.open(ip).convert("RGBA").resize((int(Z * 1.12), int(Z * 1.12)), Image.LANCZOS)
+            im.alpha_composite(ic, (int(-Z * 0.06), int(-Z * 0.06))); return im
+        slug = "glyph:" + slug[4:7].upper()
     if slug.startswith("flag:"):
         draw_flag(im, slug[5:].upper(), Z); return im
     if slug.startswith("glyph:"):
@@ -628,7 +634,7 @@ def frame(t):
         text(d, (W / 2, 1150), SPEC["intro"][0], fit(SPEC["intro"][0], 110 * sc, 980), (255, 214, 100), a, 6)
         text(d, (W / 2, 1275), SPEC["intro"][1], fit(SPEC["intro"][1], 84 * sc, 980), (255, 255, 255), a, 6)
         text(d, (W / 2, 1365), SPEC["intro"][2], fit(SPEC["intro"][2], 32, 980, "SemiBold"), (236, 222, 196), a, 3)
-    ha = ease_io((t - 2.3) / 0.5) * (1 - ease_io((t - t_start(4) + 0.1) / 0.4))
+    ha = ease_io((t - 2.3) / 0.5) * (1 - ease_io((t - t_start(min(2, N - 1)) + 0.1) / 0.4))
     if ha > 0.01:
         d.rounded_rectangle([W / 2 - 300, 212, W / 2 + 300, 288], 38, fill=(20, 10, 2, int(205 * ha)), outline=(255, 205, 70, int(220 * ha)), width=2)
         text(d, (W / 2, 250), SPEC["header"], fit(SPEC["header"], 34, 560), (255, 255, 255), 255 * ha, 0)

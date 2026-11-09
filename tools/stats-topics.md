@@ -4,7 +4,7 @@ How a daily run uses this file:
 - Take the FIRST topic below whose slug is not already in `tools/stats-log.csv`.
 - Exception: if something big is trending in India today and fits a stats reel (match result, record, festival sale, budget), you may do that instead. Log it and leave the planned topic for the next day.
 - Never use the same category two days in a row (check the last line of the log). If needed, skip to the next topic with a different category.
-- Use icons only: no photos or faces, no logos. Names of public figures or film titles in text are fine.
+- Circle icons: India topics use the illustrated India icon pack (img:NAME, see tools/README.md); cricket/world topics use drawn flags (flag:CODE) for players, teams and countries. No photos or faces, no logos. Names of public figures or film titles in text are fine.
 - Every number must come from sources found that day. If good data can't be found, skip to the next topic.
 - THEME: set the spec `theme` from the category: cricket -> cricket; sports -> sports; bollywood-box-office -> bollywood; money-then-vs-now, money-india, money-world -> money; youtube-internet -> tech; science-fun, world-records -> space (or geo for nature/mountains/rivers); india-states, india-geo -> geo; india-cities -> city; world-vs-india -> world. The theme brings the matching background and music.
 - When the list runs out, add 30 new topics in the same style (same categories, new ideas) and commit the file.
