@@ -13,7 +13,8 @@ If a sheet is missing, the run falls back to the drawn icons or flags.
 - S7 phones: DONE 2026-11-10 -> 12 ph_phone_* badges.
 - S8 animals: DONE 2026-11-10 -> 12 ph_animal_* badges.
 - S9 buildings: PARTLY USED 2026-11-10. The towers are generic, not the real named buildings, so only 5 tiles kept as city scenes: ph_mumbai_tower_sealink, ph_mumbai_marine_drive, ph_kolkata_tower_howrah, ph_twin_towers_night, ph_office_towers_night. Tile 9 had a foreign-looking TV tower. The tallest-buildings reel keeps drawn icons.
-- S10-S16: waiting. The first batch came as combined images (all sheets in one picture), where each photo is only about 80 px, too small and blurry for a badge. Each sheet must be its OWN full-size image.
+- S10 space: DONE 2026-11-10 -> 12 ph_space_* badges.
+- S11-S16: waiting. The first batch came as combined images (all sheets in one picture), where each photo is only about 80 px, too small and blurry for a badge. Each sheet must be its OWN full-size image.
 - Named landmarks must really look like that landmark (S4 statues, S6 rivers, S9 buildings, S11 cities, S13 mountains, S14 trains, S15 airports, S16 bridges). In the first batch the mountains, trains, bridges and skylines all came out as look-alike generic pictures; a badge labelled "K2" must show K2. If a tool can't get them right, skip that sheet and the reel keeps drawn icons.
 - Cut a sheet with: `[TOP=name,...] python3 tools/cut_photo_sheet.py <sheet> ph_name1,ph_name2,...` (TOP keeps the top of tall subjects such as statues inside the circle).
 
