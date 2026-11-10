@@ -1,0 +1,29 @@
+{
+  "slug": "gold-price-1950-2026",
+  "date": "2026-11-11",
+  "out": "videos/2026-11-11-stats-gold-price-1950-2026.mp4",
+  "cover_out": "images/2026-11-11-stats-gold-price-1950-2026-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "money",
+  "intro": ["SONA 1950→2026", "10 GRAM KITNE KA?", "Gold 24K per 10 g in India · ×1,400 jump!"],
+  "header": "GOLD 10 G · 1950 → 2026",
+  "outro": ["SONE KA SAFAR", "Gold price per 10 g, 1950 to 2026"],
+  "question": "Dadi ne kitne mein liya tha?",
+  "twist": ["THE TWIST:  ₹99 → ₹1.41 LAKH!", "1950 se ×1,400 · sirf 2020 se 2026 mein ×2.9"],
+  "sources": "Sources: RBI data via BankBazaar · Motilal Oswal · ClearTax 24K rate 10 Nov 2026",
+  "value_caption": "PER 10 GRAM (24K)",
+  "count_fmt": "₹{:,.0f}",
+  "pillar_icon": "coin",
+  "cover": {"title": ["SONA 1950 vs 2026", "10 GRAM KITNE KA?", "9 years · ₹99 se lakhs tak"], "hero": 8, "pill": "₹99 → ₹1.41 LAKH!", "question": "Guess 2026?"},
+  "items": [
+    {"small": "Year", "big": "1950", "sub": "AZAADI KE BAAD", "value": 99, "value_text": "₹99", "icon": "img:ph_gold_coins", "lines": ["₹99 / 10 G", "24 CARAT", "STARTING POINT"], "vname": "1950"},
+    {"small": "Year", "big": "1960", "sub": "DADI KA ZAMANA", "value": 111, "value_text": "₹111", "icon": "img:ph_gold_1960", "lines": ["₹111 / 10 G", "+12% IN 10 YRS", "SLOW & STEADY"], "vname": "1960"},
+    {"small": "Year", "big": "1970", "sub": "RETRO ERA", "value": 184, "value_text": "₹184", "icon": "img:ph_gold_1970", "lines": ["₹184 / 10 G", "×1.9 VS 1950", "STILL CHEAP"], "vname": "1970"},
+    {"small": "Year", "big": "1980", "sub": "BIG JUMP", "value": 1330, "value_text": "₹1,330", "icon": "img:ph_gold_bars", "lines": ["₹1,330 / 10 G", "×7 IN 10 YRS", "FIRST BOOM"], "vname": "1980"},
+    {"small": "Year", "big": "1990", "sub": "PAPA KI SHAADI", "value": 3200, "value_text": "₹3,200", "icon": "img:ph_gold_1990", "lines": ["₹3,200 / 10 G", "×2.4 IN 10 YRS", "PRE-LIBERAL"], "vname": "1990"},
+    {"small": "Year", "big": "2000", "sub": "NEW MILLENNIUM", "value": 4400, "value_text": "₹4,400", "icon": "img:ph_gold_2000", "lines": ["₹4,400 / 10 G", "+38% IN 10 YRS", "QUIET DECADE"], "vname": "2000"},
+    {"small": "Year", "big": "2010", "sub": "SMARTPHONE ERA", "value": 18500, "value_text": "₹18,500", "icon": "img:ph_gold_2010", "lines": ["₹18,500 / 10 G", "×4.2 IN 10 YRS", "SECOND BOOM"], "vname": "2010"},
+    {"small": "Year", "big": "2020", "sub": "LOCKDOWN YEAR", "value": 48651, "value_text": "₹48,651", "icon": "img:ph_gold_bridal", "lines": ["₹48,651 / 10 G", "×2.6 IN 10 YRS", "SAFE HAVEN"], "vname": "2020"},
+    {"small": "Year", "big": "2026", "sub": "AAJ KA RATE", "value": 141452, "value_text": "₹1.41L", "icon": "img:ph_gold_2026", "lines": ["₹1.41 LAKH", "10 NOV 2026", "LATEST RATE"], "vname": "2026"}
+  ]
+}
