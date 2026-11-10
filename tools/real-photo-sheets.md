@@ -16,7 +16,10 @@ If a sheet is missing, the run falls back to the drawn icons or flags.
 - S10 space: DONE 2026-11-10 -> 12 ph_space_* badges.
 - S11 cities: DONE 2026-11-10 -> 10 ph_city_* badges. Dropped Chennai (temple tower: no religious buildings) and Surat (generic street, not recognisable).
 - S12 cinema: DONE 2026-11-10 -> 11 ph_cinema_* badges. Dropped the painted film hoarding (faces could look like real 80s film stars).
-- S13-S16: waiting. The first batch came as combined images (all sheets in one picture), where each photo is only about 80 px, too small and blurry for a badge. Each sheet must be its OWN full-size image.
+- S13 mountains: PARTLY USED 2026-11-10 -> Everest, K2, Kangchenjunga + generic ph_mountain_sunset. The other 8 peaks looked alike and could not be told apart, so not used.
+- S14 trains: DONE 2026-11-10 -> 12 ph_train_* badges.
+- S15 airports: PARTLY USED 2026-11-10 -> Mumbai (tree columns), Bengaluru (garden terminal), Kochi (solar) + generic terminal, takeoff, crowd. Delhi, Hyderabad, Chennai, Kolkata, Ahmedabad, Pune and Goa came out as look-alike generic terminals, not used.
+- S16: waiting. The first batch came as combined images (all sheets in one picture), where each photo is only about 80 px, too small and blurry for a badge. Each sheet must be its OWN full-size image.
 - Named landmarks must really look like that landmark (S4 statues, S6 rivers, S9 buildings, S11 cities, S13 mountains, S14 trains, S15 airports, S16 bridges). In the first batch the mountains, trains, bridges and skylines all came out as look-alike generic pictures; a badge labelled "K2" must show K2. If a tool can't get them right, skip that sheet and the reel keeps drawn icons.
 - Cut a sheet with: `[TOP=name,...] python3 tools/cut_photo_sheet.py <sheet> ph_name1,ph_name2,...` (TOP keeps the top of tall subjects such as statues inside the circle).
 
