@@ -10,7 +10,8 @@ If a sheet is missing, the run falls back to the drawn icons or flags.
 - S4 statues: DONE 2026-11-09 -> 10 ph_statue_* badges. Dropped tile 9 (did not look like the Statue of Equality, which is a seated figure) and tile 12 (Peter the Great statue stands on a sailing ship; this one did not).
 - S5 professions: DONE 2026-11-09 -> 12 ph_job_* badges (invented people, not real persons).
 - S6 rivers: DONE 2026-11-10 -> 12 ph_river_* badges. Krishna, Yamuna, Mahanadi and Tapi are plain river views (Yamuna and Mahanadi look alike); optional redo: Yamuna with the Taj Mahal behind it, Mahanadi with Hirakud Dam.
-- S7-S16: waiting. The first batch came as combined images (all sheets in one picture), where each photo is only about 80 px, too small and blurry for a badge. Each sheet must be its OWN full-size image.
+- S7 phones: DONE 2026-11-10 -> 12 ph_phone_* badges.
+- S8-S16: waiting. The first batch came as combined images (all sheets in one picture), where each photo is only about 80 px, too small and blurry for a badge. Each sheet must be its OWN full-size image.
 - Named landmarks must really look like that landmark (S4 statues, S6 rivers, S9 buildings, S11 cities, S13 mountains, S14 trains, S15 airports, S16 bridges). In the first batch the mountains, trains, bridges and skylines all came out as look-alike generic pictures; a badge labelled "K2" must show K2. If a tool can't get them right, skip that sheet and the reel keeps drawn icons.
 - Cut a sheet with: `[TOP=name,...] python3 tools/cut_photo_sheet.py <sheet> ph_name1,ph_name2,...` (TOP keeps the top of tall subjects such as statues inside the circle).
 
