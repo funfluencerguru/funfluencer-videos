@@ -9,7 +9,7 @@ If a sheet is missing, the run falls back to the drawn icons or flags.
 - S3 prices: DONE 2026-11-09 -> ph_milk, ph_chai, ph_samosa, ph_petrol, ph_lpg, ph_cinema_ticket, ph_bus, ph_bread, ph_rice, ph_onion, ph_auto, ph_gold_ring.
 - S4 statues: DONE 2026-11-09 -> 10 ph_statue_* badges. Dropped tile 9 (did not look like the Statue of Equality, which is a seated figure) and tile 12 (Peter the Great statue stands on a sailing ship; this one did not).
 - S5 professions: DONE 2026-11-09 -> 12 ph_job_* badges (invented people, not real persons).
-- S6 rivers: DONE 2026-11-10 -> 12 ph_river_* badges. Krishna, Yamuna, Mahanadi and Tapi are plain river views Yamuna (Taj Mahal across the river) and Mahanadi (Hirakud Dam) redone 2026-11-10.
+- S6 rivers: DONE 2026-11-10 -> 12 ph_river_* badges. Krishna and Tapi are plain river views; Yamuna (Taj Mahal across the river) and Mahanadi (Hirakud Dam) redone 2026-11-10.
 - S7 phones: DONE 2026-11-10 -> 12 ph_phone_* badges.
 - S8 animals: DONE 2026-11-10 -> 12 ph_animal_* badges.
 - S9 buildings: PARTLY USED 2026-11-10. The towers are generic, not the real named buildings, so only 5 tiles kept as city scenes: ph_mumbai_tower_sealink, ph_mumbai_marine_drive, ph_kolkata_tower_howrah, ph_twin_towers_night, ph_office_towers_night. Tile 9 had a foreign-looking TV tower. The tallest-buildings reel keeps drawn icons.
