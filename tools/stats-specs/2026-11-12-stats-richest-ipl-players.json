@@ -1,0 +1,30 @@
+{
+  "slug": "richest-ipl-players",
+  "date": "2026-11-12",
+  "out": "videos/2026-11-12-stats-richest-ipl-players.mp4",
+  "cover_out": "images/2026-11-12-stats-richest-ipl-players-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "cricket",
+  "intro": ["IPL KE CROREPATI", "SABSE MEHENGA KAUN?", "Top 10 IPL salaries · IPL 2026 season"],
+  "header": "TOP 10 IPL SALARIES · 2026",
+  "outro": ["IPL PAISA KINGS", "Highest-paid players, IPL 2026"],
+  "question": "Kaun hai paisa vasool?",
+  "twist": ["THE TWIST:  Green ko sirf ₹18 Cr!", "Bid ₹25.2 Cr, par overseas cap · baaki BCCI ko"],
+  "sources": "Sources: The National · SportsDunia · IPL 2026 auction & retentions",
+  "value_caption": "CRORE / SEASON",
+  "count_fmt": "₹{:.1f} Cr",
+  "pillar_icon": "star",
+  "cover": {"title": ["IPL KE CROREPATI", "TOP 10 SALARIES", "IPL 2026 · ranked"], "hero": 9, "pill": "PANT ₹27 CRORE!", "question": "Guess No. 1?"},
+  "items": [
+    {"small": "Afghanistan", "big": "RASHID KHAN", "sub": "GUJARAT TITANS", "value": 18, "value_text": "₹18 Cr", "icon": "flag:AFG", "lines": ["₹18 CRORE", "RETAINED", "SPIN MAGIC"], "vname": "RASHID"},
+    {"small": "India", "big": "RUTURAJ", "sub": "CHENNAI CAPTAIN", "value": 18, "value_text": "₹18 Cr", "icon": "flag:IND", "lines": ["₹18 CRORE", "RETAINED", "CSK OPENER"], "vname": "RUTURAJ"},
+    {"small": "India", "big": "JAISWAL", "sub": "RAJASTHAN ROYALS", "value": 18, "value_text": "₹18 Cr", "icon": "flag:IND", "lines": ["₹18 CRORE", "RETAINED", "YOUNG GUN"], "vname": "JAISWAL"},
+    {"small": "India", "big": "BUMRAH", "sub": "MUMBAI INDIANS", "value": 18, "value_text": "₹18 Cr", "icon": "flag:IND", "lines": ["₹18 CRORE", "RETAINED", "YORKER KING"], "vname": "BUMRAH"},
+    {"small": "West Indies", "big": "POORAN", "sub": "LUCKNOW SG", "value": 21, "value_text": "₹21 Cr", "icon": "flag:WI", "lines": ["₹21 CRORE", "RETAINED", "SIX MACHINE"], "vname": "POORAN"},
+    {"small": "India", "big": "KOHLI", "sub": "RCB", "value": 21, "value_text": "₹21 Cr", "icon": "flag:IND", "lines": ["₹21 CRORE", "RETAINED", "KING KOHLI"], "vname": "KOHLI"},
+    {"small": "South Africa", "big": "KLAASEN", "sub": "SUNRISERS HYD", "value": 23, "value_text": "₹23 Cr", "icon": "flag:SA", "lines": ["₹23 CRORE", "RETAINED", "SPIN BASHER"], "vname": "KLAASEN"},
+    {"small": "Australia", "big": "CAM GREEN", "sub": "KOLKATA KR", "value": 25.2, "value_text": "₹25.2Cr", "icon": "flag:AUS", "lines": ["BID ₹25.2 CR", "GETS ₹18 CR", "AUCTION 2026"], "vname": "GREEN"},
+    {"small": "India", "big": "SHREYAS", "sub": "PUNJAB KINGS", "value": 26.75, "value_text": "₹26.75", "icon": "flag:IND", "lines": ["₹26.75 CRORE", "PBKS CAPTAIN", "AUCTION 2025"], "vname": "SHREYAS"},
+    {"small": "India", "big": "PANT", "sub": "LUCKNOW SG", "value": 27, "value_text": "₹27 Cr", "icon": "flag:IND", "lines": ["₹27 CRORE", "LSG CAPTAIN", "NO. 1 SALARY"], "vname": "PANT"}
+  ]
+}
