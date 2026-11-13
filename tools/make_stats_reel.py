@@ -441,6 +441,15 @@ def draw_flag(im, code, Z):
     elif c in ("KEN",): H([K, R, G])
     elif c in ("MEX",): V([(0, 104, 71), Wt, (206, 17, 38)])
     elif c in ("ESP",): H([(170, 21, 27), (241, 191, 0), (241, 191, 0), (170, 21, 27)])
+    elif c in ("POR", "PRT"):
+        f.paste((218, 41, 28), [0, 0, fw, fh]); d.rectangle([0, 0, fw * 0.4, fh], fill=(0, 102, 0))
+        r = fh * 0.22; d.ellipse([fw * 0.4 - r, fh / 2 - r, fw * 0.4 + r, fh / 2 + r], fill=(255, 220, 0), outline=(120, 90, 0), width=max(1, int(fh / 40)))
+        d.rounded_rectangle([fw * 0.4 - r * 0.5, fh / 2 - r * 0.55, fw * 0.4 + r * 0.5, fh / 2 + r * 0.6], int(r * 0.25), fill=(218, 41, 28), outline=Wt, width=max(1, int(fh / 50)))
+    elif c in ("ARG",):
+        H([(116, 172, 223), Wt, (116, 172, 223)]); cx, cy, r = fw / 2, fh / 2, fh * 0.11
+        for k in range(16):
+            a_ = k * math.pi / 8; d.line([(cx, cy), (cx + r * 1.7 * math.cos(a_), cy + r * 1.7 * math.sin(a_))], fill=(246, 180, 14), width=max(1, int(fh / 60)))
+        d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(246, 180, 14), outline=(133, 52, 13), width=1)
     else:
         f.paste((70, 80, 100), [0, 0, fw, fh]); d.text((fw / 2, fh / 2), c[:3], font=font("ExtraBold", int(fh * 0.45)), fill=Wt, anchor="mm")
     m = Image.new("L", (fw, fh), 0); ImageDraw.Draw(m).rounded_rectangle([0, 0, fw - 1, fh - 1], int(fh * 0.12), fill=255)

@@ -1,0 +1,30 @@
+{
+  "slug": "most-followed-instagram-world",
+  "date": "2026-11-14",
+  "out": "videos/2026-11-14-stats-most-followed-instagram-world.mp4",
+  "cover_out": "images/2026-11-14-stats-most-followed-instagram-world-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "tech",
+  "intro": ["INSTA KE KING", "SABSE ZYADA FOLLOWERS", "Top 10 Instagram accounts · Nov 2026"],
+  "header": "TOP 10 INSTAGRAM · NOV 2026",
+  "outro": ["INSTA KE KING", "Most-followed accounts, Nov 2026"],
+  "question": "Aap kisko follow karte ho?",
+  "twist": ["THE TWIST:  No.1 koi insaan nahi!", "India No.1 Virat Kohli ~27 Cr · just outside Top 10"],
+  "sources": "Sources: CreatorsJet (Nov 2026) · Epidemic Sound · Wikipedia list · approx.",
+  "value_caption": "CRORE FOLLOWERS",
+  "count_fmt": "{:.1f} Cr",
+  "pillar_icon": "star",
+  "cover": {"title": ["INSTA KE KING", "TOP 10 ACCOUNTS", "Nov 2026 · ranked"], "hero": 8, "pill": "RONALDO 68 CRORE!", "question": "Guess No. 1?"},
+  "items": [
+    {"small": "USA", "big": "KHLOE K.", "sub": "TV STAR", "value": 29.1, "value_text": "29.1 Cr", "icon": "flag:USA", "lines": ["291 MILLION", "REALITY TV", "JUST PIPS NIKE"], "vname": "KHLOE"},
+    {"small": "USA", "big": "BEYONCE", "sub": "SINGER", "value": 29.9, "value_text": "29.9 Cr", "icon": "flag:USA", "lines": ["299 MILLION", "QUEEN BEY", "POP ICON"], "vname": "BEYONCE"},
+    {"small": "USA", "big": "KIM K.", "sub": "TV STAR", "value": 34.4, "value_text": "34.4 Cr", "icon": "flag:USA", "lines": ["344 MILLION", "REALITY TV", "BUSINESS TOO"], "vname": "KIM"},
+    {"small": "USA", "big": "ARIANA", "sub": "SINGER", "value": 36.2, "value_text": "36.2 Cr", "icon": "flag:USA", "lines": ["362 MILLION", "POP STAR", "WICKED FAME"], "vname": "ARIANA"},
+    {"small": "USA", "big": "THE ROCK", "sub": "ACTOR", "value": 38.0, "value_text": "38.0 Cr", "icon": "flag:USA", "lines": ["380 MILLION", "DWAYNE JOHNSON", "TOP ACTOR"], "vname": "ROCK"},
+    {"small": "USA", "big": "KYLIE", "sub": "BEAUTY BRAND", "value": 38.1, "value_text": "38.1 Cr", "icon": "flag:USA", "lines": ["381 MILLION", "KYLIE JENNER", "BEAT ROCK!"], "vname": "KYLIE"},
+    {"small": "USA", "big": "SELENA", "sub": "SINGER, ACTOR", "value": 40.3, "value_text": "40.3 Cr", "icon": "flag:USA", "lines": ["403 MILLION", "NO.1 WOMAN", "SELENA GOMEZ"], "vname": "SELENA"},
+    {"small": "Argentina", "big": "MESSI", "sub": "FOOTBALLER", "value": 51.7, "value_text": "51.7 Cr", "icon": "flag:ARG", "lines": ["517 MILLION", "LEO MESSI", "GOAT DEBATE"], "vname": "MESSI"},
+    {"small": "Portugal", "big": "RONALDO", "sub": "FOOTBALLER", "value": 68.0, "value_text": "68.0 Cr", "icon": "flag:POR", "lines": ["680 MILLION", "NO.1 PERSON", "CR7 KING"], "vname": "RONALDO"},
+    {"small": "The app's", "big": "INSTAGRAM", "sub": "OWN ACCOUNT", "value": 68.6, "value_text": "68.6 Cr", "icon": "glyph:IG", "lines": ["686 MILLION", "OFFICIAL PAGE", "BEATS CR7!"], "vname": "INSTAGRAM"}
+  ]
+}
