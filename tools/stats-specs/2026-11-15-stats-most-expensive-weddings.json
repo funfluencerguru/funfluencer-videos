@@ -1,0 +1,30 @@
+{
+  "slug": "most-expensive-weddings",
+  "date": "2026-11-15",
+  "out": "videos/2026-11-15-stats-most-expensive-weddings.mp4",
+  "cover_out": "images/2026-11-15-stats-most-expensive-weddings-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "money",
+  "intro": ["SHAADI KA BILL", "DUNIYA KI TOP 10", "Most expensive weddings · ₹ crore (est.)"],
+  "header": "TOP 10 MEHENGI SHAADIYAN",
+  "outro": ["SHAADI KA BILL", "Most expensive weddings ever (est.)"],
+  "question": "Aapki shaadi ka budget kitna?",
+  "twist": ["TWIST: No.1 Ambani nahi, Moscow!", "Ambani = 3.6× Diana's · 3 Indian shaadis in Top 10"],
+  "sources": "Sources: Visual Capitalist/Britannica (2026 $) · Gulf News · Mental Floss · all est. · $1=₹93.7",
+  "value_caption": "₹ CRORE (EST.)",
+  "count_fmt": "{:,.0f}",
+  "pillar_icon": "coin",
+  "cover": {"title": ["MEHENGI SHAADIYAN", "TOP 10 EVER", "cost in ₹ crore (est.)"], "hero": 8, "pill": "AMBANI ₹6,000 CR!", "question": "Guess No. 1?"},
+  "items": [
+    {"small": "USA · 2026", "big": "TAYLOR SWIFT", "sub": "& TRAVIS KELCE", "value": 328, "value_text": "328", "icon": "flag:USA", "lines": ["$20-50 M (EST.)", "NEW YORK", "JULY 2026"], "vname": "SWIFT"},
+    {"small": "UK · 2011", "big": "WILLIAM", "sub": "& KATE · ROYAL", "value": 459, "value_text": "459", "icon": "flag:UK", "lines": ["~$49 M (EST.)", "LONDON", "WESTMINSTER"], "vname": "WILLIAM"},
+    {"small": "USA · 2025", "big": "JEFF BEZOS", "sub": "& LAUREN SANCHEZ", "value": 487, "value_text": "487", "icon": "flag:USA", "lines": ["$48-56 M (EST.)", "VENICE, ITALY", "JUNE 2025"], "vname": "BEZOS"},
+    {"small": "Spain · 2004", "big": "KING FELIPE", "sub": "& LETIZIA", "value": 492, "value_text": "492", "icon": "flag:ESP", "lines": ["$43-62 M (EST.)", "MADRID", "ROYAL WEDDING"], "vname": "FELIPE"},
+    {"small": "UK · 2018", "big": "HARRY", "sub": "& MEGHAN", "value": 562, "value_text": "562", "icon": "flag:UK", "lines": ["~$60 M (EST.)", "WINDSOR", "ROYAL WEDDING"], "vname": "HARRY"},
+    {"small": "India · 2004", "big": "VANISHA M.", "sub": "& AMIT BHATIA", "value": 993, "value_text": "993", "icon": "flag:IND", "lines": ["~$106 M (EST.)", "VERSAILLES", "MITTAL FAMILY"], "vname": "MITTAL"},
+    {"small": "India · 2018", "big": "ISHA AMBANI", "sub": "& ANAND PIRAMAL", "value": 1246, "value_text": "1,246", "icon": "flag:IND", "lines": ["~$133 M (EST.)", "MUMBAI", "DEC 2018"], "vname": "ISHA"},
+    {"small": "UK · 1981", "big": "CHARLES", "sub": "& DIANA", "value": 1649, "value_text": "1,649", "icon": "flag:UK", "lines": ["~$176 M TODAY", "$48 M IN 1981", "LONDON"], "vname": "DIANA"},
+    {"small": "India · 2024", "big": "ANANT AMBANI", "sub": "& RADHIKA", "value": 6006, "value_text": "6,006", "icon": "flag:IND", "lines": ["$641 M+ (EST.)", "MUMBAI", "INDIA NO.1"], "vname": "ANANT"},
+    {"small": "Russia · 2016", "big": "GUTSERIEV", "sub": "SAID & KHADIJA", "value": 13118, "value_text": "13,118", "icon": "flag:RUS", "lines": ["~$1.4 B (EST.)", "MOSCOW", "NO.1 EVER!"], "vname": "MOSCOW"}
+  ]
+}
