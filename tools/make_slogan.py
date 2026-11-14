@@ -179,7 +179,7 @@ def html(spec):
     # village scene is inlined so its parts (clouds, birds, kite, sun rays, tail) can move each frame
     return f"""<html><head><style>
 *{{margin:0;padding:0;box-sizing:border-box}}
-body{{width:{W}px;height:{H}px;overflow:hidden;font-family:Poppins,'Noto Color Emoji',sans-serif;background:#f5e6c8}}
+body{{width:{W}px;height:{H}px;overflow:hidden;font-family:Poppins,'Liberation Sans',Arial,sans-serif,'Noto Color Emoji';background:#f5e6c8}}
 #scene{{position:absolute;inset:0;overflow:hidden}}
 #bgimg{{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform-origin:50% 70%}}
 #tint{{position:absolute;inset:0;background:#f3d29b;mix-blend-mode:multiply;opacity:{tint_op}}}
