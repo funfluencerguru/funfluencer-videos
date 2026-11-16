@@ -1,0 +1,179 @@
+{
+  "slug": "richest-indians-2026",
+  "date": "2026-11-18",
+  "out": "videos/2026-11-18-stats-richest-indians-2026.mp4",
+  "cover_out": "images/2026-11-18-stats-richest-indians-2026-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "money",
+  "intro": [
+    "INDIA KE ARABPATI",
+    "TOP 10 RICHEST INDIANS",
+    "Forbes India Rich List 2026 · $ billion"
+  ],
+  "header": "TOP 10 RICHEST INDIANS 2026",
+  "outro": [
+    "INDIA KE ARABPATI",
+    "Forbes India Rich List 2026"
+  ],
+  "question": "Aapka favourite business tycoon?",
+  "twist": [
+    "TWIST: No.1 badal gaya! Adani > Ambani",
+    "Adani +$20.7B · Ambani -$18.7B · Top 100 = $1 trillion"
+  ],
+  "sources": "Source: Forbes India Rich List 2026 (net worth on 11 Sep 2026) · cross-checked: Channel IAM",
+  "value_caption": "$ BILLION NET WORTH",
+  "count_fmt": "${:.1f}B",
+  "pillar_icon": "coin",
+  "cover": {
+    "title": [
+      "INDIA KE ARABPATI",
+      "TOP 10 RICHEST",
+      "Forbes 2026 · $ billion"
+    ],
+    "hero": 9,
+    "pill": "NO.1 = $112.7 BILLION!",
+    "question": "Guess No. 1?"
+  },
+  "items": [
+    {
+      "small": "Diversified",
+      "big": "HINDUJA",
+      "sub": "FAMILY",
+      "value": 21.2,
+      "value_text": "$21.2B",
+      "icon": "glyph:HF",
+      "lines": [
+        "$21.2 BILLION",
+        "HINDUJA GROUP",
+        "DIVERSIFIED"
+      ],
+      "vname": "HINDUJA"
+    },
+    {
+      "small": "Metals & cement",
+      "big": "KUMAR BIRLA",
+      "sub": "ADITYA BIRLA GROUP",
+      "value": 23.2,
+      "value_text": "$23.2B",
+      "icon": "glyph:KB",
+      "lines": [
+        "$23.2 BILLION",
+        "ADITYA BIRLA",
+        "METALS & CEMENT"
+      ],
+      "vname": "BIRLA"
+    },
+    {
+      "small": "Pharma",
+      "big": "DILIP SHANGHVI",
+      "sub": "SUN PHARMA",
+      "value": 26.3,
+      "value_text": "$26.3B",
+      "icon": "glyph:DS",
+      "lines": [
+        "$26.3 BILLION",
+        "SUN PHARMA",
+        "PHARMA"
+      ],
+      "vname": "SHANGHVI"
+    },
+    {
+      "small": "Software",
+      "big": "SHIV NADAR",
+      "sub": "HCL",
+      "value": 27.4,
+      "value_text": "$27.4B",
+      "icon": "glyph:SN",
+      "lines": [
+        "$27.4 BILLION",
+        "HCL",
+        "SOFTWARE"
+      ],
+      "vname": "NADAR"
+    },
+    {
+      "small": "Vaccines",
+      "big": "CYRUS POONAWALLA",
+      "sub": "SERUM INSTITUTE",
+      "value": 28.4,
+      "value_text": "$28.4B",
+      "icon": "glyph:CP",
+      "lines": [
+        "$28.4 BILLION",
+        "SERUM INSTITUTE",
+        "VACCINES"
+      ],
+      "vname": "POONAWALLA"
+    },
+    {
+      "small": "Telecom",
+      "big": "SUNIL MITTAL",
+      "sub": "BHARTI AIRTEL",
+      "value": 32.9,
+      "value_text": "$32.9B",
+      "icon": "glyph:SM",
+      "lines": [
+        "$32.9 BILLION",
+        "BHARTI AIRTEL",
+        "TELECOM"
+      ],
+      "vname": "S. MITTAL"
+    },
+    {
+      "small": "Steel",
+      "big": "LAKSHMI MITTAL",
+      "sub": "ARCELORMITTAL",
+      "value": 34.7,
+      "value_text": "$34.7B",
+      "icon": "glyph:LM",
+      "lines": [
+        "$34.7 BILLION",
+        "+74% THIS YEAR",
+        "STEEL"
+      ],
+      "vname": "L. MITTAL"
+    },
+    {
+      "small": "Steel & power",
+      "big": "SAVITRI JINDAL",
+      "sub": "JINDAL GROUP",
+      "value": 39.8,
+      "value_text": "$39.8B",
+      "icon": "glyph:SJ",
+      "lines": [
+        "$39.8 BILLION",
+        "RICHEST WOMAN",
+        "STEEL & POWER"
+      ],
+      "vname": "JINDAL"
+    },
+    {
+      "small": "Oil, Jio, retail",
+      "big": "MUKESH AMBANI",
+      "sub": "RELIANCE",
+      "value": 86.3,
+      "value_text": "$86.3B",
+      "icon": "glyph:MA",
+      "lines": [
+        "$86.3 BILLION",
+        "-$18.7B THIS YEAR",
+        "OIL, JIO, RETAIL"
+      ],
+      "vname": "AMBANI"
+    },
+    {
+      "small": "Ports & energy",
+      "big": "GAUTAM ADANI",
+      "sub": "ADANI GROUP",
+      "value": 112.7,
+      "value_text": "$112.7B",
+      "icon": "glyph:GA",
+      "lines": [
+        "$112.7 BILLION",
+        "+$20.7B THIS YEAR",
+        "PORTS & ENERGY"
+      ],
+      "vname": "ADANI"
+    }
+  ]
+}
