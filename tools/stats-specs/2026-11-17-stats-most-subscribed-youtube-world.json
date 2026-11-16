@@ -1,0 +1,30 @@
+{
+  "slug": "most-subscribed-youtube-world",
+  "date": "2026-11-17",
+  "out": "videos/2026-11-17-stats-most-subscribed-youtube-world.mp4",
+  "cover_out": "images/2026-11-17-stats-most-subscribed-youtube-world-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "tech",
+  "intro": ["YOUTUBE KE KING", "SABSE ZYADA SUBSCRIBERS", "Top 10 YouTube channels · Nov 2026"],
+  "header": "TOP 10 YOUTUBE · NOV 2026",
+  "outro": ["YOUTUBE KE KING", "Most-subscribed channels, Nov 2026"],
+  "question": "Aapka favourite channel kaunsa?",
+  "twist": ["THE TWIST:  MrBeast > T-Series + Cocomelon!", "527M vs 316M + 203M · 2 Indian channels in Top 4"],
+  "sources": "Sources: vidIQ (16 Nov 2026) · Wikipedia list · Epidemic Sound · approx.",
+  "value_caption": "CRORE SUBSCRIBERS",
+  "count_fmt": "{:.1f} Cr",
+  "pillar_icon": "star",
+  "cover": {"title": ["YOUTUBE KE KING", "TOP 10 CHANNELS", "Nov 2026 · ranked"], "hero": 9, "pill": "MRBEAST 52 CRORE!", "question": "Guess No. 1?"},
+  "items": [
+    {"small": "Argentina", "big": "ALEJO IGOA", "sub": "CHALLENGES", "value": 12.6, "value_text": "12.6 Cr", "icon": "glyph:AI", "lines": ["126 MILLION", "SPANISH VLOGS", "NEW IN TOP 10"], "vname": "ALEJO"},
+    {"small": "USA", "big": "LIKE NASTYA", "sub": "KIDS", "value": 13.3, "value_text": "13.3 Cr", "icon": "glyph:LN", "lines": ["133 MILLION", "KIDS CHANNEL", "MANY LANGUAGES"], "vname": "NASTYA"},
+    {"small": "South Korea", "big": "KIMPRO", "sub": "SHORTS", "value": 13.5, "value_text": "13.5 Cr", "icon": "glyph:KP", "lines": ["135 MILLION", "SHORTS STAR", "KOREA NO.1"], "vname": "KIMPRO"},
+    {"small": "USA", "big": "KIDS DIANA", "sub": "KIDS", "value": 13.8, "value_text": "13.8 Cr", "icon": "glyph:KD", "lines": ["138 MILLION", "KIDS DIANA SHOW", "PLAY & STORIES"], "vname": "DIANA"},
+    {"small": "USA", "big": "STOKES TWINS", "sub": "PRANKS", "value": 15.0, "value_text": "15.0 Cr", "icon": "glyph:ST", "lines": ["150 MILLION", "TWIN BROTHERS", "PRANK SKITS"], "vname": "STOKES"},
+    {"small": "USA", "big": "VLAD & NIKI", "sub": "KIDS", "value": 15.1, "value_text": "15.1 Cr", "icon": "glyph:VN", "lines": ["151 MILLION", "TWO BROTHERS", "KIDS FUN"], "vname": "VLAD"},
+    {"small": "India", "big": "SET INDIA", "sub": "TV SHOWS", "value": 19.0, "value_text": "19.0 Cr", "icon": "glyph:SET", "lines": ["190 MILLION", "SONY TV SHOWS", "INDIA NO.2"], "vname": "SET"},
+    {"small": "USA", "big": "COCOMELON", "sub": "NURSERY RHYMES", "value": 20.3, "value_text": "20.3 Cr", "icon": "glyph:CM", "lines": ["203 MILLION", "BABY RHYMES", "KIDS NO.1"], "vname": "COCOMELON"},
+    {"small": "India", "big": "T-SERIES", "sub": "MUSIC", "value": 31.6, "value_text": "31.6 Cr", "icon": "glyph:TS", "lines": ["316 MILLION", "BOLLYWOOD MUSIC", "INDIA NO.1"], "vname": "T-SERIES"},
+    {"small": "USA", "big": "MRBEAST", "sub": "CHALLENGES", "value": 52.7, "value_text": "52.7 Cr", "icon": "glyph:MB", "lines": ["527 MILLION", "JIMMY D.", "WORLD NO.1"], "vname": "MRBEAST"}
+  ]
+}
