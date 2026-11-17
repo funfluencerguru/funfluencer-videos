@@ -115,3 +115,11 @@ Prefer these for India topics; they are illustrated and look premium in the circ
 - Food: biryani, chai, samosa, dosa, pani-puri, jalebi
 - Money / daily life: upi-phone, gold-jewellery, lpg-cylinder, rupee-notes, piggy-bank, bank-card, house-key, auto-rickshaw, scooter, metro-train, flight-ticket, cinema-ticket, vegetables, milk, school-bag, tv, ac, electricity
 To add more: generate a 6x3 icon sheet (same prompt style, see tools/cut_icon_sheet.py) and cut it with tools/cut_icon_sheet.py (CIRCLE=1 for scene tiles).
+
+## Spot the Difference reel (`tools/make_spotdiff.py`, weekly, Tuesday)
+    python3 tools/make_spotdiff.py --scene-module shaadi_stage --date 2026-11-17 --slug shaadi-stage [--check-only]
+Each scene is a module in tools/spotdiff_scenes/ with SCENE, DIFFS (exactly 5 keys -> Hinglish answer lines) and
+draw(changes)->SVG 500x900. A = draw(set()), B = draw(all keys). The script pixel-checks that every change is visible
+and that A/B differ nowhere else (diffmap.png in the work dir), guards the logo zone, renders title (2 s) /
+side-by-side with countdown 12..0 (12 s) / end card (4 s), encodes 1080x1920 and burns the Like/Share/Follow tag at y 1300.
+Log every run in tools/spotdiff-log.csv (date,scene,differences); do not reuse a scene from its last 8 lines.
