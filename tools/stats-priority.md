@@ -10,7 +10,7 @@ How a daily run uses this file:
 
 ## Queue
 ### richest-indians-2026
-- status: queued
+- status: done 2026-11-18
 - publish_on: 2026-11-18
 - added: 2026-11-16 by the owner (asked for the next reel; owner chose to skip a "spiritual gurus" topic because of the no-religion rule)
 - topic: Top 10 richest Indians, Forbes India Rich List 2026 (net worth in $ billion, measured 11 Sep 2026). Category money-india, theme money, pillar_icon coin, glyph initials (no photos).
