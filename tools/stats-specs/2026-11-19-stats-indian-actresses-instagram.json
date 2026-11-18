@@ -1,0 +1,30 @@
+{
+  "slug": "indian-actresses-instagram",
+  "date": "2026-11-19",
+  "out": "videos/2026-11-19-stats-indian-actresses-instagram.mp4",
+  "cover_out": "images/2026-11-19-stats-indian-actresses-instagram-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "bollywood",
+  "intro": ["INSTA KI QUEENS", "SABSE ZYADA FOLLOWERS", "Top 10 Indian actresses · Nov 2026"],
+  "header": "TOP 10 ACTRESSES · INSTAGRAM",
+  "outro": ["INSTA KI QUEENS", "Most-followed actresses, Nov 2026"],
+  "question": "Aapki favourite kaun hai?",
+  "twist": ["THE TWIST:  No.1 vs No.2 = just ~1 lakh!", "Virat Kohli 27.1 Cr = Top 3 queens combined"],
+  "sources": "Sources: TrendingPunjabi (9 Nov 2026) · NewsBytes · Hafi · approx.",
+  "value_caption": "CRORE FOLLOWERS",
+  "count_fmt": "{:.2f} Cr",
+  "pillar_icon": "star",
+  "cover": {"title": ["INSTA KI QUEENS", "TOP 10 ACTRESSES", "Nov 2026 · ranked"], "hero": 9, "pill": "9.28 CRORE FOLLOWERS!", "question": "Guess No. 1?"},
+  "items": [
+    {"small": "Bollywood", "big": "SUNNY LEONE", "sub": "ACTRESS", "value": 5.44, "value_text": "5.44 Cr", "icon": "glyph:SL", "lines": ["54.4 MILLION", "@SUNNYLEONE", "NO. 10"], "vname": "SUNNY"},
+    {"small": "Bollywood", "big": "DISHA PATANI", "sub": "ACTRESS", "value": 6.02, "value_text": "6.02 Cr", "icon": "glyph:DP", "lines": ["60.2 MILLION", "FITNESS QUEEN", "NO. 9"], "vname": "DISHA"},
+    {"small": "Bollywood", "big": "URVASHI R.", "sub": "ACTRESS", "value": 6.68, "value_text": "6.68 Cr", "icon": "glyph:UR", "lines": ["66.8 MILLION", "URVASHI RAUTELA", "NO. 8"], "vname": "URVASHI"},
+    {"small": "Bollywood", "big": "ANUSHKA", "sub": "ACTRESS", "value": 6.70, "value_text": "6.70 Cr", "icon": "glyph:AS", "lines": ["67.0 MILLION", "ANUSHKA SHARMA", "NO. 7"], "vname": "ANUSHKA"},
+    {"small": "Bollywood", "big": "JACQUELINE", "sub": "ACTRESS", "value": 6.75, "value_text": "6.75 Cr", "icon": "glyph:JF", "lines": ["67.5 MILLION", "J. FERNANDEZ", "NO. 6"], "vname": "JACQUELINE"},
+    {"small": "Bollywood", "big": "DEEPIKA", "sub": "ACTRESS", "value": 7.79, "value_text": "7.79 Cr", "icon": "glyph:DP", "lines": ["77.9 MILLION", "DEEPIKA PADUKONE", "NO. 5"], "vname": "DEEPIKA"},
+    {"small": "Bollywood", "big": "KATRINA KAIF", "sub": "ACTRESS", "value": 7.87, "value_text": "7.87 Cr", "icon": "glyph:KK", "lines": ["78.7 MILLION", "ASIA TOP 10", "NO. 4"], "vname": "KATRINA"},
+    {"small": "Bollywood", "big": "ALIA BHATT", "sub": "ACTRESS", "value": 8.52, "value_text": "8.52 Cr", "icon": "glyph:AB", "lines": ["85.2 MILLION", "@ALIAABHATT", "NO. 3"], "vname": "ALIA"},
+    {"small": "Bollywood", "big": "SHRADDHA", "sub": "ACTRESS", "value": 9.27, "value_text": "9.27 Cr", "icon": "glyph:SK", "lines": ["92.7 MILLION", "SHRADDHA KAPOOR", "NO. 2"], "vname": "SHRADDHA"},
+    {"small": "Global star", "big": "PRIYANKA", "sub": "ACTRESS", "value": 9.28, "value_text": "9.28 Cr", "icon": "glyph:PC", "lines": ["92.8 MILLION", "PRIYANKA CHOPRA", "NO. 1"], "vname": "PRIYANKA"}
+  ]
+}
