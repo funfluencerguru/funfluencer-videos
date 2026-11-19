@@ -450,6 +450,24 @@ def draw_flag(im, code, Z):
         for k in range(16):
             a_ = k * math.pi / 8; d.line([(cx, cy), (cx + r * 1.7 * math.cos(a_), cy + r * 1.7 * math.sin(a_))], fill=(246, 180, 14), width=max(1, int(fh / 60)))
         d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(246, 180, 14), outline=(133, 52, 13), width=1)
+    elif c in ("NGA", "NGR"): V([(0, 135, 81), Wt, (0, 135, 81)])
+    elif c in ("NOR",):
+        f.paste((186, 12, 47), [0, 0, fw, fh]); cx = fw * 0.36
+        d.rectangle([cx - fh * 0.12, 0, cx + fh * 0.12, fh], fill=Wt); d.rectangle([0, fh / 2 - fh * 0.12, fw, fh / 2 + fh * 0.12], fill=Wt)
+        d.rectangle([cx - fh * 0.06, 0, cx + fh * 0.06, fh], fill=(0, 32, 91)); d.rectangle([0, fh / 2 - fh * 0.06, fw, fh / 2 + fh * 0.06], fill=(0, 32, 91))
+    elif c in ("SGP", "SIN"):
+        H([(239, 51, 64), Wt]); r = fh * 0.17; cx, cy = fw * 0.2, fh * 0.25
+        d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=Wt); d.ellipse([cx - r * 0.6, cy - r * 0.95, cx + r * 1.2, cy + r * 0.85], fill=(239, 51, 64))
+        for k in range(5):
+            a_ = -math.pi / 2 + k * 2 * math.pi / 5; _star(d, fw * 0.3 + r * 0.6 * math.cos(a_), cy + r * 0.6 * math.sin(a_), fh * 0.04, Wt)
+    elif c in ("MYS", "MAS"):
+        for k in range(14): d.rectangle([0, fh * k / 14, fw, fh * (k + 1) / 14], fill=(204, 0, 1) if k % 2 == 0 else Wt)
+        d.rectangle([0, 0, fw / 2, fh * 8 / 14], fill=(1, 0, 102)); cx, cy, r = fw * 0.17, fh * 0.29, fh * 0.2
+        d.ellipse([cx - r, cy - r, cx + r, cy + r], fill=(255, 204, 0)); d.ellipse([cx - r * 0.6, cy - r * 0.85, cx + r * 1.1, cy + r * 0.85], fill=(1, 0, 102))
+        _star(d, fw * 0.34, cy, fh * 0.13, (255, 204, 0))
+    elif c in ("SSD",):
+        H([K, Wt, (218, 18, 26), Wt, (7, 137, 48)]); d.rectangle([0, 0, fw, fh * 0.34], fill=K); d.rectangle([0, fh * 0.4, fw, fh * 0.6], fill=(218, 18, 26)); d.rectangle([0, fh * 0.66, fw, fh], fill=(7, 137, 48))
+        d.polygon([(0, 0), (fw * 0.42, fh / 2), (0, fh)], fill=(15, 71, 175)); _star(d, fw * 0.13, fh / 2, fh * 0.16, (252, 221, 9))
     else:
         f.paste((70, 80, 100), [0, 0, fw, fh]); d.text((fw / 2, fh / 2), c[:3], font=font("ExtraBold", int(fh * 0.45)), fill=Wt, anchor="mm")
     m = Image.new("L", (fw, fh), 0); ImageDraw.Draw(m).rounded_rectangle([0, 0, fw - 1, fh - 1], int(fh * 0.12), fill=255)

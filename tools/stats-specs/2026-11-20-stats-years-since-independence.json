@@ -1,0 +1,30 @@
+{
+  "slug": "years-since-independence",
+  "date": "2026-11-20",
+  "out": "videos/2026-11-20-stats-years-since-independence.mp4",
+  "cover_out": "images/2026-11-20-stats-years-since-independence-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "world",
+  "intro": ["DESH KITNA PURANA?", "YEARS OF FREEDOM", "Years since independence · 2026"],
+  "header": "YEARS SINCE INDEPENDENCE",
+  "outro": ["DESH KITNA PURANA?", "Years since independence, 2026"],
+  "question": "Guess India ka rank?",
+  "twist": ["THE TWIST:  USA turned 250 in 2026!", "South Sudan is only 15 · world's newest"],
+  "sources": "Sources: national independence dates · govt archives · Britannica · Al Jazeera",
+  "value_caption": "YEARS OF FREEDOM",
+  "count_fmt": "{:.0f} yrs",
+  "pillar_icon": "star",
+  "cover": {"title": ["DESH KITNA PURANA?", "10 COUNTRIES", "Years of freedom · 2026"], "hero": 4, "pill": "INDIA = 79 YEARS!", "question": "Guess No. 1?"},
+  "items": [
+    {"small": "Newest", "big": "SOUTH SUDAN", "sub": "AFRICA", "value": 15, "value_text": "15 yrs", "icon": "flag:SSD", "lines": ["9 JULY 2011", "WORLD'S NEWEST", "NO. 10"], "vname": "S. SUDAN"},
+    {"small": "City-state", "big": "SINGAPORE", "sub": "ASIA", "value": 61, "value_text": "61 yrs", "icon": "flag:SGP", "lines": ["9 AUG 1965", "SPLIT FROM MALAYSIA", "NO. 9"], "vname": "SINGAPORE"},
+    {"small": "Giant of Africa", "big": "NIGERIA", "sub": "AFRICA", "value": 66, "value_text": "66 yrs", "icon": "flag:NGA", "lines": ["1 OCT 1960", "FROM BRITAIN", "NO. 8"], "vname": "NIGERIA"},
+    {"small": "Merdeka", "big": "MALAYSIA", "sub": "ASIA", "value": 69, "value_text": "69 yrs", "icon": "flag:MYS", "lines": ["31 AUG 1957", "MERDEKA DAY", "NO. 7"], "vname": "MALAYSIA"},
+    {"small": "Apna desh", "big": "INDIA", "sub": "ASIA", "value": 79, "value_text": "79 yrs", "icon": "flag:IND", "lines": ["15 AUG 1947", "FROM BRITAIN", "NO. 6"], "vname": "INDIA"},
+    {"small": "Neighbour", "big": "INDONESIA", "sub": "ASIA", "value": 81, "value_text": "81 yrs", "icon": "flag:IDN", "lines": ["17 AUG 1945", "2 DAYS AFTER INDIA", "NO. 5"], "vname": "INDONESIA"},
+    {"small": "Nordic", "big": "NORWAY", "sub": "EUROPE", "value": 121, "value_text": "121 yrs", "icon": "flag:NOR", "lines": ["7 JUNE 1905", "FROM SWEDEN", "NO. 4"], "vname": "NORWAY"},
+    {"small": "Samba desh", "big": "BRAZIL", "sub": "S. AMERICA", "value": 204, "value_text": "204 yrs", "icon": "flag:BRA", "lines": ["7 SEP 1822", "FROM PORTUGAL", "NO. 3"], "vname": "BRAZIL"},
+    {"small": "Messi ka desh", "big": "ARGENTINA", "sub": "S. AMERICA", "value": 210, "value_text": "210 yrs", "icon": "flag:ARG", "lines": ["9 JULY 1816", "FROM SPAIN", "NO. 2"], "vname": "ARGENTINA"},
+    {"small": "Oldest here", "big": "USA", "sub": "N. AMERICA", "value": 250, "value_text": "250 yrs", "icon": "flag:USA", "lines": ["4 JULY 1776", "250TH BIRTHDAY!", "NO. 1"], "vname": "USA"}
+  ]
+}
