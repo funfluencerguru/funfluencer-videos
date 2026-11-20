@@ -1,0 +1,30 @@
+{
+  "slug": "bollywood-top-grossers-2025",
+  "date": "2026-11-21",
+  "out": "videos/2026-11-21-stats-bollywood-top-grossers-2025.mp4",
+  "cover_out": "images/2026-11-21-stats-bollywood-top-grossers-2025-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "bollywood",
+  "intro": ["2025 KE KING", "BOX OFFICE TOP 10", "Hindi films · worldwide gross, ₹ crore"],
+  "header": "TOP 10 HINDI HITS OF 2025",
+  "outro": ["2025 KE KING", "Top 10 Hindi grossers, worldwide"],
+  "question": "Aapki favourite kaunsi thi?",
+  "twist": ["TWIST: Debut love story beat War 2!", "Saiyaara +₹218 Cr · cartoon Narsimha in Top 5"],
+  "sources": "Sources: Wikipedia (2025 Hindi films) · Koimoi · Pinkvilla · approx. gross",
+  "value_caption": "₹ CRORE WORLDWIDE",
+  "count_fmt": "₹{:,.0f} Cr",
+  "pillar_icon": "star",
+  "cover": {"title": ["2025 KE KING", "TOP 10 HINDI HITS", "worldwide box office"], "hero": 9, "pill": "₹1,351 CRORE HIT!", "question": "Guess No. 1?"},
+  "items": [
+    {"small": "Horror-comedy", "big": "THAMMA", "sub": "OCT 2025", "value": 170, "value_text": "₹170 Cr", "icon": "glyph:TH", "lines": ["₹169.8 CRORE", "VAMPIRE COMEDY", "NO. 10"], "vname": "THAMMA"},
+    {"small": "Action", "big": "SIKANDAR", "sub": "EID 2025", "value": 176, "value_text": "₹176 Cr", "icon": "glyph:SK", "lines": ["₹176.2 CRORE", "SALMAN KHAN", "NO. 9"], "vname": "SIKANDAR"},
+    {"small": "Comedy", "big": "HOUSEFULL 5", "sub": "JUNE 2025", "value": 242.8, "value_text": "₹243 Cr", "icon": "glyph:H5", "lines": ["₹242.8 CRORE", "AKSHAY KUMAR", "NO. 8"], "vname": "HOUSEFULL"},
+    {"small": "Thriller", "big": "RAID 2", "sub": "MAY 2025", "value": 243.1, "value_text": "₹243 Cr", "icon": "glyph:R2", "lines": ["₹243.1 CRORE", "AJAY DEVGN", "NO. 7"], "vname": "RAID 2"},
+    {"small": "Drama", "big": "SITAARE Z.P.", "sub": "JUNE 2025", "value": 266, "value_text": "₹266 Cr", "icon": "glyph:SZ", "lines": ["₹266.5 CRORE", "AAMIR KHAN", "NO. 6"], "vname": "SITAARE"},
+    {"small": "Animated", "big": "NARSIMHA", "sub": "MAHAVATAR", "value": 301, "value_text": "₹301 Cr", "icon": "glyph:MN", "lines": ["₹300.8 CRORE", "ANIMATED FILM", "NO. 5"], "vname": "NARSIMHA"},
+    {"small": "Spy action", "big": "WAR 2", "sub": "AUG 2025", "value": 361, "value_text": "₹361 Cr", "icon": "glyph:W2", "lines": ["₹361 CRORE", "HRITHIK + NTR", "NO. 4"], "vname": "WAR 2"},
+    {"small": "Love story", "big": "SAIYAARA", "sub": "JULY 2025", "value": 579, "value_text": "₹579 Cr", "icon": "glyph:SY", "lines": ["₹579.2 CRORE", "DEBUT HERO", "NO. 3"], "vname": "SAIYAARA"},
+    {"small": "Period epic", "big": "CHHAAVA", "sub": "FEB 2025", "value": 797, "value_text": "₹797 Cr", "icon": "glyph:CH", "lines": ["₹797.3 CRORE", "VICKY KAUSHAL", "NO. 2"], "vname": "CHHAAVA"},
+    {"small": "Spy thriller", "big": "DHURANDHAR", "sub": "DEC 2025", "value": 1351, "value_text": "₹1351Cr", "icon": "glyph:DH", "lines": ["₹1,350.8 CRORE", "RANVEER SINGH", "NO. 1"], "vname": "DHURANDHR"}
+  ]
+}
