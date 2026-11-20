@@ -1,0 +1,7 @@
+{"sub":"Shaadi season! Letters ka hisaab 💍",
+ "rows":["{t} BAND = 21","{d} DHOL = 39"],
+ "last":"{r} DULHA = ?",
+ "icons":{
+ "t":"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect x='10' y='44' width='46' height='12' fill='#ffc61a' stroke='#111' stroke-width='5' stroke-linejoin='round'/><path d='M56 50 L92 26 L92 74 Z' fill='#ffc61a' stroke='#111' stroke-width='5' stroke-linejoin='round'/><rect x='24' y='30' width='7' height='14' fill='#111'/><rect x='36' y='30' width='7' height='14' fill='#111'/><circle cx='12' cy='50' r='6' fill='#111'/></svg>",
+ "d":"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M18 28 Q50 16 82 28 L82 72 Q50 84 18 72 Z' fill='#e5322d' stroke='#111' stroke-width='5' stroke-linejoin='round'/><ellipse cx='18' cy='50' rx='9' ry='22' fill='#f3d6a4' stroke='#111' stroke-width='5'/><ellipse cx='82' cy='50' rx='9' ry='22' fill='#f3d6a4' stroke='#111' stroke-width='5'/><path d='M27 30 L45 70 L63 30 L80 70' fill='none' stroke='#ffc61a' stroke-width='5' stroke-linejoin='round'/></svg>",
+ "r":"<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='62' r='26' fill='none' stroke='#111' stroke-width='14'/><circle cx='50' cy='62' r='26' fill='none' stroke='#ffc61a' stroke-width='6'/><path d='M50 10 L64 26 L50 40 L36 26 Z' fill='#9be7ff' stroke='#111' stroke-width='5' stroke-linejoin='round'/></svg>"}}
