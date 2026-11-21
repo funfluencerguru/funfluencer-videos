@@ -1,0 +1,30 @@
+{
+  "slug": "longest-serving-indian-pms",
+  "date": "2026-11-22",
+  "out": "videos/2026-11-22-stats-longest-serving-indian-pms.mp4",
+  "cover_out": "images/2026-11-22-stats-longest-serving-indian-pms-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "world",
+  "intro": ["PM KA TENURE", "SABSE LAMBA KAUN?", "Top 10 PMs of India · total years in office"],
+  "header": "TOP 10 LONGEST-SERVING PMs",
+  "outro": ["INDIA KE PMs", "Longest total time in office"],
+  "question": "Kaunsa number aapko surprise kiya?",
+  "twist": ["THE TWIST:  Top 3 = 45 of 79 years!", "Nehru + Indira + Modi · V.P. Singh: under 1 year"],
+  "sources": "Sources: Wikipedia PM list · AIR/Business Today (Modi 4,399 days, 10 Jun 2026) · as of 22 Nov 2026",
+  "value_caption": "YEARS IN OFFICE",
+  "count_fmt": "{:.1f} yrs",
+  "pillar_icon": "star",
+  "cover": {"title": ["INDIA KE PMs", "SABSE LAMBA KAUN?", "Top 10 · years in office"], "hero": 9, "pill": "NO. 1: 16.8 SAAL!", "question": "Guess No. 1?"},
+  "items": [
+    {"small": "PM No. 7", "big": "V.P. SINGH", "sub": "1989 - 1990", "value": 0.94, "value_text": "0.9 yr", "icon": "glyph:VP", "lines": ["343 DAYS", "1989 - 1990", "UNDER 1 YEAR"], "vname": "VP SINGH"},
+    {"small": "PM No. 2", "big": "SHASTRI", "sub": "1964 - 1966", "value": 1.59, "value_text": "1.6 yr", "icon": "glyph:LS", "lines": ["1 YR 216 DAYS", "1964 - 1966", "JAI JAWAN!"], "vname": "SHASTRI"},
+    {"small": "PM No. 4", "big": "MORARJI", "sub": "1977 - 1979", "value": 2.34, "value_text": "2.3 yr", "icon": "glyph:MD", "lines": ["2 YR 126 DAYS", "1977 - 1979", "OLDEST AT OATH"], "vname": "MORARJI"},
+    {"small": "PM No. 9", "big": "P.V.N. RAO", "sub": "1991 - 1996", "value": 4.90, "value_text": "4.9 yr", "icon": "glyph:PV", "lines": ["4 YR 330 DAYS", "1991 - 1996", "1991 REFORMS"], "vname": "RAO"},
+    {"small": "PM No. 6", "big": "RAJIV GANDHI", "sub": "1984 - 1989", "value": 5.09, "value_text": "5.1 yr", "icon": "glyph:RG", "lines": ["5 YR 32 DAYS", "1984 - 1989", "YOUNGEST: 40"], "vname": "RAJIV"},
+    {"small": "PM No. 10", "big": "VAJPAYEE", "sub": "1996, 1998-2004", "value": 6.22, "value_text": "6.2 yr", "icon": "glyph:AV", "lines": ["6 YR 80 DAYS", "1996, 1998-04", "3 TIMES PM"], "vname": "VAJPAYEE"},
+    {"small": "PM No. 13", "big": "MANMOHAN", "sub": "2004 - 2014", "value": 10.01, "value_text": "10 yr", "icon": "glyph:MS", "lines": ["10 YR 4 DAYS", "2004 - 2014", "2 FULL TERMS"], "vname": "MANMOHAN"},
+    {"small": "PM No. 14", "big": "MODI", "sub": "2014 - NOW", "value": 12.49, "value_text": "12.5 yr", "icon": "glyph:NM", "lines": ["12 YR 180 DAYS", "SINCE 2014", "STILL COUNTING"], "vname": "MODI"},
+    {"small": "PM No. 3", "big": "INDIRA", "sub": "1966-77, 1980-84", "value": 15.96, "value_text": "16 yr", "icon": "glyph:IG", "lines": ["15 YR 350 DAYS", "2 STINTS", "ONLY WOMAN PM"], "vname": "INDIRA"},
+    {"small": "PM No. 1", "big": "NEHRU", "sub": "1947 - 1964", "value": 16.78, "value_text": "16.8 yr", "icon": "glyph:JN", "lines": ["16 YR 286 DAYS", "1947 - 1964", "INDIA'S 1ST PM"], "vname": "NEHRU"}
+  ]
+}
