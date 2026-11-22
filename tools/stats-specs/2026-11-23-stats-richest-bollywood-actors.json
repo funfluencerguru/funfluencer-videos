@@ -1,0 +1,30 @@
+{
+  "slug": "richest-bollywood-actors",
+  "date": "2026-11-23",
+  "out": "videos/2026-11-23-stats-richest-bollywood-actors.mp4",
+  "cover_out": "images/2026-11-23-stats-richest-bollywood-actors-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "bollywood",
+  "intro": ["SABSE AMEER", "TOP 10 ACTORS", "Net worth · Hurun India Rich List 2026"],
+  "header": "TOP 10 RICHEST ACTORS · 2026",
+  "outro": ["SABSE AMEER ACTORS", "Hurun India Rich List 2026 (est.)"],
+  "question": "Kaun sa naam dekh ke shock laga?",
+  "twist": ["THE TWIST:  SRK > No.2 + No.3 combined!", "Even after a ₹2,490 Cr drop · 4 Telugu stars in top 10"],
+  "sources": "Source: Hurun India Rich List 2026 (24 Sep 2026) via Business Standard, Gulf News · est.",
+  "value_caption": "CRORE (EST.)",
+  "count_fmt": "₹{:,.0f}",
+  "pillar_icon": "coin",
+  "cover": {"title": ["SABSE AMEER", "TOP 10 ACTORS", "Hurun 2026 · ranked"], "hero": 9, "pill": "₹10,000 CRORE!", "question": "Guess No. 1?"},
+  "items": [
+    {"small": "Telugu", "big": "RAM CHARAN", "sub": "ACTOR", "value": 1400, "value_text": "₹1,400", "icon": "glyph:RC", "lines": ["₹1,400 CRORE", "TELUGU STAR", "NO. 10"], "vname": "CHARAN"},
+    {"small": "Telugu", "big": "VENKATESH", "sub": "DAGGUBATI", "value": 1650, "value_text": "₹1,650", "icon": "glyph:VD", "lines": ["₹1,650 CRORE", "TELUGU STAR", "NO. 9"], "vname": "VENKATESH"},
+    {"small": "Telugu", "big": "CHIRANJEEVI", "sub": "MEGASTAR", "value": 1700, "value_text": "₹1,700", "icon": "glyph:C", "lines": ["₹1,700 CRORE", "TELUGU STAR", "NO. 8"], "vname": "CHIRU"},
+    {"small": "Bollywood", "big": "AAMIR KHAN", "sub": "ACTOR", "value": 1800, "value_text": "₹1,800", "icon": "glyph:AK", "lines": ["₹1,800 CRORE", "PERFECTIONIST", "NO. 7"], "vname": "AAMIR"},
+    {"small": "Bollywood", "big": "AKSHAY KUMAR", "sub": "ACTOR", "value": 2300, "value_text": "₹2,300", "icon": "glyph:AK", "lines": ["₹2,300 CRORE", "KHILADI", "NO. 6"], "vname": "AKSHAY"},
+    {"small": "Bollywood", "big": "HRITHIK", "sub": "ROSHAN", "value": 2500, "value_text": "₹2,500", "icon": "glyph:HR", "lines": ["₹2,500 CRORE", "2025: ₹2,160 CR", "NO. 5"], "vname": "HRITHIK"},
+    {"small": "Bollywood", "big": "SALMAN KHAN", "sub": "ACTOR", "value": 3000, "value_text": "₹3,000", "icon": "glyph:SK", "lines": ["₹3,000 CRORE", "FIRST TIME!", "NO. 4"], "vname": "SALMAN"},
+    {"small": "Bollywood", "big": "AMITABH", "sub": "BACHCHAN", "value": 4000, "value_text": "₹4,000", "icon": "glyph:AB", "lines": ["₹4,000 CRORE", "2025: ₹1,630 CR", "NO. 3"], "vname": "AMITABH"},
+    {"small": "Telugu", "big": "NAGARJUNA", "sub": "AKKINENI", "value": 5000, "value_text": "₹5,000", "icon": "glyph:NA", "lines": ["₹5,000 CRORE", "TELUGU STAR", "NO. 2"], "vname": "NAGARJUNA"},
+    {"small": "King Khan", "big": "SHAH RUKH", "sub": "KHAN", "value": 10000, "value_text": "₹10,000", "icon": "glyph:SRK", "lines": ["₹10,000 CRORE", "WAS ₹12,490 CR", "NO. 1"], "vname": "SRK"}
+  ]
+}
