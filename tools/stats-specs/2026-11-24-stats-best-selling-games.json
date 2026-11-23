@@ -1,0 +1,30 @@
+{
+  "slug": "best-selling-games",
+  "date": "2026-11-24",
+  "out": "videos/2026-11-24-stats-best-selling-games.mp4",
+  "cover_out": "images/2026-11-24-stats-best-selling-games-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "tech",
+  "intro": ["GAMING KE KING", "SABSE ZYADA BIKE GAMES", "Top 10 best-selling games · copies sold"],
+  "header": "TOP 10 BEST-SELLING GAMES",
+  "outro": ["GAMING KE KING", "Best-selling games of all time"],
+  "question": "Aapne kaunsa game khela hai?",
+  "twist": ["THE TWIST:  Minecraft > GTA V+RDR2+Wii!", "425M vs 235M + 89M + 83M · 2 indie games in Top 10"],
+  "sources": "Sources: Microsoft · Take-Two (9 Nov 2026) · Nintendo · Krafton · Re-Logic · Curve",
+  "value_caption": "CRORE COPIES",
+  "count_fmt": "{:.1f} Cr",
+  "pillar_icon": "star",
+  "cover": {"title": ["GAMING KE KING", "TOP 10 GAMES", "all-time · copies sold"], "hero": 9, "pill": "42.5 CRORE COPIES!", "question": "Guess No. 1?"},
+  "items": [
+    {"small": "Indie, 2016", "big": "HUMAN FALL", "sub": "HUMAN: FALL FLAT", "value": 5.5, "value_text": "5.5 Cr", "icon": "glyph:HF", "lines": ["55 MILLION", "PUZZLE FUN", "NO. 10"], "vname": "HUMAN"},
+    {"small": "NES, 1985", "big": "SUPER MARIO", "sub": "SUPER MARIO BROS", "value": 5.8, "value_text": "5.8 Cr", "icon": "glyph:SM", "lines": ["58 MILLION", "40 YEARS OLD!", "NO. 9"], "vname": "MARIO"},
+    {"small": "Indie, 2011", "big": "TERRARIA", "sub": "SANDBOX", "value": 7.0, "value_text": "7.0 Cr", "icon": "glyph:TR", "lines": ["70 MILLION", "MAY 2026", "NO. 8"], "vname": "TERRARIA"},
+    {"small": "Switch, 2017", "big": "MARIO KART 8", "sub": "DELUXE", "value": 7.2, "value_text": "7.2 Cr", "icon": "glyph:MK", "lines": ["72 MILLION", "RACING", "NO. 7"], "vname": "MARIOKART"},
+    {"small": "PC, 2017", "big": "PUBG", "sub": "BATTLEGROUNDS", "value": 7.5, "value_text": "7.5 Cr", "icon": "glyph:PB", "lines": ["75 MILLION", "BATTLE ROYALE", "NO. 6"], "vname": "PUBG"},
+    {"small": "Wii, 2006", "big": "WII SPORTS", "sub": "SPORTS", "value": 8.29, "value_text": "8.3 Cr", "icon": "glyph:WS", "lines": ["82.9 MILLION", "1 CONSOLE ONLY", "NO. 5"], "vname": "WII"},
+    {"small": "Rockstar, 2018", "big": "RED DEAD 2", "sub": "COWBOY WORLD", "value": 8.9, "value_text": "8.9 Cr", "icon": "glyph:RD", "lines": ["89 MILLION", "SEP 2026", "NO. 4"], "vname": "RDR2"},
+    {"small": "EA mobile", "big": "TETRIS", "sub": "BLOCK PUZZLE", "value": 10.0, "value_text": "10 Cr", "icon": "glyph:TE", "lines": ["100 MILLION", "EA VERSION", "NO. 3"], "vname": "TETRIS"},
+    {"small": "Rockstar, 2013", "big": "GTA V", "sub": "OPEN WORLD", "value": 23.5, "value_text": "23.5 Cr", "icon": "glyph:GTA", "lines": ["~235 MILLION", "13 YEARS OLD", "NO. 2"], "vname": "GTA V"},
+    {"small": "Mojang, 2011", "big": "MINECRAFT", "sub": "BLOCK WORLD", "value": 42.5, "value_text": "42.5 Cr", "icon": "glyph:MC", "lines": ["425 MILLION", "ALL-TIME NO.1", "NO. 1"], "vname": "MINECRAFT"}
+  ]
+}
