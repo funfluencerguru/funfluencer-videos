@@ -1,0 +1,2 @@
+Answer (White to move, mate in 2): 1. Qg8+ Rxg8 2. Nf7#
+Queen sacrifice! Rook has to take (the knight guards g8), then Nf7 is a smothered mate.

@@ -123,3 +123,15 @@ draw(changes)->SVG 500x900. A = draw(set()), B = draw(all keys). The script pixe
 and that A/B differ nowhere else (diffmap.png in the work dir), guards the logo zone, renders title (2 s) /
 side-by-side with countdown 12..0 (12 s) / end card (4 s), encodes 1080x1920 and burns the Like/Share/Follow tag at y 1300.
 Log every run in tools/spotdiff-log.csv (date,scene,differences); do not reuse a scene from its last 8 lines.
+
+## Chess puzzle reel (`tools/make_chess.py`, added 2026-11-25)
+    python3 tools/make_chess.py tools/chess-specs/<date>-<slug>.json            # video + answer card
+    python3 tools/make_chess.py spec.json --preview 0.3 10                      # PNG frames only
+Green/cream online-chess style 2D board, "MATE IN N" header and a big "WHITE TO MOVE" / "BLACK TO MOVE" chip.
+Owner rules: the side to move is ALWAYS at the bottom (Black to move -> board flipped automatically from the FEN);
+NO clock / countdown / time-up overlay, the reel is 20 s with the board fully visible so viewers can keep thinking;
+the answer is NOT in the reel: post it in the comments using images/<date>-chess-<slug>-answer.jpg (+ .txt with the line).
+The tool brute-force checks the puzzle before rendering (first solution move must be the ONLY mate-in-N key, line ends in mate).
+Spec: date, slug, fen, mate_in (2 or 3), solution (SAN list), optional last_move (uci, highlighted), answer_note, names.
+No site logos or brand names. Log each run in tools/chess-log.csv; never reuse a FEN from it.
+Needs `pip install chess` (pure python) besides playwright/numpy/Pillow/ffmpeg.

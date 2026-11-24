@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-25",
+  "slug": "smothered-queen-sac",
+  "fen": "r4r1k/pp4pp/1qp2p1N/3Q4/8/8/PPP2PPP/4R1K1 w - - 0 1",
+  "mate_in": 2,
+  "last_move": "d8b6",
+  "solution": ["Qg8+", "Rxg8", "Nf7#"],
+  "answer_note": "Queen sacrifice! Rook has to take (the knight guards g8), then Nf7 is a smothered mate.",
+  "names": {"white": "White", "black": "Black"}
+}
