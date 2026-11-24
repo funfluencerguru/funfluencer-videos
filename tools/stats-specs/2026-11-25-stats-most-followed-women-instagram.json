@@ -1,0 +1,30 @@
+{
+  "slug": "most-followed-women-instagram",
+  "date": "2026-11-25",
+  "out": "videos/2026-11-25-stats-most-followed-women-instagram.mp4",
+  "cover_out": "images/2026-11-25-stats-most-followed-women-instagram-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "tech",
+  "intro": ["INSTA QUEENS", "SABSE ZYADA FOLLOWERS", "Top 10 most-followed women on Instagram (approx.)"],
+  "header": "TOP 10 WOMEN ON INSTAGRAM",
+  "outro": ["INSTA QUEENS", "Most-followed women on Instagram"],
+  "question": "Aap inmein se kisko follow karte ho?",
+  "twist": ["THE TWIST:  All 10 are Americans!", "4 from one family: Kim, Kylie, Khloe, Kendall"],
+  "sources": "Sources: Instagram counts via Instapect (Oct 2026), Advertiser Review, Taplink · approx.",
+  "value_caption": "CRORE FOLLOWERS",
+  "count_fmt": "{:.1f} Cr",
+  "pillar_icon": "star",
+  "cover": {"title": ["INSTA QUEENS", "TOP 10 WOMEN", "most followers 2026"], "hero": 9, "pill": "40 CRORE FOLLOWERS!", "question": "Guess No. 1?"},
+  "items": [
+    {"small": "Rapper", "big": "NICKI MINAJ", "sub": "HIP-HOP STAR", "value": 22.9, "value_text": "22.9 Cr", "icon": "flag:USA", "lines": ["~229 MILLION", "RAP QUEEN", "NO. 10"], "vname": "NICKI"},
+    {"small": "Singer, actor", "big": "J.LO", "sub": "JENNIFER LOPEZ", "value": 24.6, "value_text": "24.6 Cr", "icon": "flag:USA", "lines": ["~246 MILLION", "SINGER + ACTOR", "NO. 9"], "vname": "J.LO"},
+    {"small": "Singer", "big": "TAYLOR SWIFT", "sub": "POP SUPERSTAR", "value": 28.0, "value_text": "28 Cr", "icon": "flag:USA", "lines": ["~280 MILLION", "ERAS TOUR", "NO. 8"], "vname": "TAYLOR"},
+    {"small": "Model", "big": "KENDALL", "sub": "KENDALL JENNER", "value": 28.4, "value_text": "28.4 Cr", "icon": "flag:USA", "lines": ["~284 MILLION", "SUPERMODEL", "NO. 7"], "vname": "KENDALL"},
+    {"small": "TV star", "big": "KHLOE", "sub": "KHLOE KARDASHIAN", "value": 29.6, "value_text": "29.6 Cr", "icon": "flag:USA", "lines": ["~296 MILLION", "REALITY TV", "NO. 6"], "vname": "KHLOE"},
+    {"small": "Singer", "big": "BEYONCE", "sub": "QUEEN BEY", "value": 30.3, "value_text": "30.3 Cr", "icon": "flag:USA", "lines": ["~303 MILLION", "MOST GRAMMYS", "NO. 5"], "vname": "BEYONCE"},
+    {"small": "TV star", "big": "KIM K", "sub": "KIM KARDASHIAN", "value": 35.3, "value_text": "35.3 Cr", "icon": "flag:USA", "lines": ["~353 MILLION", "REALITY TV", "NO. 4"], "vname": "KIM K"},
+    {"small": "Singer", "big": "ARIANA", "sub": "ARIANA GRANDE", "value": 37.1, "value_text": "37.1 Cr", "icon": "flag:USA", "lines": ["~371 MILLION", "POP + WICKED", "NO. 3"], "vname": "ARIANA"},
+    {"small": "Beauty boss", "big": "KYLIE", "sub": "KYLIE JENNER", "value": 38.6, "value_text": "38.6 Cr", "icon": "flag:USA", "lines": ["~386 MILLION", "MAKEUP BRAND", "NO. 2"], "vname": "KYLIE"},
+    {"small": "Singer, actor", "big": "SELENA", "sub": "SELENA GOMEZ", "value": 40.8, "value_text": "40.8 Cr", "icon": "flag:USA", "lines": ["~408 MILLION", "WOMEN'S NO. 1", "NO. 1"], "vname": "SELENA"}
+  ]
+}
