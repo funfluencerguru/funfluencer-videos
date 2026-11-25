@@ -1,0 +1,30 @@
+{
+  "slug": "cricketers-instagram-followers",
+  "date": "2026-11-26",
+  "out": "videos/2026-11-26-stats-cricketers-instagram-followers.mp4",
+  "cover_out": "images/2026-11-26-stats-cricketers-instagram-followers-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "cricket",
+  "intro": ["INSTA KE KING", "CRICKET EDITION", "Top 10 cricketers by Instagram followers (approx.)"],
+  "header": "TOP 10 CRICKETERS ON INSTA",
+  "outro": ["INSTA KE KING", "Most-followed cricketers on Instagram"],
+  "question": "Aapka favourite kaun hai?",
+  "twist": ["THE TWIST:  Kohli = 5x Sachin!", "Only 1 non-Indian in Top 10: AB de Villiers"],
+  "sources": "Sources: Qoruz & HypeAuditor trackers (Aug-Nov 2026), CricTracker · approx.",
+  "value_caption": "CRORE FOLLOWERS",
+  "count_fmt": "{:.2f} Cr",
+  "pillar_icon": "star",
+  "cover": {"title": ["INSTA KE KING", "TOP 10 CRICKETERS", "most followers 2026"], "hero": 9, "pill": "27 CRORE FOLLOWERS!", "question": "Guess No. 1?"},
+  "items": [
+    {"small": "Test captain", "big": "SHUBMAN", "sub": "SHUBMAN GILL", "value": 2.05, "value_text": "2.05 Cr", "icon": "flag:IND", "lines": ["~20.5 MILLION", "INDIA CAPTAIN", "NO. 10"], "vname": "GILL"},
+    {"small": "Batter, keeper", "big": "KL RAHUL", "sub": "INDIA", "value": 2.26, "value_text": "2.26 Cr", "icon": "flag:IND", "lines": ["~22.6 MILLION", "CLASSY BATTER", "NO. 9"], "vname": "KL RAHUL"},
+    {"small": "Fast bowler", "big": "BUMRAH", "sub": "JASPRIT BUMRAH", "value": 2.45, "value_text": "2.45 Cr", "icon": "flag:IND", "lines": ["~24.5 MILLION", "YORKER KING", "NO. 8"], "vname": "BUMRAH"},
+    {"small": "Mr IPL", "big": "RAINA", "sub": "SURESH RAINA", "value": 2.66, "value_text": "2.66 Cr", "icon": "flag:IND", "lines": ["~26.6 MILLION", "RETIRED STAR", "NO. 7"], "vname": "RAINA"},
+    {"small": "Mr 360", "big": "AB DE VILLIERS", "sub": "SOUTH AFRICA", "value": 2.91, "value_text": "2.91 Cr", "icon": "flag:SA", "lines": ["~29.1 MILLION", "ONLY FOREIGNER", "NO. 6"], "vname": "ABD"},
+    {"small": "All-rounder", "big": "HARDIK", "sub": "HARDIK PANDYA", "value": 4.61, "value_text": "4.61 Cr", "icon": "flag:IND", "lines": ["~46.1 MILLION", "MI CAPTAIN", "NO. 5"], "vname": "HARDIK"},
+    {"small": "Hitman", "big": "ROHIT", "sub": "ROHIT SHARMA", "value": 4.63, "value_text": "4.63 Cr", "icon": "flag:IND", "lines": ["~46.3 MILLION", "T20 WC WINNER", "NO. 4"], "vname": "ROHIT"},
+    {"small": "Captain Cool", "big": "DHONI", "sub": "MS DHONI", "value": 5.04, "value_text": "5.04 Cr", "icon": "flag:IND", "lines": ["~50.4 MILLION", "RARELY POSTS!", "NO. 3"], "vname": "DHONI"},
+    {"small": "God of cricket", "big": "SACHIN", "sub": "SACHIN TENDULKAR", "value": 5.15, "value_text": "5.15 Cr", "icon": "flag:IND", "lines": ["~51.5 MILLION", "MASTER BLASTER", "NO. 2"], "vname": "SACHIN"},
+    {"small": "King", "big": "KOHLI", "sub": "VIRAT KOHLI", "value": 27.1, "value_text": "27.1 Cr", "icon": "flag:IND", "lines": ["~271 MILLION", "NO. 1 ASIAN", "NO. 1"], "vname": "KOHLI"}
+  ]
+}
