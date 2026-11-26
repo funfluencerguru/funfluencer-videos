@@ -1,0 +1,30 @@
+{
+  "slug": "india-states-population-2026",
+  "date": "2026-11-27",
+  "out": "videos/2026-11-27-stats-india-states-population-2026.mp4",
+  "cover_out": "images/2026-11-27-stats-india-states-population-2026-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "geo",
+  "intro": ["SABSE BADA STATE", "KITNE LOG? 2026", "Top 10 states by projected population (est.)"],
+  "header": "TOP 10 STATES BY POPULATION",
+  "outro": ["SABSE BADA STATE", "Most populous Indian states, 2026 (est.)"],
+  "question": "Aapka state kaunse number pe?",
+  "twist": ["THE TWIST:  UP > Brazil!", "Bihar has now passed Maharashtra for No. 2"],
+  "sources": "Source: RGI/MoHFW Technical Group projections for 2026 (est.) · real count: Census 2027",
+  "value_caption": "CRORE PEOPLE",
+  "count_fmt": "{:.2f} Cr",
+  "pillar_icon": "star",
+  "cover": {"title": ["SABSE BADA STATE", "TOP 10 BY POPULATION", "2026 projection"], "hero": 9, "pill": "24 CRORE LOG!", "question": "Guess No. 1?"},
+  "items": [
+    {"small": "Coastal south", "big": "ANDHRA", "sub": "ANDHRA PRADESH", "value": 5.37, "value_text": "5.37 Cr", "icon": "img:ph_andhrapradesh", "lines": ["~53.7 MILLION", "EST. 2026", "NO. 10"], "vname": "ANDHRA"},
+    {"small": "Tech hub", "big": "KARNATAKA", "sub": "BENGALURU STATE", "value": 6.91, "value_text": "6.91 Cr", "icon": "img:ph_karnataka", "lines": ["~69.1 MILLION", "EST. 2026", "NO. 9"], "vname": "KARNATAKA"},
+    {"small": "Business state", "big": "GUJARAT", "sub": "WESTERN INDIA", "value": 7.43, "value_text": "7.43 Cr", "icon": "img:ph_gujarat", "lines": ["~74.3 MILLION", "EST. 2026", "NO. 8"], "vname": "GUJARAT"},
+    {"small": "Deep south", "big": "TAMIL NADU", "sub": "CHENNAI STATE", "value": 7.76, "value_text": "7.76 Cr", "icon": "img:ph_tamilnadu", "lines": ["~77.6 MILLION", "EST. 2026", "NO. 7"], "vname": "TN"},
+    {"small": "Biggest by area", "big": "RAJASTHAN", "sub": "DESERT STATE", "value": 8.39, "value_text": "8.39 Cr", "icon": "img:ph_rajasthan", "lines": ["~83.9 MILLION", "EST. 2026", "NO. 6"], "vname": "RAJASTHAN"},
+    {"small": "Heart of India", "big": "MP", "sub": "MADHYA PRADESH", "value": 9.0, "value_text": "9.00 Cr", "icon": "img:ph_madhyapradesh", "lines": ["~90.0 MILLION", "EST. 2026", "NO. 5"], "vname": "MP"},
+    {"small": "East", "big": "WEST BENGAL", "sub": "KOLKATA STATE", "value": 10.05, "value_text": "10.1 Cr", "icon": "img:ph_westbengal", "lines": ["~100.5 MILLION", "10 CRORE CLUB", "NO. 4"], "vname": "BENGAL"},
+    {"small": "Mumbai wala", "big": "MAHARASHTRA", "sub": "WESTERN INDIA", "value": 12.93, "value_text": "12.9 Cr", "icon": "img:ph_maharashtra", "lines": ["~129 MILLION", "NOW NO. 3", "NO. 3"], "vname": "MAHA"},
+    {"small": "Fastest growing", "big": "BIHAR", "sub": "PATNA STATE", "value": 13.28, "value_text": "13.3 Cr", "icon": "img:ph_bihar", "lines": ["~133 MILLION", "TOOK NO. 2!", "NO. 2"], "vname": "BIHAR"},
+    {"small": "Number one", "big": "UP", "sub": "UTTAR PRADESH", "value": 24.35, "value_text": "24.3 Cr", "icon": "img:ph_uttarpradesh", "lines": ["~243 MILLION", "17% OF INDIA", "NO. 1"], "vname": "UP"}
+  ]
+}
