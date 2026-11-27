@@ -1,0 +1,30 @@
+{
+  "slug": "richest-countries-gdp-2026",
+  "date": "2026-11-28",
+  "out": "videos/2026-11-28-stats-richest-countries-gdp-2026.mp4",
+  "cover_out": "images/2026-11-28-stats-richest-countries-gdp-2026-cover.jpg",
+  "workdir": "/tmp/statsreel",
+  "theme": "world",
+  "intro": ["SABSE BADI ECONOMY", "INDIA KAHAN? 2026", "Top 10 economies by nominal GDP (IMF est.)"],
+  "header": "TOP 10 ECONOMIES · GDP 2026",
+  "outro": ["SABSE BADI ECONOMY", "Top 10 by nominal GDP, 2026 (IMF est.)"],
+  "question": "India No. 3 kab banega?",
+  "twist": ["THE TWIST:  India is No. 3 by PPP!", "Nominal No. 6, but ~7% growth: fastest in top 10"],
+  "sources": "Source: IMF World Economic Outlook, Oct 2026 (2026 projections, est.) · Worldometer · Admiral Markets",
+  "value_caption": "TRILLION US$",
+  "count_fmt": "${:.2f} T",
+  "pillar_icon": "coin",
+  "cover": {"title": ["SABSE BADI ECONOMY", "TOP 10 BY GDP 2026", "Where does India stand?"], "hero": 4, "pill": "INDIA = $4 TRILLION!", "question": "Guess No. 1?"},
+  "items": [
+    {"small": "South America", "big": "BRAZIL", "sub": "LATAM'S BIGGEST", "value": 2.65, "value_text": "$2.65T", "icon": "flag:BRA", "lines": ["$2.65 TRILLION", "IMF EST. 2026", "NO. 10"], "vname": "BRAZIL"},
+    {"small": "Europe", "big": "ITALY", "sub": "FASHION & FOOD", "value": 2.70, "value_text": "$2.70T", "icon": "flag:ITA", "lines": ["$2.70 TRILLION", "IMF EST. 2026", "NO. 9"], "vname": "ITALY"},
+    {"small": "Oil & gas giant", "big": "RUSSIA", "sub": "BIGGEST BY AREA", "value": 2.86, "value_text": "$2.86T", "icon": "flag:RUS", "lines": ["$2.86 TRILLION", "IMF EST. 2026", "NO. 8"], "vname": "RUSSIA"},
+    {"small": "Europe", "big": "FRANCE", "sub": "LUXURY & TOURISM", "value": 3.55, "value_text": "$3.55T", "icon": "flag:FRA", "lines": ["$3.55 TRILLION", "IMF EST. 2026", "NO. 7"], "vname": "FRANCE"},
+    {"small": "Apna desh", "big": "INDIA", "sub": "FASTEST GROWING", "value": 4.06, "value_text": "$4.06T", "icon": "flag:IND", "lines": ["$4.06 TRILLION", "~7% GROWTH", "NO. 6"], "vname": "INDIA"},
+    {"small": "Europe", "big": "UK", "sub": "UNITED KINGDOM", "value": 4.27, "value_text": "$4.27T", "icon": "flag:UK", "lines": ["$4.27 TRILLION", "IMF EST. 2026", "NO. 5"], "vname": "UK"},
+    {"small": "Asia", "big": "JAPAN", "sub": "TECH & CARS", "value": 4.34, "value_text": "$4.34T", "icon": "flag:JPN", "lines": ["$4.34 TRILLION", "IMF EST. 2026", "NO. 4"], "vname": "JAPAN"},
+    {"small": "Europe's No. 1", "big": "GERMANY", "sub": "FACTORY POWER", "value": 5.47, "value_text": "$5.47T", "icon": "flag:GER", "lines": ["$5.47 TRILLION", "IMF EST. 2026", "NO. 3"], "vname": "GERMANY"},
+    {"small": "Asia's No. 1", "big": "CHINA", "sub": "WORLD'S FACTORY", "value": 21.55, "value_text": "$21.6T", "icon": "flag:CHN", "lines": ["$21.6 TRILLION", "IMF EST. 2026", "NO. 2"], "vname": "CHINA"},
+    {"small": "Number one", "big": "USA", "sub": "UNITED STATES", "value": 32.64, "value_text": "$32.6T", "icon": "flag:USA", "lines": ["$32.6 TRILLION", "~25% OF WORLD", "NO. 1"], "vname": "USA"}
+  ]
+}
