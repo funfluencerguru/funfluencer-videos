@@ -5,7 +5,8 @@ Usage: python3 tools/make_puzzle.py spec.json out.mp4
 spec.json: {"sub": "blue hinglish line",
             "rows": ["{a} + {a} = 10", ...],      # {name} -> inline icon
             "last": "{b} + {a} × {c} = ?",    # last row, after dashed line
-            "icons": {"a": "<svg ...>...</svg>"}} # optional inline SVGs (viewBox 0 0 100 100)
+            "icons": {"a": "<svg ...>...</svg>"}, # optional inline SVGs (viewBox 0 0 100 100)
+            "figure": "<svg ...>", "figure_h": 470}  # optional big picture (count-the-shapes etc.) above rows; rows may be []
 Logo: assets/logo.png embedded as base64. Static page; only the countdown number
 changes (15..0, one second each). Audio: tick per second + 3-note chime at 0.
 Run with a python that has numpy + playwright (CHROMIUM_PATH overrides browser).
@@ -37,7 +38,9 @@ def row_html(text, icons):
 
 def page(spec, n, logo):
     icons = spec.get('icons', {})
-    rows = ''.join('<div class="row">%s</div>' % row_html(r, icons) for r in spec['rows'])
+    fig = ('<div class="fig"><img style="height:%dpx" src="%s"></div>' % (spec.get('figure_h', 470), icon(spec['figure']))
+           if spec.get('figure') else '')
+    rows = fig + ''.join('<div class="row">%s</div>' % row_html(r, icons) for r in spec['rows'])
     last = '<div class="row last">%s</div>' % row_html(spec['last'], icons)
     return f'''<html><head><meta charset="utf-8"><style>
 *{{box-sizing:border-box;margin:0}}
@@ -52,6 +55,7 @@ padding:14px 44px;font-size:96px;font-weight:900;color:#111}}
 box-shadow:16px 16px 0 #111;padding:36px 30px}}
 .row{{display:flex;align-items:center;justify-content:center;gap:14px;font-size:70px;font-weight:900;color:#111;height:112px;white-space:nowrap}}
 .row.last{{border-top:6px dashed #888;margin-top:14px;padding-top:20px;height:138px;color:#d6246e}}
+.fig{{text-align:center;padding:4px 0 6px}}.fig img{{display:inline-block}}
 .ic{{width:92px;height:92px}}.op{{margin:0 4px}}
 .cd{{position:absolute;top:1230px;left:50%;margin-left:-130px;width:260px;height:260px;border-radius:50%;background:#fff;border:20px solid #e5322d;
 box-shadow:8px 8px 0 #111;display:flex;align-items:center;justify-content:center;font-size:130px;font-weight:900;color:#111}}

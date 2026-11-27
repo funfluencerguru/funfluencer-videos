@@ -1,0 +1,11 @@
+{
+ "sub": "Garam samosa mein kitne triangles? 🔺",
+ "rows": [],
+ "last": "{s} Triangles = ?",
+ "icons": {
+  "s": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><path d='M50 12 L90 86 L10 86 Z' fill='#f5b941' stroke='#111' stroke-width='7' stroke-linejoin='round'/><circle cx='40' cy='68' r='3.5' fill='#8a5a12'/><circle cx='58' cy='60' r='3.5' fill='#8a5a12'/><circle cx='52' cy='76' r='3.5' fill='#8a5a12'/></svg>"
+ },
+ "figure": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 600 480'><polygon points='300,30 40,450 560,450' fill='#f5b941' stroke='#111' stroke-width='12' stroke-linejoin='round'/><g stroke='#111' stroke-width='8' stroke-linecap='round'><line x1='300' y1='30' x2='213' y2='450'/><line x1='300' y1='30' x2='387' y2='450'/><line x1='201.0' y1='190' x2='399.0' y2='190'/><line x1='114.3' y1='330' x2='485.7' y2='330'/></g></svg>",
+ "figure_h": 500,
+ "cta_y": 290
+}
